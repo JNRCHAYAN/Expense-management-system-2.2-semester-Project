@@ -13,7 +13,7 @@
         <h3>Create Account</h3>
         <p>It's free and only takes a minute</p>
 
-        <form action="login.php" method="post">
+        <form action="#" method="post">
             <div>
                 <label for="Name">Name</label>
                 <br>
@@ -47,15 +47,39 @@
             <div>
                 <input class="sbtn" type="submit" name="signup" value="Signup" required>
             </div>
-
-            <p>Already have an account? <a href="login.php">Login Here</a> </p>
+            <p id="doa">Already have an account? <a href="login.php">Login Here</a> </p>
 
         </form>
-
-
-
     </div>
-   
-
 </body>
 </html>
+
+        <?php
+
+        include "connection.php";
+
+        if(isset($_POST['signup']))
+        {
+            $name = $_POST['name'];
+            $username = $_POST['username'];
+            $age = $_POST['age'];
+            $phone = $_POST['phone'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $Store_DB = " INSERT INTO `userlist`( `name`, `username`, `age`, `phone`, `email`, `password`) 
+            VALUES ('$name',' $username',' $age ',' $phone','$email','$password') ";
+
+            $st = mysqli_query( $con , $Store_DB);
+            if($st)
+            {
+                header('location:login.php');
+            }
+            else
+            {
+                print "<h5>Change Your User Name or Email </h5>";  
+            }
+
+        }
+
+        ?>

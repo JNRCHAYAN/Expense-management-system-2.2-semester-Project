@@ -13,7 +13,7 @@
         <h3>Login</h3>
         <br>
 
-        <form action="login.php" method="post">
+        <form action="home.php" method="post">
             <div>
                 <label for="UserName">User Name</label>
                 <br>
@@ -27,7 +27,8 @@
             <div>
                 <input class="sbtn" type="submit" name="signup" value="Login" required>
             </div>
-
+        <br>
+        <br>
             <p>Create an account  <a href="signup.php"> Signup Here</a> </p>
 
         </form>
@@ -35,7 +36,13 @@
 
 
     </div>
-   
-
 </body>
 </html>
+
+<?php
+
+include "connection.php";
+
+
+
+?>
