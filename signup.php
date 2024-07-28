@@ -13,7 +13,7 @@
         <h3>Create Account</h3>
         <p>It's free and only takes a minute</p>
 
-        <form action="#" method="post">
+        <form action="login.php" method="post">
             <div>
                 <label for="Name">Name</label>
                 <br>
@@ -47,6 +47,8 @@
             <div>
                 <input class="sbtn" type="submit" name="signup" value="Signup" required>
             </div>
+
+            <p>Already have an account? <a href="login.php">Login Here</a> </p>
 
         </form>
 
