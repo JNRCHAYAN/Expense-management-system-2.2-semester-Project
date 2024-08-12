@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,8 +15,8 @@
     <div class="mainbox">
         <h3>Create Account</h3>
         <p>It's free and only takes a minute</p>
-
-        <form action="#" method="post">
+<!-- <?php echo htmlentities($_SERVER['PHP_SELF']); ?>   For save our page to hack  -->
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div>
                 <label for="Name">Name</label>
                 <br>
