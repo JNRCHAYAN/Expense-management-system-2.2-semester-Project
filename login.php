@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +13,27 @@
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+
+<!-- Update login system  -->
+
+<?php
+include "connection.php";
+
+if(isset($_POST['login']))
+{
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
+}
+
+?>
+
+
+
     <div class="mainbox">
         <h3>Login</h3>
         <br>
 
-        <form action="#" method="post">
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
             <div>
                 <label for="UserName">User Name</label>
                 <br>
@@ -27,13 +47,21 @@
             <div>
                 <input class="sbtn" type="submit" name="login" value="Login" required>
             </div>
-            <p>Create an account  <a href="signup.php"> Signup Here</a> </p>
+            <p> Not have an account?  <a href="signup.php"> Signup Here</a> </p>
         </form>
     </div>
 </body>
 </html>
 
 
+
+
+
+
+
+
+<!-- Old Login system  -->
+<!-- 
 <?php
 
 include "connection.php";
@@ -43,26 +71,6 @@ if(isset($_POST['login']))
     $username = $_POST['username'];
     $pass = $_POST['password'];
 
-    // $find =0;
-    // // $match = "SELECT * FROM `userlist` WHERE `username` = '$username' and `password`=  $password" ; 
-    // $selectquery = "Select * from userlist";
-
-    // $qery = mysqli_query( $con , $selectquery);
-    // $num =  mysqli_num_rows($qery);
-    // $res = mysqli_fetch_array($qery);
-
-    // while ($num>=0)
-    // {
-    //     if($res['username'] == $username) 
-    //     {
-    //         $find = 1;
-    //         echo "Data find";
-    //     }
-
-    //     $num--;
-    // }
-  
-
     $query = "SELECT * FROM userlist WHERE username = '$username' " ;
     $result = mysqli_query($con, $query);
     
@@ -71,6 +79,7 @@ if(isset($_POST['login']))
         $hashedPassword = $row['password'];
         if($hashedPassword == $pass)
         {
+            $_SESSION['user_id'] = $row['user_id'];
             header("Location: home.php");  
         }
         else {
@@ -81,11 +90,6 @@ if(isset($_POST['login']))
     else {
         echo "User not found.";
     }
-
-
-
-
-
 }
 
-?>
+?> -->
