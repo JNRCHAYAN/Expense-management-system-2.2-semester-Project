@@ -14,26 +14,11 @@ session_start();
 </head>
 <body>
 
-<!-- Update login system  -->
-
-<?php
-include "connection.php";
-
-if(isset($_POST['login']))
-{
-    $username = $_POST['username'];
-    $pass = $_POST['password'];
-}
-
-?>
-
-
-
     <div class="mainbox">
         <h3>Login</h3>
         <br>
 
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>  " method="post">
             <div>
                 <label for="UserName">User Name</label>
                 <br>
@@ -53,16 +38,57 @@ if(isset($_POST['login']))
 </body>
 </html>
 
+<!-- Update login system  -->
 
+<?php
+include "connection.php";
 
+if(isset($_POST['login']))
+{
+    $username = $_POST['username'];
+    $pass = $_POST['password'];
 
+    $username_search =  "SELECT * FROM userlist WHERE username = '$username' " ;
+    $query = mysqli_query($con, $username_search);
 
+    $username_count = mysqli_num_rows($query);
 
+   if($username_count) {
+     $user_pass = mysqli_fetch_assoc($query);   // password find on database
+     $db_pass = $user_pass['password'];   //password get and store a variable 
+
+     $_SESSION['email']= $user_pass['email'];   // Others Information pass on this home page 
+     $_SESSION['name']= $user_pass['name'];   // Others Information pass on this home page 
+
+     $pass_decode = password_verify($pass,$db_pass);
+     if($pass_decode)
+     {
+        echo "login successfull";
+        header("Location: home.php"); 
+        // ?>
+        // <script> 
+        //     location.replace("home.php");
+        // </script>
+        // <?php
+     }
+     else
+     {
+        echo "Wrong password";
+     }
+   }
+   else
+   {
+    echo "Wrong Username";
+   }
+
+}
+
+?>
 
 
 <!-- Old Login system  -->
-<!-- 
-<?php
+
+<!-- <?php
 
 include "connection.php";
 

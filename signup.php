@@ -74,7 +74,7 @@ session_start();
             $password_sq = password_hash($password, PASSWORD_BCRYPT);  
 
             $Store_DB = " INSERT INTO `userlist`( `name`, `username`, `age`, `phone`, `email`, `password`) 
-            VALUES ('$name',' $username',' $age ',' $phone','$email','$password_sq') ";
+            VALUES ('$name','$username','$age',' $phone','$email','$password_sq') ";
 
             $st = mysqli_query( $con , $Store_DB);
             if($st)
