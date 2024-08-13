@@ -68,8 +68,17 @@ if(isset($_POST['login']))
      $pass_decode = password_verify($pass,$db_pass);
      if($pass_decode)
      {
-        echo "login successfull";
-        header("Location: home.php"); 
+        if(isset($_POST['rememberme']))
+        {
+            header("Location: home.php"); 
+            setcookie('emailco',$username,time()+86400);
+            setcookie('passcp',$pass,time()+86400);
+        }
+       else
+       {
+          header("Location: home.php"); 
+       }
+       
         // ?>
         // <script> 
         //     location.replace("home.php");
