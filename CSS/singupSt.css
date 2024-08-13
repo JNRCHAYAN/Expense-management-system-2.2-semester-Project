@@ -9,6 +9,8 @@ body
     font-family: "Poppins", sans-serif;
     margin-top: 20px; 
 }
+
+
 #doa
 {
     text-align: center;
@@ -93,4 +95,9 @@ form input:hover
 {
     background-color:#056b69
 }
+#checkbox
+{
+    margin: 0px;
+    padding: 0px;
 
+}

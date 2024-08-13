@@ -29,8 +29,9 @@ session_start();
                 <br> 
                 <input type="password" name="password" placeholder="Enter Your Password" required> 
             </div>
-            <div>
-            <input type="checkbox" name= "rememberme" > Remember Me
+            <div id="checkbox">
+            <p>Remember Me</p>
+            <input type="checkbox" name= "rememberme" > 
             </div>
             <div>
                 <input class="sbtn" type="submit" name="login" value="Login" required>
