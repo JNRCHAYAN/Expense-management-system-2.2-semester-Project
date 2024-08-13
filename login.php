@@ -30,11 +30,15 @@ session_start();
                 <input type="password" name="password" placeholder="Enter Your Password" required> 
             </div>
             <div>
+            <input type="checkbox" name= "rememberme" > Remember Me
+            </div>
+            <div>
                 <input class="sbtn" type="submit" name="login" value="Login" required>
             </div>
             <p> Not have an account?  <a href="signup.php"> Signup Here</a> </p>
         </form>
     </div>
+    
 </body>
 </html>
 
@@ -82,9 +86,7 @@ if(isset($_POST['login']))
    }
 
 }
-
 ?>
-
 
 <!-- Old Login system  -->
 
