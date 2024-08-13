@@ -22,12 +22,27 @@ session_start();
             <div>
                 <label for="UserName">User Name</label>
                 <br>
-                <input type="text" name="username" placeholder="Enter Your UserName" required>
+                <input type="text" name="username" placeholder="Enter Your UserName" required 
+                value="<?php 
+                if(isset($_COOKIE['emailco'])) 
+                {
+                    echo $_COOKIE['emailco'];
+                }
+                
+                ?>">
             </div>
             <div>
                 <label for="pasword">Password</label>
                 <br> 
-                <input type="password" name="password" placeholder="Enter Your Password" required> 
+                <input type="password" name="password" placeholder="Enter Your Password" required
+                value="<?php 
+                if(isset($_COOKIE['passcp'])) 
+                {
+                    echo $_COOKIE['passcp'];
+                }
+                
+                ?>"
+                > 
             </div>
             <div id="checkbox">
             <p>Remember Me</p>
