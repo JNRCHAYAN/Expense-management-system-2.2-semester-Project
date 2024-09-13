@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Expense-management-system Project Details
 
 
@@ -64,3 +65,6 @@ We can add this option with the individual page to add income expense and others
 1. Here we can add the same side bar
 2. Here we can see our profile details 
 3. Also edit and update
+=======
+Expense-management-system Project Details // --->   Sagorika  Branch
+>>>>>>> 223ab594cbb2ca48a8c425b7c5055f947afc8882
