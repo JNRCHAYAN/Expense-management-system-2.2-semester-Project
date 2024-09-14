@@ -37,6 +37,34 @@ font-size: 30PX;
     height: 50%;
     width: 40%;
     padding-top: 20px;
-
-    
+}
+.btn
+{
+    background-color: rgb(0, 247, 164);
+    border: 1px solid rgb(0, 143, 0);
+    padding-left : 40px;
+    padding-right : 40px;
+    padding-top : 5px;
+    padding-bottom : 5px;
+    border-radius: 8px;
+    font-size: 18px;
+    margin-left: 10px;
+}
+.btn:hover
+{
+    background-color: rgb(0, 230, 153);  
+}
+form input {
+    font-size: 18px;
+    padding: 1px;
+    margin: 10px;
+    border: none;
+    border-bottom: 1.5px solid rgb(1, 211, 124);
+}
+.add_invest
+{
+    margin-top: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
 }
