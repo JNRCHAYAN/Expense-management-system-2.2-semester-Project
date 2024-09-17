@@ -1,0 +1,29 @@
+
+
+body{
+
+    display: flex;
+    background-color: rgb(4, 120, 81);
+}
+
+
+.sign{
+    background-color: rgb(248, 254, 252);
+    width: 250px;
+    height: 250%;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+
+
+
+
+
+}
+h1{
+padding-left: 22%;
+}
+p{
+    padding-left: 20%;
+}
