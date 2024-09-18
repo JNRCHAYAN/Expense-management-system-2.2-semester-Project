@@ -35,6 +35,8 @@ body{
     position: relative;
     width: 100%;
 }
+
+     
 /* =========================navigation=============== */
 .navigation{
     position: fixed;
@@ -45,6 +47,8 @@ body{
     transition: 0.5px;
     overflow: hidden;
 }
+
+     
 .navigation ul{
     position: absolute;
     top: 0;
@@ -59,6 +63,7 @@ body{
     border-bottom-left-radius: 30px;
 }
 
+     
 .navigation ul li:hover{
     background-color: var(--white);
 }
@@ -68,13 +73,14 @@ body{
 
 }
 
+     
 .navigation ul li a{
     position: relative;
     display: flex;
-    align-items: center;  /* Align icon and title vertically */
+    align-items: center;  /*to get the icon and the title in the center vertically*/
     text-decoration: none;
     color: var(--white);
-    padding: 10px;  /* Add some padding for better spacing */
+    padding: 10px;
 }
 
 .navigation ul li:hover a{
@@ -83,22 +89,25 @@ body{
 
 .navigation ul li a .icon{
     display: block;
-    min-width: 50px;  /* Reduced the min-width */
+    min-width: 50px;  /*Minimum width */
     height: 50px;
     display: flex;
-    align-items: center;  /* Center icon vertically */
-    justify-content: center;  /* Center icon horizontally */
+    align-items: center;  /* vertical icon in the center */
+    justify-content: center;  /*horizontal icon in the center */
 }
 
+     
 .navigation ul li a .icon ion-icon{
     font-size: 1.9rem;
 }
 
+     
 .navigation ul li a .title{
-    padding-left: 10px;  /* Adjust the padding for better spacing */
-    font-size: 1.2rem;  /* Increase the font size for clarity */
+    padding-left: 10px;
+    font-size: 1.2rem;
 }
 
+     
 /* --------curve outside----------- */
 .navigation ul li:hover a::before{
     content: "";
@@ -107,7 +116,6 @@ body{
     top: -50px;
     width: 50px;
     height: 50px;
-   
     border-radius: 50%;
     box-shadow: 35px 35px 0 10px var(--white);
     pointer-events: none;
@@ -120,12 +128,12 @@ body{
     bottom: -50px;
     width: 50px;
     height: 50px;
-  
     border-radius: 50%;
     box-shadow: 35px -35px 0 10px var(--white);
     pointer-events: none;
 }
 
+     
 </style>
 </head>
 <body>
@@ -133,6 +141,7 @@ body{
      <div class="container">
         <div class="navigation">
             <ul>
+               <!-- ===================items======================== -->
                 <li>
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
