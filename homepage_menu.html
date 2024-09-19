@@ -4,131 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Management System</title>
-<!-- ===========styles============! -->
- <style>
-/* ================Google fonts================ */
-@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+    <link rel="stylesheet" href="/Home_Design/home_style.css">
+    
 
-/* ================globals================ */
-
-*{
-    font-family: "ubuntu", sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root{
-    --blue: rgb(82, 228, 167);
-    --white: #fff;
-    --gray: #f5f5f5;
-    --black1: #222;
-    --black2: #999;
-}
-
-body{
-    min-height: 100vh;
-    overflow-x: hidden;
-}
-
-.container{
-    position: relative;
-    width: 100%;
-}
-
-/* =========================navigation=============== */
-.navigation{
-    position: fixed;
-    width: 250px;
-    height: 100%;
-    background: var(--blue);
-    border-left: 10px solid rgba(9, 243, 204, 0.356);
-    transition: 0.5px;
-    overflow: hidden;
-}
-.navigation ul{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-.navigation ul li{
-    position: relative;
-    width: 100%;
-    list-style: none;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-}
-
-.navigation ul li:hover{
-    background-color: var(--white);
-}
-
-.navigation ul li:nth-child(0){
-    margin-bottom: 40px;
-
-}
-
-.navigation ul li a{
-    position: relative;
-    display: flex;
-    align-items: center;  /* Align icon and title vertically */
-    text-decoration: none;
-    color: var(--white);
-    padding: 10px;  /* Add some padding for better spacing */
-}
-
-.navigation ul li:hover a{
-    color: var(--blue);
-}
-
-.navigation ul li a .icon{
-    display: block;
-    min-width: 50px;  /* Reduced the min-width */
-    height: 50px;
-    display: flex;
-    align-items: center;  /* Center icon vertically */
-    justify-content: center;  /* Center icon horizontally */
-}
-
-.navigation ul li a .icon ion-icon{
-    font-size: 1.9rem;
-}
-
-.navigation ul li a .title{
-    padding-left: 10px;  /* Adjust the padding for better spacing */
-    font-size: 1.2rem;  /* Increase the font size for clarity */
-}
-
-/* --------curve outside----------- */
-.navigation ul li:hover a::before{
-    content: "";
-    position: absolute;
-    right: 0;
-    top: -50px;
-    width: 50px;
-    height: 50px;
-   
-    border-radius: 50%;
-    box-shadow: 35px 35px 0 10px var(--white);
-    pointer-events: none;
-}
-
-.navigation ul li:hover a::after{
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: -50px;
-    width: 50px;
-    height: 50px;
-  
-    border-radius: 50%;
-    box-shadow: 35px -35px 0 10px var(--white);
-    pointer-events: none;
-}
-
-</style>
+    
 </head>
+
+
+    
 <body>
     <!-- ======================Navigation=============== -->
      <div class="container">
@@ -235,8 +118,30 @@ body{
         </div>
      </div>
 
+    
+     <!-- =========for the icon============= -->
+     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+
+    
+<!-- Scritps javascript -->
      <!-- ===============Scripts============ -->
-<script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+<script>
+    //add hovered class to selected list item
+
+let list = document.querySelectorAll(".navigation li");
+
+function activeLink(){
+    list.forEach((item)=>{
+        item.classList.remove("hovered");
+    } );
+    this.classList.add("hovered");
+}
+
+list.forEach((item) => item.addEventListener("mouseover", activeLink));
+</script>
+
+
+
 </body>
 </html>
