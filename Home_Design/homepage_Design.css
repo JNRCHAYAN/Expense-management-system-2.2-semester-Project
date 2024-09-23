@@ -411,9 +411,9 @@ the website, in dark theme
   align-items: center;
   justify-content: center;
   row-gap: 2rem;
-  margin: 0 auto; /* Centers the container */
-  max-width: 800px; /* Ensures the container doesn't stretch too wide */
-  text-align: center; /* Centers text within the container */
+  margin: 0 auto; /* Center the container */
+  max-width: 800px; 
+  text-align: center; /* Center text within the container */
 }
 
 .about__title {
