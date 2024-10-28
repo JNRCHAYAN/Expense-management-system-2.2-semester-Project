@@ -5,40 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="signphp.php">
 </head>
 <body>
     
     <div class="sign">
-        <form action="">
+        <form action="" method="post">
     <h1>Sign UP</h1>
     <p>Create your account</p>
     
         <label for="">Name</label>
         <br>
-        <input type="text" placeholder="">
+        <input type="text" name="name" required>
         <br>
         <label for="">Username</label>
         <br>
-        <input type="text" name="" id="" placeholder="">
+        <input type="text" name="username" id="" placeholder="" required>
         <br>
         <label for="">Email</label>
         <br>
-        <input type="text" placeholder="">
+        <input type="text" name="email" placeholder="" required>
         <br>
         <label for="">Password</label>
         <br>
-        <input type="password" name="" id="" placeholder="">
+        <input type="password" name="password" id="" placeholder="" required>
         <br>
         <label for="">Date Of Birth</label>
         <br>
-        <input type="date" placeholder="">
+        <input type="date" name="birth_date" placeholder="" required>
         <br>
         <label for="">Address</label>
         <br>
-        <input type="text" name="" id="" placeholder="">
+        <input type="text" name="address" id="" placeholder="" required>
         <br>
 
-        <select name="" id="Gender">
+        <select name="gender" id="Gender">
             <option value="">Gender</option>
         <option value="">Male</option>
         <option value="">Female</option>
@@ -46,7 +47,7 @@
     </select>
     <br>
 
-    <button>Sign up</button>
+    <button type="submit" name="submit">Sign up</button>
     <br>
     <button>Login</button>
     <br>
