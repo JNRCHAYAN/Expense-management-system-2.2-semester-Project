@@ -11,7 +11,6 @@ if(isset($_POST['submit']))
    (`username`, `password`, `email`) 
     VALUES ('$uname','$pass','$email'); ";
 
-
     $res = mysqli_query($con ,  $setvalue_db);
 
     if($res)
@@ -44,7 +43,7 @@ if(isset($_POST['submit']))
     
     <div class="sign">
 
-    <form action="#" method="post">
+    <form action="" method="post">
     <h1>Sign UP</h1>
     <p>Create your account</p>
         <label for="">Username</label>
@@ -60,11 +59,10 @@ if(isset($_POST['submit']))
         <input type="password" name="password" id="" placeholder="" required>
         <br>
         <input type="submit" class="btn" name="submit"  value="Register"/> 
-    <!-- <button type="submit" name="submit" >Sign up</button> -->
     <br>
-    <button>Login</button>
+    <button >Login</button>
     <br>
-    <p>Already have an account?</p>
+    <p>Already have an account? <a href="login.php">Login Here</a></p>
     </form>
 </div>
     
