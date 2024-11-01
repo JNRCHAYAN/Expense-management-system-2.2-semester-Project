@@ -25,6 +25,7 @@ if(isset($_POST['submit']))
 {
 $username=$_POST['username'];
 $password= $_POST['password'];
+
 $name_search=(select * from registration where username ='$username');
 $quary=mysqli_query($con,$name_search);
 $name_count=mysqli_num_rows($quary);
