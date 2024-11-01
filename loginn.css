@@ -5,6 +5,12 @@
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 10px;
+    text-align: center;
+}
 
 body {
     background: url('https://source.unsplash.com/random/1920x1080/?abstract') no-repeat center center/cover;

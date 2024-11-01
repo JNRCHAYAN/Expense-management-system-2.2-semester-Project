@@ -9,11 +9,21 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="loginn.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
 <?php
 include 'dbcon.php';
+
+$error = ""; 
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
@@ -30,13 +40,15 @@ if (isset($_POST['submit'])) {
         $pass_decode = password_verify($password, $db_pass);
 
         if ($pass_decode) {
-            echo "Login successful";
+           
             $_SESSION['username'] = $username;
+            header("Location: user_home.html"); 
+            exit();
         } else {
-            echo "Incorrect password";
+            $error = "Incorrect password"; 
         }
     } else {
-        echo "Invalid username";
+        $error = "Invalid username"; 
     }
 }
 ?>
@@ -59,6 +71,10 @@ if (isset($_POST['submit'])) {
         <br>
         <button type="submit" name="submit">LOGIN</button>
         <br>
+
+        <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
     </form>
 </div>
 </body>
