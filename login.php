@@ -1,13 +1,6 @@
-
 <?php
 session_start();
-
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,64 +13,53 @@ session_start();
 <body>
 
 <?php
-include'dbcon.php';
-if(isset($_POST['submit']))
-{
-$username=$_POST['username'];
-$password= $_POST['password'];
+include 'dbcon.php';
 
-$name_search=(select * from registration where username ='$username');
-$quary=mysqli_query($con,$name_search);
-$name_count=mysqli_num_rows($quary);
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-if($name_count)
-{
-   $name_pass =mysql_fetch_assoc($quary);
-   $db_pass=$name_pass['password'];
+    $name_search = "SELECT * FROM `users` WHERE `username` = '$username'";
+    $query = mysqli_query($con, $name_search);
+    $name_count = mysqli_num_rows($query);
 
-   $pass_decode= password_verify($password, $db_pass);
+    if ($name_count) {
+        $name_pass = mysqli_fetch_assoc($query);
+        $db_pass = $name_pass['PASSWORD'];
 
-   if( $pass_decode)
-   {
+        $pass_decode = password_verify($password, $db_pass);
 
-    echo "login successfull";
-
-   }
-   else 
-   {
-    echo "password incurret";
-   }
+        if ($pass_decode) {
+            echo "Login successful";
+            $_SESSION['username'] = $username;
+        } else {
+            echo "Incorrect password";
+        }
+    } else {
+        echo "Invalid username";
+    }
 }
-else 
-{
-    echo "invalid username";
-}
-}
-
 ?>
 
+<div class="log">
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+        <h1>Login</h1>
 
+        <label for="username">Username</label>
+        <br>
+        <input type="text" name="username" placeholder="">
+        <br>
 
+        <label for="password">Password</label>
+        <br>
+        <input type="password" name="password" placeholder="">
+        <br>
 
-    <div class="log">
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF'])?>;" method="post">
-            <h1>Login</h1>
-
-            <label for="">Username</label>
-            <br>
-            <input type="text" name="username"placeholder="">
-            <br>
-
-            <label for="">Password</label>
-            <br>
-            <input type="text" name="password" id="" placeholder="">
-            <br>
-        
-        <label for=""><input type="checkbox">Remember me</label>
+        <label><input type="checkbox"> Remember me</label>
         <br>
         <button type="submit" name="submit">LOGIN</button>
-            <br>
-        </form>
-    </div> 
+        <br>
+    </form>
+</div>
 </body>
 </html>
