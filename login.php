@@ -9,14 +9,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="loginn.css">
-    <style>
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 10px;
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
 
