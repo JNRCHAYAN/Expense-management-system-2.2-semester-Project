@@ -150,5 +150,33 @@ body {
 .head
 {
 background-color: #357ab9;
+width: 10%;
+}
 
+
+.head{
+    background-color: #357ab9;
+    width: 10%;
+}
+
+.one{
+    background-color: #8caac5;
+    width: 10%;
+
+}
+ 
+.two{
+    background-color: #5a5d60;
+
+}
+.three{
+    background-color: #a5e5f0;
+    width: 10%;
+    height: 100%;
+}
+
+.graph{
+    background-color: #92bce3;
+    width: 10%;
+    height: 100%;
 }
