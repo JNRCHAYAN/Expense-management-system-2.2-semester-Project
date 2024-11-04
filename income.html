@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Overview</title>
     <link rel="stylesheet" href="income.css">
-    
 </head>
 <body>
     <div class="container">
@@ -17,107 +16,119 @@
                 <li><a href="#"><span class="icon">💰</span> Income</a></li>
                 <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="#"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="index.php"><span class="icon">💼</span> Investment</a></li>
+                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">💵</span> Savings</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
         </div>
 
+        <div class="main">
+            <div class="head">
+                <h1>INCOME</h1>
+            </div>
 
+            <div class="section">
+                <h3>Overview</h3>
+                <div style="display: flex; justify-content: center;">
+                    <div class="box income">
+                        <h3>Income</h3>
+                        <p>200 tk</p>
+                    </div>
+                    <div class="box expense">
+                        <h3>Expense</h3>
+                        <p>100 tk</p>
+                    </div>
+                </div>
+            </div>
 
-<div class="head">
-    <h1>INCOME</h1>
-</div>
+            <div class="section">
+                <h3>My Income</h3>
+                <div class="my-income-card">
+                    <form action="" method="post">
+                        <h3>Filter Options</h3>
+                        <div class="filter-group">
+                            <div>
+                                <label for="start-date">Start Date</label>
+                                <input type="date" id="start-date">
+                            </div>
+                            <div>
+                                <label for="end-date">End Date</label>
+                                <input type="date" id="end-date">
+                            </div>
+                            <div>
+                                <label for="category-filter">Category</label>
+                                <select id="category-filter">
+                                    <option value="">All Categories</option>
+                                    <option value="business">Business</option>
+                                    <option value="interest">Interest</option>
+                                    <option value="dividend">Dividend</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="btn" type="submit">Filter</button>
+                    </form>
 
-<div class="one">
-    <h3>Expense</h3>
-    <p>100tk</p>
-</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>2024-01-01</td>
+                                <td>Business</td>
+                                <td>1000 tk</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2024-01-05</td>
+                                <td>Interest Income</td>
+                                <td>2000 tk</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>2024-01-10</td>
+                                <td>Dividend Income</td>
+                                <td>1500 tk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-<div class="two">
-<form action="" method="post">
-
-    <h3>My Income</h3>
-    <h3>Pick your date</h3>
-    <div>
-        <label for="date">Start date</label>
-        <input type="date" name="start date">
+            <div class="section">
+                <div class="section-item">
+                    <h2>Add Income</h2>
+                    <form action="" method="post">
+                        <div>
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="date" required>
+                        </div>
+                        <div>
+                            <label for="category">Category</label>
+                            <input type="text" name="category" id="category" required>
+                        </div>
+                        <div>
+                            <label for="amount">Amount</label>
+                            <input type="text" name="amount" id="amount" required>
+                        </div>
+                        <button class="btn" type="submit">Add Income</button>
+                    </form>
+                </div>
+                <div class="section-item">
+                    <h2>Graph</h2>
+                    <div style="height: 200px; background-color: #ecf0f1; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <p>Graph goes here</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div>
-   
-<label for="">End date</label>
-<input type="date" name="end date">
     </div>
-    <div>
-        <label for="">Categorys</label>
-        <select name="" id="">
-            <option value="">Business</option>
-        <option value="">Interst income</option>
-        <option value="">Divident income</option>
-        <option value="">Profit income</option>
-    </select>
-    </div>
-
-    
-
-    <table bgcolor="black">
-        <tr bgcolor="gray">
-            <th>S.NO</th>
-            <th>Date</th>
-            <th>Category</th>
-            
-            <th>Amount</th>
-        </tr>
-        <tr bgcolor="lightgray">
-            <td>1</td>
-            <td>01-01-2022</td>
-            <td>Opening Balance</td>
-    
-            <td>20,000</td>
-        </tr>
-        <tr bgcolor="lightgray">
-            <td>2</td>
-            <td>05-05-2022</td>
-            <td>Business Income</td>
-            
-            <td>15,000</td>
-        </tr>
-    </table>
-</form>
-    
-</div>
-
-<div class="three">
-    <h2>Income</h2>
-</div>
-
-<div class="gp">
-    <h2>Graph</h2>
-</div>
-
-<div>
-    <form action="" method="post">
-        <h2>Add Income</h2>
-        <label for="Date">Date</label>
-        <input type="date" name="dates" id="">
-        <br>
-        <label for="">Category</label>
-        <input type="text" name="category">
-        <br>
-        <label for="">Amount</label>
-     <input type="text" name="amount" id="">
-    </form>
-
-</div>
-
-
-
-
-
-
-
-       
 </body>
 </html>
