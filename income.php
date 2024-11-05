@@ -9,8 +9,8 @@ if(isset($_POST['submit']))
     
 
 
-   $setvalue_db =INSERT INTO `income`(`DATE`, `category`,`amount`) 
-   VALUES ('$amount','$category','$amount');
+   $setvalue_db ="INSERT INTO `income`(`DATE`, `category`,`amount`) 
+   VALUES ('$amount','$category','$amount')";
 
     $res = mysqli_query($con ,  $setvalue_db);
 
