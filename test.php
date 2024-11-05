@@ -144,11 +144,6 @@ if(isset($_POST['submit']))
                         <td> <?php echo $res['Interest']; ?></td>
                         <td> <?php echo $res['Invest_Start'] ;?></td>
                         <td> <?php echo $res['Total_Years']; ?></td>
-
-                        <td>   <a href="loan.html?age=<?php echo $res['age'] ?>" data-toggle="tooltip" data-placement="bottom" title="Update">
-                            <i class="fa fa-edit" aria-hidden="true"></i>  </a></td>
-                        <td> <a href="loan.html?age=<?php echo $res['age'] ?> " data-toggle="tooltip" data-placement="bottom" title="Delete">
-                        <i class="fa fa-trash" aria-hidden="true"></i>  </a> </td>
                      </tr>
                      <?php
 
@@ -160,14 +155,6 @@ if(isset($_POST['submit']))
           </div>  
 
     </div>
-
-<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
-</script>
-
-
 
   
 </body>

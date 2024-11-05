@@ -1,39 +1,3 @@
-<?php
-include 'connect.php';
-if(isset($_POST['submit']))
-{
-    $amount = $_POST['amount'];
-    $Bank_name = $_POST['Bank_name'];
-    $rate = $_POST['rate'];
-    $s_date = $_POST['s_date'];
-    $year = $_POST['year'];
-    $user_id = 1;
-   
-   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
-   VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
-
-    $res = mysqli_query($con ,  $setvalue_db);
-
-    if($res)
-    {
-        ?>
-        <script>
-            alert('Data store');
-        </script>
-        <?php
-    }
-    else
-    {
-        ?>
-        <script>
-            alert('Not Store');
-        </script>
-        <?php
-    }
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,7 +58,7 @@ if(isset($_POST['submit']))
             <section class="add_invest">
                 <h2>Add Investment</h2>
                 <div class="in_form">
-                    <form action="" method="post">
+                    <form action="store.php" method="post">
                         <label for="amount">Amount:</label>
                         <input type="number" id="amount" name="amount" placeholder="Amount" required>
                         <label for="bank_name">Bank Name:</label>
@@ -110,6 +74,47 @@ if(isset($_POST['submit']))
                 </div>
             </section>
         </div>
+    </div>
+
+
+    <div>
+        <h2>My Investment</h2>
+          <table>
+                <thead><tr>
+                    <th>Amount</th>
+                    <th>Bank Name</th>
+                    <th>Interest Rate</th>
+                    <th>Investment Start Date</th>
+                    <th>Total Investment Years</th>
+                    <th colspan="2">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                    include 'connect.php';
+                    $selectquery = "Select * from savings";
+                    $qery = mysqli_query( $con , $selectquery);
+                    while ($res = mysqli_fetch_array($qery))
+                    {
+
+                      ?>      
+                        <tr>
+                        <td> <?php echo $res['amount']; ?></td>
+                        <td> <?php echo $res['BankName']; ?></td>
+                        <td> <?php echo $res['Interest']; ?></td>
+                        <td> <?php echo $res['Invest_Start'] ;?></td>
+                        <td> <?php echo $res['Total_Years']; ?></td>
+                     </tr>
+                     <?php
+
+                    }
+                    ?>
+               
+            </tbody>
+            </table>
+          </div>  
+
     </div>
 
   
