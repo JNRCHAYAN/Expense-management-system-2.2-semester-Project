@@ -7,11 +7,10 @@ if(isset($_POST['submit']))
     $category = $_POST['Category'];
     $amount = $_POST['Amount'];
     
-    
 
-   $setvalue_db = "INSERT INTO `users`
-   (`username`, `password`, `email`) 
-    VALUES ('$uname','$pass','$email'); ";
+
+   $setvalue_db =INSERT INTO `income`(`DATE`, `category`,`amount`) 
+   VALUES ('$amount','$category','$amount');
 
     $res = mysqli_query($con ,  $setvalue_db);
 
@@ -155,7 +154,7 @@ if(isset($_POST['submit']))
                             <label for="amount">Amount</label>
                             <input type="text" name="amount" id="amount" required>
                         </div>
-                        <button class="btn" type="submit">Add Income</button>
+                        <button class="btn" type="submit" name="submit">Add Income</button>
                     </form>
                 </div>
                 <div class="section-item">
