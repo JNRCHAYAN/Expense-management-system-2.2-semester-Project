@@ -1,3 +1,40 @@
+
+<?php
+include 'dbcon.php';
+if(isset($_POST['submit']))
+{
+    $date = $_POST['Date'];
+    $category = $_POST['Category'];
+    $amount = $_POST['Amount'];
+    
+    
+
+   $setvalue_db = "INSERT INTO `users`
+   (`username`, `password`, `email`) 
+    VALUES ('$uname','$pass','$email'); ";
+
+    $res = mysqli_query($con ,  $setvalue_db);
+
+    if($res)
+    {
+        ?>
+        <script>
+            alert('Data store');
+        </script>
+        <?php
+    }
+    else
+    {
+        ?>
+        <script>
+            alert('Not Store');
+        </script>
+        <?php
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

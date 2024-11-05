@@ -1,3 +1,4 @@
+
 <?php
 include 'dbcon.php';
 if(isset($_POST['submit']))
@@ -31,6 +32,13 @@ if(isset($_POST['submit']))
     }
 }
 ?>
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +46,8 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="signup.css">
+
+    
 </head>
 <body>
     
@@ -54,7 +64,7 @@ if(isset($_POST['submit']))
         <br>
         <input type="text" name="email" placeholder="" required>
         <br>
-        <label for="">Password</label>
+        <label for="">Password</label> 
         <br>
         <input type="password" name="password" id="" placeholder="" required>
         <br>
@@ -68,3 +78,4 @@ if(isset($_POST['submit']))
     
 </body>
 </html>
+  

@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
         if ($pass_decode) {
            
             $_SESSION['username'] = $username;
-            header("Location: income.html"); 
+            header("Location: income.php"); 
             exit();
         } else {
             $error = "Incorrect password"; 
