@@ -1,3 +1,39 @@
+<?php
+include 'connect.php';
+if(isset($_POST['submit']))
+{
+    $amount = $_POST['amount'];
+    $Bank_name = $_POST['Bank_name'];
+    $rate = $_POST['rate'];
+    $s_date = $_POST['s_date'];
+    $year = $_POST['year'];
+    $user_id = 1;
+   
+   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
+   VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
+
+    $res = mysqli_query($con ,  $setvalue_db);
+
+    if($res)
+    {
+        ?>
+        <script>
+            alert('Data store');
+        </script>
+        <?php
+    }
+    else
+    {
+        ?>
+        <script>
+            alert('Not Store');
+        </script>
+        <?php
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +41,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Overview</title>
     <link rel="stylesheet" href="style.css">
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
+
 <body>
     <div class="container">
         <!-- Sidebar Navigation -->
@@ -36,7 +74,7 @@
                     </div>
                     <div class="option_1">
                         <img src="loan.png" alt="Balance Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
+                        <h2>10,000<span>&#2547;</span></h2>
                         <p>Interest Rate</p>
                     </div>
                     <div class="option_1">
@@ -54,24 +92,26 @@
             </section>
 
             <section class="add_invest">
-                <h2>Add Loan</h2>
+                <h2>Add Investment</h2>
                 <div class="in_form">
                     <form action="" method="post">
                         <label for="amount">Amount:</label>
-                        <input type="number" id="amount" placeholder="Amount" required>
+                        <input type="number" id="amount" name="amount" placeholder="Amount" required>
                         <label for="bank_name">Bank Name:</label>
-                        <input type="text" id="bank_name" placeholder="Bank Name" required>
+                        <input type="text" id="bank_name" name="Bank_name" placeholder="Bank Name" required>
                         <label for="interest_rate">Interest Rate:</label>
-                        <input type="text" id="interest_rate" placeholder="Interest Rate" required>
+                        <input type="text" id="interest_rate" name="rate" placeholder="Interest Rate" required>
                         <label for="start_date">Investment Start Date:</label>
-                        <input type="date" id="start_date" required>
+                        <input type="date" id="start_date" name="s_date" required>
                         <label for="total_years">Total Investment Years:</label>
-                        <input type="number" id="total_years" placeholder="Total Years" required>
-                        <button type="submit" class="btn">Add Investment</button>
+                        <input type="number" id="total_years" name="year" placeholder="Total Years" required>
+                        <button type="submit" class="btn" name="submit">Add Investment</button>
                     </form>
                 </div>
             </section>
         </div>
     </div>
+
+  
 </body>
 </html>
