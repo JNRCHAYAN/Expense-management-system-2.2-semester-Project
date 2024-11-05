@@ -3,17 +3,15 @@
 include 'dbcon.php';
 if(isset($_POST['submit']))
 {
-    $date = $_POST['Date'];
-    $category = $_POST['Category'];
-    $amount = $_POST['Amount'];
+    $date = $_POST['date'];
+    $category = $_POST['category'];
+    $amount = $_POST['amount'];
+    $userid = 1;
     
-
-
-   $setvalue_db ="INSERT INTO `income`(`DATE`, `category`,`amount`) 
-   VALUES ('$amount','$category','$amount')";
+   $setvalue_db ="INSERT INTO `income`(`user_id`,`DATE`, `category`,`amount`) 
+   VALUES ('$userid','$date','$category','$amount')";
 
     $res = mysqli_query($con ,  $setvalue_db);
-
     if($res)
     {
         ?>
@@ -152,7 +150,7 @@ if(isset($_POST['submit']))
                         </div>
                         <div>
                             <label for="amount">Amount</label>
-                            <input type="text" name="amount" id="amount" required>
+                            <input type="number" name="amount" id="amount" required>
                         </div>
                         <button class="btn" type="submit" name="submit">Add Income</button>
                     </form>
