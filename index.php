@@ -1,3 +1,39 @@
+<?php
+include 'connect.php';
+if(isset($_POST['submit']))
+{
+    $amount = $_POST['amount'];
+    $Bank_name = $_POST['Bank_name'];
+    $rate = $_POST['rate'];
+    $s_date = $_POST['s_date'];
+    $year = $_POST['year'];
+    $user_id = 1;
+   
+   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
+   VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
+
+    $res = mysqli_query($con ,  $setvalue_db);
+
+    if($res)
+    {
+        ?>
+        <script>
+            alert('Data store');
+        </script>
+        <?php
+    }
+    else
+    {
+        ?>
+        <script>
+            alert('Not Store');
+        </script>
+        <?php
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +43,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
-
 <body>
     <div class="container">
         <!-- Sidebar Navigation -->
@@ -28,17 +62,18 @@
 
         <!-- Main Content -->
         <div class="main">
+          
             <section>
                 <h2 class="head_title">Investment Overview</h2>
                 <div class="option_dev">
                     <div class="option_1">
                         <img src="loan.png" alt="Loan Icon" class="Op_image">
                         <h2>10</h2>
-                        <p>Investment Profit </p>
+                        <p>Investment Profit</p>
                     </div>
                     <div class="option_1">
                         <img src="loan.png" alt="Balance Icon" class="Op_image">
-                        <h2>10,000<span>&#2547;</span></h2>
+                        <h2> 100<span>&#2547;</span></h2>
                         <p>Interest Rate</p>
                     </div>
                     <div class="option_1">
@@ -51,14 +86,13 @@
                         <h2>10,000 <span>&#2547;</span></h2>
                         <p>Bank Name</p>
                     </div>
-                   
                 </div>
             </section>
 
             <section class="add_invest">
                 <h2>Add Investment</h2>
                 <div class="in_form">
-                    <form action="store.php" method="post">
+                    <form action="" method="post">
                         <label for="amount">Amount:</label>
                         <input type="number" id="amount" name="amount" placeholder="Amount" required>
                         <label for="bank_name">Bank Name:</label>
@@ -73,13 +107,9 @@
                     </form>
                 </div>
             </section>
-        </div>
-    </div>
 
-
-    <div>
-        <h2>My Investment</h2>
-          <table>
+            <h2>My Investment</h2>
+            <table>
                 <thead><tr>
                     <th>Amount</th>
                     <th>Bank Name</th>
@@ -93,11 +123,13 @@
                 <?php
 
                     include 'connect.php';
-                    $selectquery = "Select * from savings";
+
+                    $selectquery = "Select *from savings order by created_at desc";
+
                     $qery = mysqli_query( $con , $selectquery);
+
                     while ($res = mysqli_fetch_array($qery))
                     {
-
                       ?>      
                         <tr>
                         <td> <?php echo $res['amount']; ?></td>
@@ -105,18 +137,17 @@
                         <td> <?php echo $res['Interest']; ?></td>
                         <td> <?php echo $res['Invest_Start'] ;?></td>
                         <td> <?php echo $res['Total_Years']; ?></td>
+                        <td><button class="btn">Edit</button></td>
+                        <td><button class="btn">Delete</button></td>
                      </tr>
                      <?php
-
                     }
                     ?>
-               
             </tbody>
             </table>
-          </div>  
 
+
+        </div>
     </div>
-
-  
 </body>
 </html>
