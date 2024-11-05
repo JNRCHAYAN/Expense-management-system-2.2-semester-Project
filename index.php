@@ -11,7 +11,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="/assets/CSS/homepage_Design.css">
+        <link rel="stylesheet" href="/assets/CSS/index.css">
 
         <title>Expense management system</title>
     </head>
