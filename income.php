@@ -108,6 +108,7 @@ if(isset($_POST['submit']))
                     <th>Date</th>
                     <th>Category</th>
                     <th>Amount</th>
+                    
                     <th colspan="2">Operation</th>
                 </tr>
             </thead>
@@ -127,8 +128,10 @@ if(isset($_POST['submit']))
                         <td> <?php echo $res['DATE']; ?></td>
                         <td> <?php echo $res['category']; ?></td>
                         <td> <?php echo $res['amount']; ?></td>
+                        
                         <td><button class="btn">Edit</button></td>
                         <td><button class="btn">Delete</button></td>
+                        
                      </tr>
                      <?php
                     }
