@@ -104,35 +104,37 @@ if(isset($_POST['submit']))
                     </form>
 
                     <table>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Date</th>
-                                <th>Category</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>2024-01-01</td>
-                                <td>Business</td>
-                                <td>1000 tk</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>2024-01-05</td>
-                                <td>Interest Income</td>
-                                <td>2000 tk</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2024-01-10</td>
-                                <td>Dividend Income</td>
-                                <td>1500 tk</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <thead><tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th colspan="2">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                    include 'dbcon.php';
+
+                    $selectquery = "SELECT *FROM `income` WHERE 1 order by created_at desc";
+
+                    $qery = mysqli_query( $con , $selectquery);
+
+                    while ($res = mysqli_fetch_array($qery))
+                    {
+                      ?>      
+                        <tr>
+                        <td> <?php echo $res['DATE']; ?></td>
+                        <td> <?php echo $res['category']; ?></td>
+                        <td> <?php echo $res['amount']; ?></td>
+                        <td><button class="btn">Edit</button></td>
+                        <td><button class="btn">Delete</button></td>
+                     </tr>
+                     <?php
+                    }
+                    ?>
+            </tbody>
+            </table>
                 </div>
             </div>
 
