@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
                                 $category = $_POST['categoryy'];
                                 $userid = 1;
 
-                                $selectquery = "SELECT * FROM `income` WHERE user_id = $userid AND DATE BETWEEN '$Sdate' AND '$Edate' AND category = '$category'";
+                                $selectquery = "SELECT * FROM `income` WHERE user_id = $userid AND DATE BETWEEN '$Sdate' AND '$Edate' OR category = '$category'";
                                 $qery = mysqli_query($con, $selectquery);
 
                                 if (!$qery) {
