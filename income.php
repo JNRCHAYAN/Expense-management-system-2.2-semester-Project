@@ -79,20 +79,21 @@ if(isset($_POST['submit']))
             <div class="section">
                 <h3>My Income</h3>
                 <div class="my-income-card">
+
                     <form action="" method="post">
                         <h3>Filter Options</h3>
                         <div class="filter-group">
                             <div>
                                 <label for="start-date">Start Date</label>
-                                <input type="date" id="start-date">
+                                <input type="date" name="start" id="start-date">
                             </div>
                             <div>
                                 <label for="end-date">End Date</label>
-                                <input type="date" id="end-date">
+                                <input type="date" name="end" id="end-date">
                             </div>
                             <div>
                                 <label for="category-filter">Category</label>
-                                <select id="category-filter">
+                                <select id="category-filter" name="category">
                                     <option value="">All Categories</option>
                                     <option value="business">Business</option>
                                     <option value="interest">Interest</option>
@@ -100,7 +101,43 @@ if(isset($_POST['submit']))
                                 </select>
                             </div>
                         </div>
-                        <button class="btn" type="submit">Filter</button>
+                        <button class="btn" type="submit" name="submit">Filter</button>
+
+
+                        <?php
+
+include 'dbcon.php';
+if(isset($_POST['submit']))
+{
+    $Sdate = $_POST['start'];
+    $Edate = $_POST['end'];
+    $category= $_POST['category'];
+    $userid = 1;
+    
+  $setquary="SELECT *FROM `income` WHERE DATE BETWEEN "2024-11-14" AND "2024-11-22" AND category="business"";
+
+    $res = mysqli_query($con ,  $setquary);
+    if($res)
+    {
+        ?>
+        <script>
+            alert('Data store');
+        </script>
+        <?php
+        
+    }
+    else
+    {
+        ?>
+        <script>
+            alert('Not Store');
+        </script>
+        <?php
+    }
+}
+
+
+                      ?>
                     </form>
 
                     <table>
@@ -117,7 +154,7 @@ if(isset($_POST['submit']))
 
                     include 'dbcon.php';
 
-                    $selectquery = "SELECT *FROM income WHERE user_id = 1 ORDER BY created_at DESC";
+                    $selectquery = "SELECT *FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
 
                     $qery = mysqli_query( $con , $selectquery);
 
@@ -133,6 +170,9 @@ if(isset($_POST['submit']))
                         <td><button class="btn">Delete</button></td>
                         
                      </tr>
+
+
+                     
                      <?php
                     }
                     ?>
