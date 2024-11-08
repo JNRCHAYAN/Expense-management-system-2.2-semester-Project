@@ -93,7 +93,7 @@ if(isset($_POST['submit']))
                             </div>
                             <div>
                                 <label for="category-filter">Category</label>
-                                <input type="text" name="category" id="end-date">
+                                <input type="text" name="categoryy" id="end-date">
                                 <!-- <select id="category-filter" name="category">
                                     <option value="">All Categories</option>
                                     <option value="business">Business</option>
@@ -102,7 +102,7 @@ if(isset($_POST['submit']))
                                 </select> -->
                             </div>
                         </div>
-                        <button class="btn" type="submit" name="submit">Filter</button>   
+                        <button class="btn" type="submit" name="s">Filter</button>   
                     </form>
 
                     <table>
@@ -120,62 +120,54 @@ if(isset($_POST['submit']))
 
                     include 'dbcon.php';
 
-                    if(isset($_POST['submit']))
+                    if(isset($_POST['s']))
                     {
                         $Sdate = $_POST['start'];
                         $Edate = $_POST['end'];
-                        $category= $_POST['category'];
+                        $category= $_POST['categoryy'];
                         $userid = 1;
         
-                        $selectquery = "SELECT * FROM `income` WHERE user_id = 1 AND DATE BETWEEN `$Sdate` AND `$Edate`  AND category = `$category` ";
+                        $selectquery = "SELECT * FROM `income` WHERE user_id = $userid AND DATE BETWEEN '$Sdate'  AND '$Edate' AND category = '$category' ";
                         $qery = mysqli_query( $con , $selectquery);
 
-                        while ($res = mysqli_fetch_array($qery))
-                        {
-                          ?>      
-                            <tr>
-                            <td> <?php echo $res['DATE']; ?></td>
-                            <td> <?php echo $res['category']; ?></td>
-                            <td> <?php echo $res['amount']; ?> Taka</td>
-                            
-                            <td><button class="btn">Edit</button></td>
-                            <td><button class="btn">Delete</button></td>
-                            
-                         </tr>
-    
-    
-                         
-                         <?php
+                        if (!$qery) {
+                            die("Query Failed: " . mysqli_error($con));
+                        }                    
+                        if (mysqli_num_rows($qery) > 0) {
+                            while ($res = mysqli_fetch_array($qery)) {
+                                ?>
+                                <tr>
+                                    <td> <?php echo $res['DATE']; ?></td>
+                                    <td> <?php echo $res['category']; ?></td>
+                                    <td> <?php echo $res['amount']; ?> Taka</td>
+                                    <td><button class="btn">Edit</button></td>
+                                    <td><button class="btn">Delete</button></td>
+                                </tr>
+                                <?php
+                            }
                         }
-
+                         else {
+                            echo "<tr><td colspan='5'>No records found for the selected filter.</td></tr>";
+                        }
                     }
-
                     else
                     {
                         $selectquery = "SELECT *FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
-
                         $qery = mysqli_query( $con , $selectquery);
-    
                         while ($res = mysqli_fetch_array($qery))
                         {
                           ?>      
                             <tr>
                             <td> <?php echo $res['DATE']; ?></td>
                             <td> <?php echo $res['category']; ?></td>
-                            <td> <?php echo $res['amount']; ?> Taka</td>
-                            
+                            <td> <?php echo $res['amount']; ?> Taka</td>                           
                             <td><button class="btn">Edit</button></td>
                             <td><button class="btn">Delete</button></td>
-                            
                          </tr>
-    
-    
-                         
                          <?php
                         }
                     }
 
-                 
                     ?>
             </tbody>
             </table>
