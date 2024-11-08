@@ -93,13 +93,13 @@ if(isset($_POST['submit']))
                             </div>
                             <div>
                                 <label for="category-filter">Category</label>
-                                
+                                <input type="text" name="category" id="end-date">
                                 <!-- <select id="category-filter" name="category">
                                     <option value="">All Categories</option>
                                     <option value="business">Business</option>
                                     <option value="interest">Interest</option>
-                                    <option value="dividend">Dividend</option> -->
-                                </select>
+                                    <option value="dividend">Dividend</option>
+                                </select> -->
                             </div>
                         </div>
                         <button class="btn" type="submit" name="submit">Filter</button>   
@@ -127,10 +127,9 @@ if(isset($_POST['submit']))
                         $category= $_POST['category'];
                         $userid = 1;
         
-                        $selectquery = "SELECT * FROM income WHERE user_id = 1 AND DATE BETWEEN `$Sdate` AND `$Edate`  AND category = `$category` ";
+                        $selectquery = "SELECT * FROM `income` WHERE user_id = 1 AND DATE BETWEEN `$Sdate` AND `$Edate`  AND category = `$category` ";
                         $qery = mysqli_query( $con , $selectquery);
 
-                        
                         while ($res = mysqli_fetch_array($qery))
                         {
                           ?>      
