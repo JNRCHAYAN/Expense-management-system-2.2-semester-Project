@@ -93,51 +93,16 @@ if(isset($_POST['submit']))
                             </div>
                             <div>
                                 <label for="category-filter">Category</label>
-                                <select id="category-filter" name="category">
+                                
+                                <!-- <select id="category-filter" name="category">
                                     <option value="">All Categories</option>
                                     <option value="business">Business</option>
                                     <option value="interest">Interest</option>
-                                    <option value="dividend">Dividend</option>
+                                    <option value="dividend">Dividend</option> -->
                                 </select>
                             </div>
                         </div>
-                        <button class="btn" type="submit" name="submit">Filter</button>
-
-
-                        <?php
-
-include 'dbcon.php';
-if(isset($_POST['submit']))
-{
-    $Sdate = $_POST['start'];
-    $Edate = $_POST['end'];
-    $category= $_POST['category'];
-    $userid = 1;
-    
-  $setquary="SELECT *FROM `income` WHERE DATE BETWEEN "2024-11-14" AND "2024-11-22" AND category="business"";
-
-    $res = mysqli_query($con ,  $setquary);
-    if($res)
-    {
-        ?>
-        <script>
-            alert('Data store');
-        </script>
-        <?php
-        
-    }
-    else
-    {
-        ?>
-        <script>
-            alert('Not Store');
-        </script>
-        <?php
-    }
-}
-
-
-                      ?>
+                        <button class="btn" type="submit" name="submit">Filter</button>   
                     </form>
 
                     <table>
@@ -150,31 +115,68 @@ if(isset($_POST['submit']))
                 </tr>
             </thead>
             <tbody>
+
                 <?php
 
                     include 'dbcon.php';
 
-                    $selectquery = "SELECT *FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
-
-                    $qery = mysqli_query( $con , $selectquery);
-
-                    while ($res = mysqli_fetch_array($qery))
+                    if(isset($_POST['submit']))
                     {
-                      ?>      
-                        <tr>
-                        <td> <?php echo $res['DATE']; ?></td>
-                        <td> <?php echo $res['category']; ?></td>
-                        <td> <?php echo $res['amount']; ?> Taka</td>
-                        
-                        <td><button class="btn">Edit</button></td>
-                        <td><button class="btn">Delete</button></td>
-                        
-                     </tr>
+                        $Sdate = $_POST['start'];
+                        $Edate = $_POST['end'];
+                        $category= $_POST['category'];
+                        $userid = 1;
+        
+                        $selectquery = "SELECT * FROM income WHERE user_id = 1 AND DATE BETWEEN `$Sdate` AND `$Edate`  AND category = `$category` ";
+                        $qery = mysqli_query( $con , $selectquery);
 
+                        
+                        while ($res = mysqli_fetch_array($qery))
+                        {
+                          ?>      
+                            <tr>
+                            <td> <?php echo $res['DATE']; ?></td>
+                            <td> <?php echo $res['category']; ?></td>
+                            <td> <?php echo $res['amount']; ?> Taka</td>
+                            
+                            <td><button class="btn">Edit</button></td>
+                            <td><button class="btn">Delete</button></td>
+                            
+                         </tr>
+    
+    
+                         
+                         <?php
+                        }
 
-                     
-                     <?php
                     }
+
+                    else
+                    {
+                        $selectquery = "SELECT *FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
+
+                        $qery = mysqli_query( $con , $selectquery);
+    
+                        while ($res = mysqli_fetch_array($qery))
+                        {
+                          ?>      
+                            <tr>
+                            <td> <?php echo $res['DATE']; ?></td>
+                            <td> <?php echo $res['category']; ?></td>
+                            <td> <?php echo $res['amount']; ?> Taka</td>
+                            
+                            <td><button class="btn">Edit</button></td>
+                            <td><button class="btn">Delete</button></td>
+                            
+                         </tr>
+    
+    
+                         
+                         <?php
+                        }
+                    }
+
+                 
                     ?>
             </tbody>
             </table>
