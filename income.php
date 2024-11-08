@@ -117,7 +117,7 @@ if(isset($_POST['submit']))
 
                     include 'dbcon.php';
 
-                    $selectquery = "SELECT *FROM `income` WHERE 1 order by created_at desc";
+                    $selectquery = "SELECT *FROM income WHERE user_id = 1 ORDER BY created_at DESC";
 
                     $qery = mysqli_query( $con , $selectquery);
 
