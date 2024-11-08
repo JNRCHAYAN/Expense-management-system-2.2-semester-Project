@@ -127,7 +127,7 @@ if(isset($_POST['submit']))
                         <tr>
                         <td> <?php echo $res['DATE']; ?></td>
                         <td> <?php echo $res['category']; ?></td>
-                        <td> <?php echo $res['amount']; ?></td>
+                        <td> <?php echo $res['amount']; ?> Taka</td>
                         
                         <td><button class="btn">Edit</button></td>
                         <td><button class="btn">Delete</button></td>
