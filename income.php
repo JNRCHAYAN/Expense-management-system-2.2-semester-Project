@@ -172,12 +172,7 @@ if (isset($_POST['submit'])) {
                         <button class="btn" type="submit" name="submit">Add Income</button>
                     </form>
                 </div>
-                <div class="section-item">
-                    <h2>Graph</h2>
-                    <div style="height: 200px; background-color: #ecf0f1; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
-                        <p>Graph goes here</p>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </div>
