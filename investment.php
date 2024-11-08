@@ -7,9 +7,9 @@ if(isset($_POST['submit']))
     $rate = $_POST['rate'];
     $s_date = $_POST['s_date'];
     $year = $_POST['year'];
-    $user_id = 1;
+    $user_id = 3;
    
-   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
+   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
    VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
 
     $res = mysqli_query($con ,  $setvalue_db);
@@ -98,7 +98,7 @@ if(isset($_POST['submit']))
                         <label for="bank_name">Bank Name:</label>
                         <input type="text" id="bank_name" name="Bank_name" placeholder="Bank Name" required>
                         <label for="interest_rate">Interest Rate:</label>
-                        <input type="text" id="interest_rate" name="rate" placeholder="Interest Rate" required>
+                        <input type="number" id="interest_rate" name="rate" placeholder="Interest Rate" required>
                         <label for="start_date">Investment Start Date:</label>
                         <input type="date" id="start_date" name="s_date" required>
                         <label for="total_years">Total Investment Years:</label>
