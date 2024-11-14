@@ -164,8 +164,8 @@ $sett=$fach['Amount'];
                                         <td><?php echo $res['DATE']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
-                                        <td><button class="btn">Edit</button></td>
-                                        <td><button class="btn">Delete</button></td>
+                                        <td> <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"> 
+                                            <button class="btn">Delete</button> </a> </td>
                                     </tr>
                                     <?php
                                 }
