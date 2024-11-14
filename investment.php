@@ -11,21 +11,13 @@ if(isset($_POST['submit']))
     $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
      VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
     $res = mysqli_query($con ,  $setvalue_db);
-    if($res)
-    {
-        ?>
-        <script>
-            alert('Data store');
-        </script>
-        <?php
-    }
-    else
-    {
-        ?>
-        <script>
-            alert('Not Store');
-        </script>
-        <?php
+    if ($res) {
+        echo "<script>alert('Data stored successfully');</script>";
+        
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        echo "<script>alert('Failed to store data');</script>";
     }
 }
 ?>
