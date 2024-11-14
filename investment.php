@@ -51,9 +51,7 @@ if(isset($_POST['submit']))
         <div class="main">
           <?php        
             include 'connect.php';
-
             $selectquery = "SELECT SUM(amount) AS total FROM savings";
-
             $qery = mysqli_query( $con , $selectquery);
             $res = mysqli_fetch_array($qery);
             $amount = $res['total'];
