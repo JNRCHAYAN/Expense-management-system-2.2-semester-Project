@@ -62,7 +62,20 @@ if(isset($_POST['submit']))
 
         <!-- Main Content -->
         <div class="main">
-          
+          <?php        
+            include 'connect.php';
+
+            $selectquery = "SELECT SUM(amount) AS total FROM savings";
+
+            $qery = mysqli_query( $con , $selectquery);
+            $res = mysqli_fetch_array($qery);
+
+            echo $res['total'];
+            ?>
+        
+
+
+
             <section>
                 <h2 class="head_title">Investment Overview</h2>
                 <div class="option_dev">
@@ -88,6 +101,7 @@ if(isset($_POST['submit']))
                     </div>
                 </div>
             </section>
+            
 
             <section class="add_invest">
                 <h2>Add Investment</h2>
@@ -133,10 +147,10 @@ if(isset($_POST['submit']))
                       ?>      
                         <tr>
                         <td> <?php echo $res['amount']; ?></td>
-                        <td> <?php echo $res['BankName']; ?></td>
-                        <td> <?php echo $res['Interest']; ?></td>
-                        <td> <?php echo $res['Invest_Start'] ;?></td>
-                        <td> <?php echo $res['Total_Years']; ?></td>
+                        <td> <?php echo $res['bank_name']; ?></td>
+                        <td> <?php echo $res['interest_rate']; ?></td>
+                        <td> <?php echo $res['invest_start'] ;?></td>
+                        <td> <?php echo $res['total_years']; ?></td>
                         <td><button class="btn">Edit</button></td>
                         <td><button class="btn">Delete</button></td>
                      </tr>
