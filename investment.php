@@ -9,9 +9,8 @@ if(isset($_POST['submit']))
     $year = $_POST['year'];
     $user_id = 1;
     $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
-   VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
+     VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
     $res = mysqli_query($con ,  $setvalue_db);
-
     if($res)
     {
         ?>
