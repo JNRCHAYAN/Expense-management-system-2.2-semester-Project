@@ -8,7 +8,8 @@ if(isset($_POST['submit']))
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e-date'];
     $user_id = 1;
-    $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, `interest_rate`, `loan_start_date`, `loan_end_date`) 
+    $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, 
+    `interest_rate`, `loan_start_date`, `loan_end_date`) 
      VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$e_date'); ";
     $res = mysqli_query($con ,  $setvalue_db);
     if ($res) {
