@@ -13,8 +13,7 @@ if(isset($_POST['submit']))
     $res = mysqli_query($con ,  $setvalue_db);
     if ($res) {
         echo "<script>alert('Data stored successfully');</script>";
-        
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: " .$_SERVER['PHP_SELF']);
         exit;
     } else {
         echo "<script>alert('Failed to store data');</script>";
@@ -101,7 +100,7 @@ if(isset($_POST['submit']))
                     <th>Interest Rate</th>
                     <th>Investment Start Date</th>
                     <th>Total Investment Years</th>
-                    <th colspan="2">Operation</th>
+                    <th >Operation</th>
                 </tr>
             </thead>
             <tbody>
