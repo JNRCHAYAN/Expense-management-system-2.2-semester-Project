@@ -25,6 +25,19 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
+
+
+
+<?php
+include 'dbcon.php';
+
+$setvalue="SELECT SUM(amount) AS 'total' FROM income WHERE MONTH(created_at) =  MONTH(DATE)";
+$res = mysqli_query($con, $setvalue);
+$fetch = mysqli_fetch_array($rea);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
