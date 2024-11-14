@@ -8,10 +8,8 @@ if(isset($_POST['submit']))
     $s_date = $_POST['s_date'];
     $year = $_POST['year'];
     $user_id = 1;
-   
-   $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
+    $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
    VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
-
     $res = mysqli_query($con ,  $setvalue_db);
 
     if($res)
@@ -32,7 +30,6 @@ if(isset($_POST['submit']))
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,37 +66,20 @@ if(isset($_POST['submit']))
 
             $qery = mysqli_query( $con , $selectquery);
             $res = mysqli_fetch_array($qery);
+            $amount = $res['total'];
 
-            echo $res['total'];
             ?>
         
-
-
-
             <section>
                 <h2 class="head_title">Investment Overview</h2>
                 <div class="option_dev">
                     <div class="option_1">
-                        <img src="loan.png" alt="Loan Icon" class="Op_image">
-                        <h2>10</h2>
-                        <p>Investment Profit</p>
-                    </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Balance Icon" class="Op_image">
-                        <h2> 100<span>&#2547;</span></h2>
-                        <p>Interest Rate</p>
-                    </div>
-                    <div class="option_1">
                         <img src="loan.png" alt="Paid Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
-                        <p>Investment Amount</p>
+                        <h2><?php echo  $amount; ?> Taka</h2>
+                        <p>Invest Amount</p>
+                        </div>
                     </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Overdue Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
-                        <p>Bank Name</p>
-                    </div>
-                </div>
+                 
             </section>
             
 
@@ -121,8 +101,8 @@ if(isset($_POST['submit']))
                     </form>
                 </div>
             </section>
-
-            <h2>My Investment</h2>
+            <h2 class="head_title">My Investment</h2>
+         
             <table>
                 <thead><tr>
                     <th>Amount</th>
@@ -140,7 +120,7 @@ if(isset($_POST['submit']))
 
                     $selectquery = "Select *from savings order by created_at desc";
 
-                    $qery = mysqli_query( $con , $selectquery);
+                    $qery = mysqli_query( $con, $selectquery);
 
                     while ($res = mysqli_fetch_array($qery))
                     {

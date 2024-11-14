@@ -1,3 +1,6 @@
+<span>&#2547;</span>
+
+
 -- Create the database
 CREATE DATABASE IF NOT EXISTS expense_management;
 USE expense_management;
