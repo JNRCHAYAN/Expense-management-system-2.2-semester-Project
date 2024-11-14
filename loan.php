@@ -21,7 +21,6 @@ if(isset($_POST['submit']))
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,10 +28,10 @@ if(isset($_POST['submit']))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Overview</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -40,44 +39,33 @@ if(isset($_POST['submit']))
                 <li><a href="#"><span class="icon">💰</span> Income</a></li>
                 <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="#"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="index.html"><span class="icon">💼</span> Investment</a></li>
+                <li><a href="investment.php"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">💵</span> Savings</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main">
+          <?php        
+            include 'connect.php';
+
+            $selectquery = "SELECT SUM(amount) AS total FROM loans";
+
+            $qery = mysqli_query( $con , $selectquery);
+            $res = mysqli_fetch_array($qery);
+            $amount = $res['total'];
+            ?>
             <section>
                 <h2 class="head_title">Loan Overview</h2>
                 <div class="option_dev">
                     <div class="option_1">
-                        <img src="loan.png" alt="Loan Icon" class="Op_image">
-                        <h2>10</h2>
-                        <p>Total Active Loan</p>
+                        <img src="loan.png" class="Op_image">
+                        <h2><?php echo  $amount; ?> Taka</h2>
+                        <p>Total Loan</p>
+                        </div>
                     </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Balance Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
-                        <p>Total Balance of Loan</p>
-                    </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Paid Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
-                        <p>Total Amount of Loan Paid</p>
-                    </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Overdue Icon" class="Op_image">
-                        <h2>10,000 <span>&#2547;</span></h2>
-                        <p>Total Amount of Loan Overdue</p>
-                    </div>
-                    <div class="option_1">
-                        <img src="loan.png" alt="Next Payment Icon" class="Op_image">
-                        <h2>1,200 <span>&#2547;</span></h2>
-                        <p>Next Payment Amount</p>
-                    </div>
-                </div>
+                 
             </section>
 
             <section class="add_invest">
@@ -103,6 +91,46 @@ if(isset($_POST['submit']))
                     </form>
                 </div>
             </section>
+            <h2 class="head_title">My Investment</h2>
+
+            <table>
+                <thead><tr>
+                    <th>Amount</th>
+                    <th>Bank Name</th>
+                    <th>Interest Rate</th>
+                    <th>Loan Start Date</th>
+                    <th>Loan End Date</th>
+                    <th >Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                    include 'connect.php';
+
+                    $selectquery = "Select *from loans order by created_at desc";
+
+                    $qery = mysqli_query( $con, $selectquery);
+
+                    while ($res = mysqli_fetch_array($qery))
+                    {
+                      ?>      
+                        <tr>
+                        <td> <?php echo $res['amount']; ?></td>
+                        <td> <?php echo $res['BankName']; ?></td>
+                        <td> <?php echo $res['interest_rate']; ?></td>
+                        <td> <?php echo $res['loan_start_date'] ;?></td>
+                        <td> <?php echo $res['loan_end_date']; ?></td>
+                        <td> <a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                   
+                     </tr>
+                     <?php
+                    }
+                    ?>
+            </tbody>
+            </table>
+
+
         </div>
     </div>
 </body>
