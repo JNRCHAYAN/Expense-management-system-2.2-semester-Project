@@ -118,8 +118,8 @@ if(isset($_POST['submit']))
                         <td> <?php echo $res['amount']; ?></td>
                         <td> <?php echo $res['BankName']; ?></td>
                         <td> <?php echo $res['interest_rate']; ?></td>
-                        <td> <?php echo $res['loan_start_date'] ;?></td>
-                        <td> <?php echo $res['loan_end_date']; ?></td>
+                        <td> <?php echo date("F, Y", strtotime($res['loan_start_date'])); ?></td>       
+                        <td> <?php echo date("F, Y", strtotime($res['loan_end_date'])); ?></td>
                         <td> <a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"> <button class="btn">Delete</button> </a> </td>
                    
                      </tr>
