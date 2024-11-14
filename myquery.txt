@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS loans (
     user_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     interest_rate DECIMAL(5, 2) NOT NULL,
+     BankName VARCHAR(255) Not NULL,
     loan_start_date DATE NOT NULL,
     loan_end_date DATE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
