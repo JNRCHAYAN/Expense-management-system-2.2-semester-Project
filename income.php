@@ -36,8 +36,15 @@ $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set=$fetch['total']; 
 
+?>
 
 
+<?php
+include 'dbcon.php';
+$setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(DATE)";
+$ress = mysqli_query($con, $setv);
+$fach = mysqli_fetch_array($ress);
+$sett=$fach['Amount']; 
 
 ?>
 
@@ -76,11 +83,11 @@ $set=$fetch['total'];
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
-                      <p><?php echo $set?> </p>
+                      <p><?php echo $set?>TK </p>
                     </div>
                     <div class="box expense">
                         <h3>Expense</h3>
-                        <p>100 tk</p>
+                        <p><?php echo $sett ?> TK</p>
                     </div>
                 </div>
             </div>
