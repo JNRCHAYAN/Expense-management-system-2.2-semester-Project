@@ -38,6 +38,7 @@ $set=$fetch['total'];
 
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -75,7 +76,8 @@ $set=$fetch['total'];
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
-                        <p>200 tk</p>
+                    
+                        <?php echo $set?>
                     </div>
                     <div class="box expense">
                         <h3>Expense</h3>
