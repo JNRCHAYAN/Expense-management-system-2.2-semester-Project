@@ -21,15 +21,15 @@
             <h1>Edit Profile</h1>
             <form id="profile-form">
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" value="current_username">
+                <input type="text" id="username" name="username" required>
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="current_email@example.com">
+                <input type="email" id="email" name="email" required >
 
                 <label for="password">Password:</label>
-                <input type="password" id="password" name="password" placeholder="New Password">
+                <input type="password" id="password" name="password" required>
 
-                <button type="submit">Update Profile</button>
+                <button type="submit" name="submit">Update Profile</button>
             </form>
         </div>
     </div>
