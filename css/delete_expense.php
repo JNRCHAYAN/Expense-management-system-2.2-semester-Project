@@ -1,11 +1,11 @@
 <?php
-include 'dbcon.php';
+include 'database.php';
 
-$income_id = $_GET['income_id'];
+$expense_id = $_GET['expense_id'];
 
-$deletq = "DELETE FROM income WHERE income_id =$income_id" ;
+$deleted = "DELETE FROM expenses WHERE expense_id =$expense_id" ;
 
-$qery = mysqli_query( $con , $deletq);
+$qery = mysqli_query( $con , $deleted);
 
 header('location:income.php');
 
