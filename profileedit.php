@@ -1,3 +1,29 @@
+
+<?php
+session_start();
+?>
+
+<?php
+include 'database.php';
+if (isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $Email = $_POST['email'];
+    $Password = $_POST['password'];
+
+$search="SELECT * FROM `users` WHERE `username` = '$username'";
+
+$quary= mysqli_query($con,$serch);
+
+
+   
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
