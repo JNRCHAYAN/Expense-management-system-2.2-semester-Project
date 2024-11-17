@@ -23,7 +23,7 @@
     function checkUser(){
         if (isset($_SESSION["user_id"]) && $_SESSION['user_id'] != ''){}
     else{
-        Redirect('login.php');
+        Redirect('login.php');//login page
     }
     }
 
