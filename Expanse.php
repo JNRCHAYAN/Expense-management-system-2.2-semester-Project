@@ -158,7 +158,7 @@ $sets=$value['Total_Expenses'];
                                         <td><?php echo $res['expense_date']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
-                                        <td> <a href="delete_expense.php.php?expense_id=<?php echo $res['expense_id'] ?>"> 
+                                        <td> <a href="delete_expense.php?expense_id=<?php echo $res['expense_id'] ?>"> 
                                             <button class="btn">Delete</button> </a> </td>
                                     </tr>
                                     <?php
