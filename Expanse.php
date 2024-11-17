@@ -25,8 +25,6 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-
-
 <?php
 include 'database.php';
 
@@ -50,7 +48,7 @@ $sets=$value['Total_Expenses'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Overview</title>
-    <link rel="stylesheet" href="income.css">
+    <link rel="stylesheet" href="expense.css">
 </head>
 <body>
     <div class="container">
