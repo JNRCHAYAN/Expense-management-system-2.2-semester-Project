@@ -126,7 +126,8 @@ $sets=$value['Total_Expenses'];
                                 $category = $_POST['categoryy'];
                                 $userid = 1;
 
-                                $selectquery = "SELECT * FROM expenses WHERE user_id = $userid AND DATE BETWEEN '$Sdate' AND '$Edate' AND category = '$category'";
+                                $selectquery = "SELECT * FROM expenses WHERE user_id = $userid AND expense_date BETWEEN '$Sdate' AND '$Edate' 
+                                AND category = '$category'";
                                 $qery = mysqli_query($con, $selectquery);
 
                                 if (!$qery) {
@@ -137,7 +138,7 @@ $sets=$value['Total_Expenses'];
                                     while ($res = mysqli_fetch_array($qery)) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $res['DATE']; ?></td>
+                                            <td><?php echo $res['expense_date']; ?></td>
                                             <td><?php echo $res['category']; ?></td>
                                             <td><?php echo $res['amount']; ?> Taka</td>
                                             <td><button class="btn">Edit</button></td>
