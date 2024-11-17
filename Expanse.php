@@ -7,8 +7,8 @@ if (isset($_POST['submit'])) {
     $amount = $_POST['amount'];
     $userid = 1;
 
-    $setvalue="INSERT INTO `expenses`(`expense_id`, `DATE`, `category`, `amount``) 
-    VALUES ('  $userid',' $date','  $category','  $amount')";
+    $setvalue="INSERT INTO `expenses` (`user_id`, `category`, `amount`, `expense_date`) 
+    VALUES ('$userid','$category','$amount','$date')";
 
     $res = mysqli_query($con,$setvalue);
 
@@ -33,7 +33,7 @@ $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set=$fetch['Total']; 
  
-$setvariable="SELECT SUM(amount) AS 'Total_Expenses' FROM expenses WHERE MONTH(created_at) =  MONTH(DATE)";
+$setvariable="SELECT SUM(amount) AS 'Total_Expenses' FROM expenses WHERE MONTH(created_at) =  MONTH(expense_date)";
 $val = mysqli_query($con, $setvariable);
 $value = mysqli_fetch_array($val);
 $sets=$value['Total_Expenses']; 
@@ -126,7 +126,7 @@ $sets=$value['Total_Expenses'];
                                 $category = $_POST['categoryy'];
                                 $userid = 1;
 
-                                $selectquery = "SELECT * FROM income WHERE user_id = $userid AND DATE BETWEEN '$Sdate' AND '$Edate' AND category = '$category'";
+                                $selectquery = "SELECT * FROM expenses WHERE user_id = $userid AND DATE BETWEEN '$Sdate' AND '$Edate' AND category = '$category'";
                                 $qery = mysqli_query($con, $selectquery);
 
                                 if (!$qery) {
@@ -149,13 +149,13 @@ $sets=$value['Total_Expenses'];
                                     echo "<tr><td colspan='5'>No records found for the selected filter.</td></tr>";
                                 }
                             } else {
-                                $selectquery = "SELECT * FROM income WHERE user_id = 1 ORDER BY created_at DESC";
+                                $selectquery = "SELECT * FROM expenses WHERE user_id = 1 ORDER BY created_at DESC";
                                 $qery = mysqli_query($con, $selectquery);
 
                                 while ($res = mysqli_fetch_array($qery)) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $res['DATE']; ?></td>
+                                        <td><?php echo $res['expense_date']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
                                         <td> <a href="delete_expense.php.php?expense_id=<?php echo $res['expense_id'] ?>"> 
