@@ -271,7 +271,7 @@ a{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full viewport height for vertical centering */
+  height: 80vh; /* Full viewport height for vertical centering */
   text-align: center; /* Center-align text content */
 }
 

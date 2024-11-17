@@ -1,3 +1,8 @@
+<?php
+    include("login.php");//directs to login page
+?>
+
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,7 +16,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--=============== CSS ===============-->
-        <link rel="stylesheet" href="/assets/CSS/index.css">
+        <link rel="stylesheet" href="/assets/CSS/landingpage.css">
 
         <title>Expense management system</title>
     </head>
@@ -46,7 +51,7 @@
 
                 <div class="nav__btns">
                     <!-- Login/Signup -->
-                    <a href="#" class="button button--flex">
+                    <a href="login.php" class="button button--flex"> 
                         Get Started 
                     </a>
                         
@@ -58,9 +63,7 @@
         <main class="main">
             <!--==================== HOME ====================-->
             <section class="home" id="home">
-                <div class="home__container container grid">
-                    <img src="assets/img/home.png" alt="" class="home__img">
-
+                
                     <div class="home__data">
                         <h1 class="home__title">
                             Platform to <br> make your life better
@@ -74,8 +77,6 @@
                         </a>
                     </div>
 
-
-                </div>
             </section>
 
             <!--==================== ABOUT ====================-->
@@ -129,7 +130,7 @@
                             <div class="steps__card-number">01</div>
                             <h3 class="steps__card-title">Login/SignUp</h3>
                             <p class="steps__card-description">
-                                Just try our site once.
+                                Try our site.
                             </p>
                         </div>
 
