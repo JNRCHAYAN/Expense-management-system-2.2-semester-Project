@@ -1,10 +1,34 @@
+<?php
+include 'dbcon.php';
+$setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(expense_date)";
+$ress = mysqli_query($con, $setv);
+$fach = mysqli_fetch_array($ress);
+$sett = $fach['Amount']; 
+
+$setv="SELECT SUM(amount) AS 'income_amount' FROM income WHERE MONTH(created_at) =  MONTH(DATE)";
+$res = mysqli_query($con, $setv);
+$income = mysqli_fetch_array($res);
+$a_income = $income['income_amount']; 
+
+$setv="SELECT SUM(amount) AS 'save_amount' FROM savings";
+$re = mysqli_query($con, $setv);
+$save = mysqli_fetch_array($re);
+$save_amount = $save['save_amount']; 
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Overview</title>
-    <link rel="stylesheet" href="income.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -25,7 +49,7 @@
 
         <div class="main">
             <div class="head">
-                <h1>INCOME</h1>
+                <h1>Dashboard</h1>
             </div>
 
             <div class="section">
@@ -33,61 +57,25 @@
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
-                      <p><?php echo $set?>TK </p>
+                        <p><?php echo $a_income ?> TK</p>
+
                     </div>
                     <div class="box expense">
                         <h3>Expense</h3>
                         <p><?php echo $sett ?> TK</p>
                     </div>
+                    <div class="box expense">
+                        <h3>Savings</h3>
+                        <p><?php echo $save_amounts ?> TK</p>
+                      
+                    </div>
+                    <div class="box expense">
+                        <h3>Loan</h3>
+                    </div>
                 </div>
             </div>
 
-            <div class="section">
-                <h3>My Income</h3>
-                <div class="my-income-card">
+            
 
-                    <form action="" method="post">
-                        <h3>Filter Options</h3>
-                        <div class="filter-group">
-                            <div>
-                                <label for="start-date">Start Date</label>
-                                <input type="date" name="start" id="start-date">
-                            </div>
-                            <div>
-                                <label for="end-date">End Date</label>
-                                <input type="date" name="end" id="end-date">
-                            </div>
-                            <div>
-                                <label for="category-filter">Category</label>
-                                <input type="text" name="categoryy" id="end-date">
-                            </div>
-                        </div>
-                        <button class="btn" type="submit" name="s">Filter</button>   
-                    </form>
-
-                   
-            <div class="section">
-                <div class="section-item">
-                    <h2>Add Income</h2>
-                    <form action="" method="post">
-                        <div>
-                            <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
-                        </div>
-                        <div>
-                            <label for="category">Category</label>
-                            <input type="text" name="category" id="category" required>
-                        </div>
-                        <div>
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
-                        </div>
-                        <button class="btn" type="submit" name="submit">Add Income</button>
-                    </form>
-                </div>
-              
-            </div>
-        </div>
-    </div>
 </body>
 </html>
