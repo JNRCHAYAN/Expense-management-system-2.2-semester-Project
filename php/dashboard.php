@@ -4,10 +4,11 @@
     checkUser(); // Ensure user login/logout functionality
     include("navbar.php");
 
-    // Ensure user_id is sanitized
-    $user_id = mysqli_real_escape_string($connect, $_SESSION['user_id']); // Sanitize user_id from session
+    //user_id 
+    $user_id = mysqli_real_escape_string($connect, $_SESSION['user_id']);
 
-    // Query to fetch financial data for the logged-in user
+    //start the charts
+    //fetch financial data for the logged-in user for the charts 
     $query = "SELECT * FROM charts WHERE user_id = '$user_id'";
     $res = mysqli_query($connect, $query);
 
@@ -31,7 +32,9 @@
     $savings = getDashboard('total savings');
 
     // Close connection if needed
-    // mysqli_close($connect);
+ // mysqli_close($connect);
+//end of the charts  
+ 
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +45,7 @@
     <title>Dashboard</title>
     <link href="styles.css" rel="stylesheet"> <!-- Correct stylesheet link -->
 
-    <!-- Charts -->
+    <!-- Google Charts -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages':['bar']});
