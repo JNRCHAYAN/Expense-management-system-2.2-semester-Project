@@ -33,8 +33,6 @@ if(isset($_POST['submit']))
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
