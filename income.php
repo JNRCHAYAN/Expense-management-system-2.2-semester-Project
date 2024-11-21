@@ -199,7 +199,7 @@ $sett=$fach['Amount'];
                     <form action="" method="post">
                         <div>
                             <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
+                            <input type="date" name="date" id="date"  required>
                         </div>
                         <div>
                             <label for="category">Category</label>

@@ -10,33 +10,33 @@ $showquery= "SELECT * FROM `income` WHERE income_id = $income_ids";
 
 
 $showdata = mysqli_query( $con ,$showquery );
-
-
-header('location:income.php');
+$arraydata = mysqli_fetch_array($showdata);
 
 
 
 if (isset($_POST['submit'])) {
+    $idupdate = $_GET['income_id'];
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = 1;
 
-    // Insert data into the database
-    $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
-                    VALUES ('$userid', '$date', '$category', '$amount')";
+ 
 
-    $res = mysqli_query($con, $setvalue_db);
+$updates="UPDATE `income` SET `user_id`='$income_ids',`DATE`='$date',
+`category`='$category', `amount`='$amount' WHERE income_id=` $idupdate`";
+
+    $res = mysqli_query($con,$updates);
 
     if ($res) 
     {
-        echo "<script>alert('Data stored successfully');</script>";
+        echo "<script>alert('Data update successfully');</script>";
         
         // Redirect to avoid duplicate data on page reload
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
-        echo "<script>alert('Failed to store data');</script>";
+        echo "<script>alert('Failed to update data');</script>";
     }
 }
 ?>
@@ -93,17 +93,17 @@ if (isset($_POST['submit'])) {
                     <form action="" method="post">
                         <div>
                             <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
+                            <input type="date" name="date" id="date" value="<?php echo $arraydata ['DATE']; ?>" required>
                         </div>
                         <div>
                             <label for="category">Category</label>
-                            <input type="text" name="category" id="category" required>
+                            <input type="text" name="category" id="category" value="<?php echo $arraydata['category']; ?>" required>
                         </div>
                         <div>
                             <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
+                            <input type="number" name="amount" id="amount" value="<?php echo $arraydata['amount']; ?>" required>
                         </div>
-                        <button class="btn" type="submit" name="submit">Add Income</button>
+                        <button class="btn" type="submit" name="submit">Update</button>
                     </form>
                 </div>
               
