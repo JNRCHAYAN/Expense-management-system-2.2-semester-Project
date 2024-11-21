@@ -41,7 +41,6 @@ if(isset($_POST['submit']))
                 <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
                 <li><a href="#"><span class="icon">💼</span> Investment</a></li>
-        
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
@@ -105,7 +104,7 @@ if(isset($_POST['submit']))
                      <td> <?php echo $res['interest_rate']; ?></td>
                      <td> <?php echo date("F, Y", strtotime($res['invest_start'])); ?></td>
                      <td> <?php echo $res['total_years']; ?></td>
-                     <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                     <td> <a href="up_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
                      <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">Delete</button> </a> </td>
                   </tr>
                   <?php
