@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
 
     $res = mysqli_query($con, $setvalue_db);
 
-    if ($res) {
+    if ($res) 
+    {
         echo "<script>alert('Data stored successfully');</script>";
         
         // Redirect to avoid duplicate data on page reload
