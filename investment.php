@@ -1,15 +1,25 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: home.html'); // Redirect to login page if not logged in
+    exit();
+}
+$u = $_SESSION['user_id'];
+?>
+
+<?php
 include 'connect.php';
 if(isset($_POST['submit']))
 {
+    echo $_SESSION['user_id'] ;
+    $user =$_SESSION['user_id']; 
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
     $rate = $_POST['rate'];
     $s_date = $_POST['s_date'];
     $year = $_POST['year'];
-    $user_id = 1;
     $setvalue_db = "INSERT INTO `invest`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
-     VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
+     VALUES ('$u','$amount','$Bank_name','$rate','$s_date','$year'); ";
     $res = mysqli_query($con ,  $setvalue_db);
     if ($res) {
         echo "<script>alert('Data stored successfully');</script>";
@@ -43,6 +53,7 @@ if(isset($_POST['submit']))
                 <li><a href="#"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
         </div>
 
@@ -73,6 +84,7 @@ if(isset($_POST['submit']))
             <h2 class="head_title">My Investment</h2>
          <table>
              <thead><tr>
+                 <th>caa</th>
                  <th>NO</th>
                  <th>Invest ID</th>
                  <th>Amount</th>
@@ -87,8 +99,8 @@ if(isset($_POST['submit']))
              <?php
 
                  include 'connect.php';
-
-                 $selectquery = "Select *from invest order by created_at desc";
+                    
+                 $selectquery = "SELECT * FROM invest WHERE user_id = $u ORDER BY created_at DESC;";
 
                  $qery = mysqli_query( $con, $selectquery);
                  $coutt=0;
@@ -97,6 +109,7 @@ if(isset($_POST['submit']))
                     $coutt +=1;
                    ?>      
                      <tr>
+                     <td> <?php echo $_SESSION['user_id'] ; ?></td>
                      <td> <?php echo $coutt; ?></td>
                      <td> <?php echo $res['invest_id']; ?></td>
                      <td> <?php echo $res['amount']; ?></td>
@@ -107,6 +120,7 @@ if(isset($_POST['submit']))
                      <td> <a href="up_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
                      <td> <a href="Delete_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">Delete</button> </a> </td>
                   </tr>
+
                   <?php
                  }
                  ?>

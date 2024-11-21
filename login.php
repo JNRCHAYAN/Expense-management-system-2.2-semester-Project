@@ -29,13 +29,13 @@ if (isset($_POST['submit'])) {
         $name_pass = mysqli_fetch_assoc($query);
         $db_pass = $name_pass['PASSWORD'];
 
+        // $_SESSION['user_id'] = $name_pass['user_id'];
+
         $pass_decode = password_verify($password, $db_pass);
 
         if ($pass_decode) {
-           
-            $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $user['user_id']; 
-            header("Location: income.php"); 
+            $_SESSION['user_id'] = $name_pass['user_id'];
+            header("Location: investment.php"); 
             exit();
         } else {
             $error = "Incorrect password"; 
