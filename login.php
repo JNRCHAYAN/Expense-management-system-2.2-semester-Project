@@ -34,6 +34,7 @@ if (isset($_POST['submit'])) {
         if ($pass_decode) {
            
             $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $user['user_id']; 
             header("Location: income.php"); 
             exit();
         } else {
