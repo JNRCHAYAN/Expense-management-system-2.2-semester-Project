@@ -1,13 +1,23 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.html'); // Redirect to login page if not logged in
+    exit();
+}
+$u = $_SESSION['user_id'];
+?>
+
+<?php
 include 'connect.php';
 if(isset($_POST['submit']))
 {
+    
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
     $rate = $_POST['rate'];
     $s_date = $_POST['s_date'];
     $e_date = $_POST['e-date'];
-    $user_id = 1;
+    $user_id = $u;
     $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, `interest_rate`, `loan_start_date`, `loan_end_date`) 
      VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$e_date'); ";
     $res = mysqli_query($con ,  $setvalue_db);
@@ -32,42 +42,101 @@ if(isset($_POST['submit']))
 </head>
 <body>
     <div class="container">
+        <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="home.html"><span class="icon">🏠</span> Home</a></li>
                 <li><a href="#"><span class="icon">💰</span> Income</a></li>
                 <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="#"><span class="icon">📊</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
         </div>
 
+        <!-- Main Content -->
         <div class="main">
           <?php        
             include 'connect.php';
-
-            $selectquery = "SELECT SUM(amount) AS total FROM loans";
-
+            $selectquery = "SELECT SUM(amount) AS total FROM savings";
             $qery = mysqli_query( $con , $selectquery);
             $res = mysqli_fetch_array($qery);
             $amount = $res['total'];
+
             ?>
+        
             <section>
                 <h2 class="head_title">Loan Overview</h2>
-                <div class="option_dev">
+                <!-- <div class="option_dev">
                     <div class="option_1">
-                        <img src="loan.png" class="Op_image">
+                        <img src="loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $amount; ?> Taka</h2>
-                        <p>Total Loan</p>
+                        <p>Invest Amount</p>
                         </div>
-                    </div>
+                    </div> -->
                  
             </section>
 
             <section class="add_invest">
+            <h2 class="head_title">My Loan</h2>
+         <table>
+             <thead><tr>
+                 <th>NO</th>
+                 <th>User ID</th>
+                 <th>Laon ID</th>
+                 <th>Amount</th>
+                <th>Bank Name</th>
+                <th>Interest Rate</th>
+                <th>Loan Start Date</th>
+                <th>Loan End Date</th>
+                <th >Operation</th>
+                 <th colspan="2">Operation</th>
+             </tr>
+         </thead>
+         <tbody>
+             <?php
+
+                 include 'connect.php';
+                    
+                 $selectquery = "SELECT * FROM loans WHERE user_id = $u ORDER BY created_at DESC;";
+
+                 $qery = mysqli_query( $con, $selectquery);
+                 $coutt=0;
+                 while ($res = mysqli_fetch_array($qery))
+                 {
+                    $coutt +=1;
+                   ?>      
+                     <tr>
+                     <td> <?php echo $coutt; ?></td>
+                     <td> <?php echo $_SESSION['user_id'] ; ?></td>
+                     <td> <?php echo $res['loan_id']; ?></td>
+                     <td> <?php echo $res['amount']; ?></td>
+                        <td> <?php echo $res['BankName']; ?></td>
+                        <td> <?php echo $res['interest_rate']; ?></td>
+                     <td> <?php echo date("F, Y", strtotime($res['loan_start_date'])); ?></td>
+                     <td> <?php echo date("F, Y", strtotime($res['loan_end_date'])); ?></td>
+                     <td> <a href="Up_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                     <td> <a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                  </tr>
+
+                  <?php
+                 }
+                 ?>
+         </tbody>
+         </table>
+        </section>
+
+        <!-- ====================================== -->
+        <br>
+        <div>
+        <button class="add" onclick="showForm()">Click here to Add Invesment</button>
+
+        <section class="add_invest">
+                
+                <div class="in_form form-container" id="formContainer">
                 <h2>Add Loan</h2>
                 <div class="in_form">
                     <form action="" method="post">
@@ -89,46 +158,21 @@ if(isset($_POST['submit']))
                         <button name="submit" type="submit" class="btn">Add Loan</button>
                     </form>
                 </div>
+                </div>
             </section>
-            <h2 class="head_title">My Investment</h2>
 
-            <table>
-                <thead><tr>
-                    <th>Amount</th>
-                    <th>Bank Name</th>
-                    <th>Interest Rate</th>
-                    <th>Loan Start Date</th>
-                    <th>Loan End Date</th>
-                    <th >Operation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
+            
+    <script>
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
 
-                    include 'connect.php';
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+    </script>
 
-                    $selectquery = "Select *from loans order by created_at desc";
-
-                    $qery = mysqli_query( $con, $selectquery);
-
-                    while ($res = mysqli_fetch_array($qery))
-                    {
-                      ?>      
-                        <tr>
-                        <td> <?php echo $res['amount']; ?></td>
-                        <td> <?php echo $res['BankName']; ?></td>
-                        <td> <?php echo $res['interest_rate']; ?></td>
-                        <td> <?php echo date("F, Y", strtotime($res['loan_start_date'])); ?></td>       
-                        <td> <?php echo date("F, Y", strtotime($res['loan_end_date'])); ?></td>
-                        <td> <a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"> <button class="btn">Delete</button> </a> </td>
-                   
-                     </tr>
-                     <?php
-                    }
-                    ?>
-            </tbody>
-            </table>
-
+         </div>
 
         </div>
     </div>

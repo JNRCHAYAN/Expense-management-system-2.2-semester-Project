@@ -11,7 +11,7 @@ $u = $_SESSION['user_id'];
 include 'connect.php';
 if(isset($_POST['submit']))
 {
-    echo $_SESSION['user_id'] ;
+   
     $user =$_SESSION['user_id']; 
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
@@ -84,8 +84,8 @@ if(isset($_POST['submit']))
             <h2 class="head_title">My Investment</h2>
          <table>
              <thead><tr>
-                 <th>caa</th>
                  <th>NO</th>
+                 <th>User ID</th>
                  <th>Invest ID</th>
                  <th>Amount</th>
                  <th>Bank Name</th>
@@ -109,8 +109,8 @@ if(isset($_POST['submit']))
                     $coutt +=1;
                    ?>      
                      <tr>
-                     <td> <?php echo $_SESSION['user_id'] ; ?></td>
                      <td> <?php echo $coutt; ?></td>
+                     <td> <?php echo $_SESSION['user_id'] ; ?></td>
                      <td> <?php echo $res['invest_id']; ?></td>
                      <td> <?php echo $res['amount']; ?></td>
                      <td> <?php echo $res['BankName']; ?></td>
