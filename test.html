@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Form on Button Click</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .form-container {
+            display: none; /* Initially hidden */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button onclick="showForm()">Click to Show Form</button>
+        
+        <div class="form-container" id="formContainer">
+            <h2>Enter Your Text</h2>
+            <input type="text" id="userInput" placeholder="Type something...">
+            <button onclick="showInput()">Submit</button>
+        </div>
+
+        <div class="output" id="displayArea"></div>
+    </div>
+
+    <script>
+        function showForm() {
+            // Show the input form when the button is clicked
+            document.getElementById("formContainer").style.display = "block";
+        }
+
+        function showInput() {
+            // Get the input value and display it below
+            var userInput = document.getElementById("userInput").value;
+            document.getElementById("displayArea").innerText = "You entered: " + userInput;
+        }
+    </script>
+
+</body>
+</html>

@@ -108,6 +108,11 @@ body {
 }
 
 /* Form Styles */
+
+.form-container {
+    display: none; /* Initially hidden */
+}
+
 .add_invest {
     margin-top: 30px;
     background-color: #fff;
@@ -142,12 +147,26 @@ body {
     border-color: #4a90e2;
     box-shadow: 0 0 6px rgba(74, 144, 226, 0.2);
 }
-
+.form-container {
+    display: none; /* Initially hidden */
+}
 .btn {
     width: 100%;
     padding: 12px;
-    background-color: #4a90e2;
+    background-color: #007dd1;
     color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+}
+.add {
+    width: 100%;
+    padding: 12px;
+    background-color: #00977e;
+    color: #ffffff;
     font-size: 1em;
     border: none;
     border-radius: 6px;

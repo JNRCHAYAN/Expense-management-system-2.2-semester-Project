@@ -60,21 +60,71 @@ if(isset($_POST['submit']))
         
             <section>
                 <h2 class="head_title">Investment Overview</h2>
-                <div class="option_dev">
+                <!-- <div class="option_dev">
                     <div class="option_1">
                         <img src="loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $amount; ?> Taka</h2>
                         <p>Invest Amount</p>
                         </div>
-                    </div>
+                    </div> -->
                  
             </section>
-            
 
             <section class="add_invest">
-                <h2>Add Investment</h2>
-                <div class="in_form">
+            <h2 class="head_title">My Investment</h2>
+         <table>
+             <thead><tr>
+                 <th>NO</th>
+                 <th>Invest ID</th>
+                 <th>Amount</th>
+                 <th>Bank Name</th>
+                 <th>Interest Rate</th>
+                 <th>Investment Start Date</th>
+                 <th>Total Investment Years</th>
+                 <th colspan="2">Operation</th>
+             </tr>
+         </thead>
+         <tbody>
+             <?php
+
+                 include 'connect.php';
+
+                 $selectquery = "Select *from savings order by created_at desc";
+
+                 $qery = mysqli_query( $con, $selectquery);
+                 $coutt=0;
+                 while ($res = mysqli_fetch_array($qery))
+                 {
+                    $coutt +=1;
+                   ?>      
+                     <tr>
+                     <td> <?php echo $coutt; ?></td>
+                     <td> <?php echo $res['saving_id']; ?></td>
+                     <td> <?php echo $res['amount']; ?></td>
+                     <td> <?php echo $res['bank_name']; ?></td>
+                     <td> <?php echo $res['interest_rate']; ?></td>
+                     <td> <?php echo date("F, Y", strtotime($res['invest_start'])); ?></td>
+                     <td> <?php echo $res['total_years']; ?></td>
+                     <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                     <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                  </tr>
+                  <?php
+                 }
+                 ?>
+         </tbody>
+         </table>
+        </section>
+
+        <!-- ====================================== -->
+        <br>
+        <div>
+        <button class="add" onclick="showForm()">Click here to Add Invesment</button>
+
+        <section class="add_invest">
+                
+                <div class="in_form form-container" id="formContainer">
                     <form action="" method="post">
+                        <h2>Add Investment</h2>
                         <label for="amount">Amount:</label>
                         <input type="number" id="amount" name="amount" placeholder="Amount" required>
                         <label for="bank_name">Bank Name:</label>
@@ -89,44 +139,19 @@ if(isset($_POST['submit']))
                     </form>
                 </div>
             </section>
-            <h2 class="head_title">My Investment</h2>
-         
-            <table>
-                <thead><tr>
-                    <th>Amount</th>
-                    <th>Bank Name</th>
-                    <th>Interest Rate</th>
-                    <th>Investment Start Date</th>
-                    <th>Total Investment Years</th>
-                    <th >Operation</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
 
-                    include 'connect.php';
+            
+    <script>
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
 
-                    $selectquery = "Select *from savings order by created_at desc";
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+    </script>
 
-                    $qery = mysqli_query( $con, $selectquery);
-
-                    while ($res = mysqli_fetch_array($qery))
-                    {
-                      ?>      
-                        <tr>
-                        <td> <?php echo $res['amount']; ?></td>
-                        <td> <?php echo $res['bank_name']; ?></td>
-                        <td> <?php echo $res['interest_rate']; ?></td>
-                        <td> <?php echo date("F, Y", strtotime($res['invest_start'])); ?></td>
-                        <td> <?php echo $res['total_years']; ?></td>
-                        <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">Delete</button> </a> </td>
-                     </tr>
-                     <?php
-                    }
-                    ?>
-            </tbody>
-            </table>
-
+         </div>
 
         </div>
     </div>
