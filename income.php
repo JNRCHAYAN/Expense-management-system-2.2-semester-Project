@@ -73,14 +73,14 @@ $sett=$fach['Amount'];
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             
 
-
+            <!--Logout button---->
              <div class="log">
              
              <a href="logout.php">Logout</a>
              </div>
         
 
-             
+
             </ul>
         </div>
 
@@ -159,7 +159,7 @@ $sett=$fach['Amount'];
                                             <td><?php echo $res['DATE']; ?></td>
                                             <td><?php echo $res['category']; ?></td>
                                             <td><?php echo $res['amount']; ?> Taka</td>
-                                            <td><button class="btn">Edit</button></td>
+                                            <td><button class="btn">Update</button></td>
                                             <td><button class="btn">Delete</button></td>
                                         </tr>
                                         <?php
@@ -177,8 +177,10 @@ $sett=$fach['Amount'];
                                         <td><?php echo $res['DATE']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
+                                        <td> <button class="btn">Update</button></td>
                                         <td> <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"> 
                                             <button class="btn">Delete</button> </a> </td>
+                                            
                                     </tr>
                                     <?php
                                 }
