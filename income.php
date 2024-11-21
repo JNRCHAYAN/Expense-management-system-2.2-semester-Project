@@ -71,8 +71,16 @@ $sett=$fach['Amount'];
                 <li><a href="#"><span class="icon">💵</span> Savings</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+            
+             <div class="log">
+             
+             <a href="logout.php">Logout</a>
+             </div>
+        
             </ul>
         </div>
+
+       
 
         <div class="main">
             <div class="head">

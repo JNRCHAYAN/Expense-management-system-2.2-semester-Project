@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
         $name_pass = mysqli_fetch_assoc($query);
         $db_pass = $name_pass['PASSWORD'];
 
+
         $pass_decode = password_verify($password, $db_pass);
 
         if ($pass_decode) {
