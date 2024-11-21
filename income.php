@@ -177,7 +177,9 @@ $sett=$fach['Amount'];
                                         <td><?php echo $res['DATE']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
-                                        <td> <button class="btn">Update</button></td>
+                                        <td> <a href="income_update.php?income_id=<?php echo $res['income_id'] ?> ">
+                                        <button class="btn">Update</button></a></td>
+
                                         <td> <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"> 
                                             <button class="btn">Delete</button> </a> </td>
                                             

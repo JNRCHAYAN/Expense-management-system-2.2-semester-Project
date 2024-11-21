@@ -1,3 +1,48 @@
+
+<?php
+include 'dbcon.php';
+
+
+
+$income_ids = $_GET['income_id'];
+
+$showquery= "SELECT * FROM `income` WHERE income_id = $income_ids";
+
+
+$showdata = mysqli_query( $con ,$showquery );
+
+
+header('location:income.php');
+
+
+
+if (isset($_POST['submit'])) {
+    $date = $_POST['date'];
+    $category = $_POST['category'];
+    $amount = $_POST['amount'];
+    $userid = 1;
+
+    // Insert data into the database
+    $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
+                    VALUES ('$userid', '$date', '$category', '$amount')";
+
+    $res = mysqli_query($con, $setvalue_db);
+
+    if ($res) 
+    {
+        echo "<script>alert('Data stored successfully');</script>";
+        
+        // Redirect to avoid duplicate data on page reload
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    } else {
+        echo "<script>alert('Failed to store data');</script>";
+    }
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
