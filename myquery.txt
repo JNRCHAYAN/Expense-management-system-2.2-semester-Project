@@ -1,5 +1,3 @@
-<span>&#2547;</span>
-
 
 -- Create the database
 CREATE DATABASE IF NOT EXISTS expense_management;
@@ -57,10 +55,21 @@ CREATE TABLE IF NOT EXISTS savings (
     saving_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
-    BankName VARCHAR(255) Not NULL,
-    Interest INT Not NULL,
-    Invest_Start Data Not NULL,
-    Total_Years INT Not NULL,
+    date DATE NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
+
+
+-- 8. Investment Table
+CREATE TABLE IF NOT EXISTS invest (
+    invest_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    BankName VARCHAR(255) NOT NULL,
+    Interest INT NOT NULL,
+    Invest_Start DATE NOT NULL, -- Corrected the datatype
+    Total_Years INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
