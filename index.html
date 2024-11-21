@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="#" type="image/x-icon">
+        <link rel="stylesheet" href="./CSS/index.css">
+        <title>Expense management system</title>
+    </head>
+    <body>
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo">
+                    <i class="ri-puzzle-2-fill"></i> Expense management system
+                </a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link">Home</a>  <!-- Current page -->
+                        </li>
+                        <li class="nav__item">
+                            <a href="#about" class="nav__link">About</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#features" class="nav__link">Features</a>
+                        </li>
+                    </ul>
+                    <div class="nav__close" id="nav-close">
+                        <i class="ri-close-line"></i>
+                    </div>
+                </div>
+
+                <div class="nav__btns">
+                    <a href="login.php" class="button button--flex"> 
+                        Login
+                    </a>
+                    <a href="Signup.php" class="button button--flex"> 
+                        SignUp
+                    </a>
+                        
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <section class="home" id="home">
+                    <div class="home__data">
+                        <h1 class="home__title">
+                            Platform to <br> make your life better
+                        </h1>
+                      
+                        <a href="#about" class="button button--flex">
+                            Explore <i class="ri-arrow-right-down-line button__icon"></i>
+                        </a>
+                    </div>
+
+            </section>
+
+            <!--==================== ABOUT ====================-->
+            <section class="about section container" id="about">
+                <div class="about__container grid">
+                    
+                    <div class="about__data">
+                        <h2 class="section__title about__title">
+                            Who we really are & why choose us
+                        </h2>
+
+                        <p class="about__description">
+                            It's The Expense management System.
+                        </p>
+
+                        <div class="about__details">
+                            <p class="about__details-description">
+                                <i class="ri-focus-fill"></i>
+                                We always provide highest security.
+                            </p>
+                            <p class="about__details-description">
+                                <i class="ri-focus-fill"></i>
+                                We give you guides to protect and care for your finances.
+                            </p>
+                            <p class="about__details-description">
+                                <i class="ri-focus-fill"></i>
+                                We always try to keep the site up-to-date.
+                            </p>
+                            <p class="about__details-description">
+                                <i class="ri-focus-fill"></i>
+                                We want to help you to organize your financial life better.
+                            </p>
+                        </div>
+
+                        <!-- <a href="#" class="button--link button--flex">
+                            Get Started <i class="ri-arrow-right-down-line button__icon"></i>
+                        </a> -->
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== STEPS ====================-->
+            <section class="steps section container">
+                <div class="steps__bg">
+                    <h2 class="section__title-center steps__title">
+                        Get stared right away.
+                    </h2>
+
+                    <div class="steps__container grid">
+                        <div class="steps__card">
+                            <div class="steps__card-number">01</div>
+                            <h3 class="steps__card-title">Login/SignUp</h3>
+                            <p class="steps__card-description">
+                                Try our site.
+                            </p>
+                        </div>
+
+                        <div class="steps__card">
+                            <div class="steps__card-number">02</div>
+                            <h3 class="steps__card-title">Customize</h3>
+                            <p class="steps__card-description">
+                                Set up your own finances better yourself.
+                            </p>
+                        </div>
+
+                        <div class="steps__card">
+                            <div class="steps__card-number">03</div>
+                            <h3 class="steps__card-title">Traking</h3>
+                            <p class="steps__card-description">
+                                Keep your money organized and tracked at all time.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== features ====================-->
+                <section class="product section container" id="features">
+                    <h2 class="section__title-center">
+                        Check out our <br> Features.
+                    </h2>
+                
+                    <p class="features__description">
+                        Here are some awesome features that just is amazing.
+                    </p>
+                
+                    <div class="features__container grid">
+                    <article class="features__card">
+                        <i class="ri-wallet-3-line features__icon"></i>
+                        <h3 class="features__title">Income</h3>
+                        <p class="features__description-text">
+                            Manage your income efficiently.
+                        </p>
+                    </article>
+                
+                    <article class="features__card">
+                        <i class="ri-wallet-3-line features__icon"></i>
+                        <h3 class="features__title">Expense</h3>
+                        <p class="features__description-text">
+                            Track your daily expenses easily.
+                        </p>
+                    </article>
+                
+                    <article class="features__card">
+                        <i class="ri-wallet-3-line features__icon"></i>
+                        <h3 class="features__title">Savings</h3>
+                        <p class="features__description-text">
+                            Monitor your savings effectively.
+                        </p>
+                    </article>
+                
+                    <article class="features__card">
+                        <i class="ri-wallet-3-line features__icon"></i>
+                        <h3 class="features__title">Investments</h3>
+                        <p class="features__description-text">
+                            Keep track of your investments.
+                        </p>
+                    </article>
+                    </div>
+                </section>
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up"> 
+            <i class="ri-arrow-up-fill scrollup__icon"></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+        
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

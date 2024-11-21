@@ -64,7 +64,6 @@ if(isset($_POST['submit']))
         <br>
         <input type="submit" class="btn" name="submit"  value="Register"/> 
     <br>
-    <button >Login</button>
     <br>
     <p>Already have an account? <a href="login.php">Login Here</a></p>
     </form>
