@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: home.html'); // Redirect to login page if not logged in
+    header('Location: index.html'); // Redirect to login page if not logged in
     exit();
 }
 $u = $_SESSION['user_id'];
@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="home.html"><span class="icon">🏠</span> Home</a></li>
                 <li><a href="#"><span class="icon">💰</span> Income</a></li>
                 <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
