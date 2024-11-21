@@ -19,12 +19,11 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
-    $userid = 1;
 
  
 
-$updates="UPDATE `income` SET `user_id`='$income_ids',`DATE`='$date',
-`category`='$category', `amount`='$amount' WHERE income_id=` $idupdate`";
+$updates=" UPDATE `income` SET `user_id`='$income_ids',`DATE`='$date',
+`category`='$category', `amount`='$amount' WHERE income_id=`$idupdate` ";
 
     $res = mysqli_query($con,$updates);
 
