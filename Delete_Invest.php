@@ -1,9 +1,9 @@
 <?php
 include 'connect.php';
 
-$saving_id = $_GET['saving_id'];
+$invest_id = $_GET['invest_id'];
 
-$deletq = "DELETE FROM `savings` WHERE saving_id =$saving_id" ;
+$deletq = "DELETE FROM `invest` WHERE invest_id =$invest_id" ;
 
 $qery = mysqli_query( $con , $deletq);
 

@@ -32,14 +32,14 @@
                             
         <?php
                     include 'connect.php';
-                    $saving_id = $_GET['saving_id'];
-                    $showQuree = "select * from savings where saving_id={$saving_id}";
+                    $invest_id = $_GET['invest_id'];
+                    $showQuree = "select * from invest where invest_id={$invest_id}";
                     $showdata = mysqli_query( $con ,$showQuree);
                     $arrdata = mysqli_fetch_array($showdata);  
 
                     if(isset($_POST['updatee']))
                     {
-                        $s_id = $_GET['saving_id'];
+                        $s_id = $_GET['invest_id'];
                         $amount = $_POST['amount'];
                         $Bank_name = $_POST['Bank_name'];
                         $rate = $_POST['rate'];
@@ -51,7 +51,7 @@
                         // VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
 
 
-                        $setvalue_DB= "UPDATE `savings` SET `amount`='$amount',`bank_name`='$Bank_name',`interest_rate`='$rate',`invest_start`='$s_date',`total_years`='$year' WHERE `saving_id` = '$s_id'";
+                        $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
 
                         // $setvalue_DB = "UPDATE `savings` SET `amount`='$amount',`bank_name`='$Bank_name',`interest_rate`='$rate',`invest_start`='$s_date',`total_years`='$year' WHERE `savings`.`saving_id` = '$s_id';";
 
@@ -75,13 +75,13 @@
             <label for="amount">Amount:</label>
             <input type="number" id="amount" name="amount" value="<?php echo $arrdata['amount']; ?>">
             <label for="bank_name">Bank Name:</label>
-            <input type="text" id="bank_name" name="Bank_name" value="<?php echo $arrdata['bank_name']; ?>">
+            <input type="text" id="bank_name" name="Bank_name" value="<?php echo $arrdata['BankName']; ?>">
             <label for="interest_rate">Interest Rate:</label>
-            <input type="number" id="interest_rate" name="rate"  value="<?php echo $arrdata['interest_rate']; ?>">
+            <input type="number" id="interest_rate" name="rate"  value="<?php echo $arrdata['Interest']; ?>">
             <label for="start_date">Investment Start Date:</label>
-            <input type="date" id="start_date" name="s_date" value="<?php echo $arrdata['invest_start']; ?>">
+            <input type="date" id="start_date" name="s_date" value="<?php echo $arrdata['Invest_Start']; ?>">
             <label for="total_years">Total Investment Years:</label>
-            <input type="number" id="total_years" name="year" value="<?php echo $arrdata['total_years']; ?>">
+            <input type="number" id="total_years" name="year" value="<?php echo $arrdata['Total_Years']; ?>">
             <button type="submit" class="btn" name="updatee">Update</button>
            
         </form>

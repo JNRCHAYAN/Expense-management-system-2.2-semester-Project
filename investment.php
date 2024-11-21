@@ -8,7 +8,7 @@ if(isset($_POST['submit']))
     $s_date = $_POST['s_date'];
     $year = $_POST['year'];
     $user_id = 1;
-    $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
+    $setvalue_db = "INSERT INTO `invest`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
      VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
     $res = mysqli_query($con ,  $setvalue_db);
     if ($res) {
@@ -88,7 +88,7 @@ if(isset($_POST['submit']))
 
                  include 'connect.php';
 
-                 $selectquery = "Select *from savings order by created_at desc";
+                 $selectquery = "Select *from invest order by created_at desc";
 
                  $qery = mysqli_query( $con, $selectquery);
                  $coutt=0;
@@ -98,14 +98,14 @@ if(isset($_POST['submit']))
                    ?>      
                      <tr>
                      <td> <?php echo $coutt; ?></td>
-                     <td> <?php echo $res['saving_id']; ?></td>
+                     <td> <?php echo $res['invest_id']; ?></td>
                      <td> <?php echo $res['amount']; ?></td>
-                     <td> <?php echo $res['bank_name']; ?></td>
-                     <td> <?php echo $res['interest_rate']; ?></td>
-                     <td> <?php echo date("F, Y", strtotime($res['invest_start'])); ?></td>
-                     <td> <?php echo $res['total_years']; ?></td>
-                     <td> <a href="up_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
-                     <td> <a href="Delete_Invest.php?saving_id=<?php echo $res['saving_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                     <td> <?php echo $res['BankName']; ?></td>
+                     <td> <?php echo $res['Interest']; ?></td>
+                     <td> <?php echo date("F, Y", strtotime($res['Invest_Start'])); ?></td>
+                     <td> <?php echo $res['Total_Years']; ?></td>
+                     <td> <a href="up_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                     <td> <a href="Delete_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">Delete</button> </a> </td>
                   </tr>
                   <?php
                  }
