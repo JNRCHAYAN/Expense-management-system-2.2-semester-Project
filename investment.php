@@ -1,11 +1,12 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.html'); // Redirect to login page if not logged in
+    header('Location: index.html'); 
     exit();
 }
 $u = $_SESSION['user_id'];
 ?>
+
 
 <?php
 include 'connect.php';
@@ -29,6 +30,11 @@ if(isset($_POST['submit']))
         echo "<script>alert('Failed to store data');</script>";
     }
 }
+        $selectquery = "SELECT SUM(amount) AS total FROM invest WHERE user_id = $u";
+        $qery = mysqli_query( $con , $selectquery);
+        $res = mysqli_fetch_array($qery);
+        $amount = $res['total'];
+
 ?>
 
 <!DOCTYPE html>
@@ -59,24 +65,16 @@ if(isset($_POST['submit']))
 
         <!-- Main Content -->
         <div class="main">
-          <?php        
-            include 'connect.php';
-            $selectquery = "SELECT SUM(amount) AS total FROM savings";
-            $qery = mysqli_query( $con , $selectquery);
-            $res = mysqli_fetch_array($qery);
-            $amount = $res['total'];
-
-            ?>
-        
+    
             <section>
                 <h2 class="head_title">Investment Overview</h2>
-                <!-- <div class="option_dev">
+                <div class="option_dev">
                     <div class="option_1">
                         <img src="loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $amount; ?> Taka</h2>
-                        <p>Invest Amount</p>
+                        <p>Total Invest</p>
                         </div>
-                    </div> -->
+                    </div>
                  
             </section>
 
