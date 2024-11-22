@@ -198,3 +198,8 @@ tr:hover {
 .filter-group div {
     flex: 1;
 }
+
+
+.form-container {
+    display: none; /* Initially hidden */
+}

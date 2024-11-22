@@ -193,6 +193,14 @@ $sett=$fach['Amount'];
                 </div>
             </div>
 
+        
+
+            <br>
+             <div>
+                <button class="add" onclick="showForm()">Click here to add Income</button>
+                <section class="add_income">
+                <div class="in_form form-container" id="formContainer">
+            
             <div class="section">
                 <div class="section-item">
                     <h2>Add Income</h2>
@@ -212,8 +220,19 @@ $sett=$fach['Amount'];
                         <button class="btn" type="submit" name="submit">Add Income</button>
                     </form>
                 </div>
+                </div>
               
             </div>
+         </section>
+         <script>
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+    </script>
         </div>
     </div>
 </body>
