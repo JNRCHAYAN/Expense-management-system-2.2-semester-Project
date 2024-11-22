@@ -8,42 +8,14 @@ if (!isset($_SESSION['user_id'])) {
 $u = $_SESSION['user_id'];
 $n = $_SESSION['username'];
 
-
-
-// $query1 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u;";
-// $qery1 = mysqli_query( $con , $query1);
-// $res1 = mysqli_fetch_array($qery1);
-// $income = $res1['Tincome'];
-
-$query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u";
-$qery2 = mysqli_query( $con , $query2);
-$res2 = mysqli_fetch_array($qery2);
-$expense = $res2['Texpenses'];
-
-$query3 = "SELECT SUM(amount) AS Tsaving FROM savings WHERE user_id = $u";
-$qery3 = mysqli_query( $con , $query3);
-$res3 = mysqli_fetch_array($qery3);
-$saving  = $res3['Tsaving'];
-
-$query4 = "SELECT SUM(amount) AS Tinvest FROM invest WHERE user_id = $u";
-$qery4 = mysqli_query( $con , $query4);
-$res4 = mysqli_fetch_array($qery4);
-$invest = $res4['Tinvest'];
-
-$query5 = "SELECT SUM(amount) AS Tloans FROM loans WHERE user_id = $u";
-$qery5 = mysqli_query( $con , $query5);
-$res5 = mysqli_fetch_array($qery5);
-$loans = $res5['Tloans'];
-
 ?>
-
 
 <?php
 include 'connect.php';
-
-
 if (isset($_POST['month']) && !empty($_POST['month'])) {
     $selectedMonth = $_POST['month'];
+    $date = DateTime::createFromFormat('m', $selectedMonth);
+    $monthName = $date->format('F');
 
     $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u AND MONTH(DATE) = '$selectedMonth'";
     $query1_result = mysqli_query($con, $query1);
@@ -74,6 +46,9 @@ if (isset($_POST['month']) && !empty($_POST['month'])) {
 
 else {
     $currentDate = date('m');
+    $date = DateTime::createFromFormat('m', $currentDate);
+    $monthName = $date->format('F');
+    
     $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u  AND MONTH(DATE) = $currentDate ; ";
     $qery1 = mysqli_query( $con , $query1);
     $res1 = mysqli_fetch_array($qery1);
@@ -98,8 +73,8 @@ else {
     $qery5 = mysqli_query( $con , $query5);
     $res5 = mysqli_fetch_array($qery5);
     $loans = $res5['Tloans'];
-
  }
+
 ?>
 
 <!DOCTYPE html>
@@ -133,7 +108,7 @@ else {
     
             <section>
                 <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expanse Management System </h2>
-                <h2 class="head_title">Month : November </h2>
+                <h2 class="head_title">Month : <?php echo  $monthName; ?>   </h2>
 
                 <h3>Filter by Month: </h3>
                 <br>
@@ -204,13 +179,7 @@ else {
             </section>
 
         </div>
-        <!-- <script>
-            document.addEventListener("DOMContentLoaded", function () {
-            const monthDropdown = document.getElementById("month-filter");
-            const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-based
-            const formattedMonth = currentMonth.toString().padStart(2, "0"); // Format as "01", "02", etc.
-            monthDropdown.value = formattedMonth;
-        }); </script> -->
+
 
 </body>
 </html>

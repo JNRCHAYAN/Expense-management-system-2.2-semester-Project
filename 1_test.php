@@ -1,18 +1,13 @@
-<form method="POST" action="">
-    <select id="month-filter" name="month" class="month-dropdown">
-        <option value="">Select</option>
-        <option value="01">January</option>
-        <option value="02">February</option>
-        <option value="03">March</option>
-        <option value="04">April</option>
-        <option value="05">May</option>
-        <option value="06">June</option>
-        <option value="07">July</option>
-        <option value="08">August</option>
-        <option value="09">September</option>
-        <option value="10">October</option>
-        <option value="11">November</option>
-        <option value="12">December</option>
-    </select>
-    <input type="submit" value="Filter">
-</form>
+<?php
+// Assuming the selected month is passed, for example, '03' for March
+$selectedMonth = $_POST['month'] ?? '03'; // Defaulting to '03' if no selection is made
+
+// Create a DateTime object using the selected month
+$date = DateTime::createFromFormat('m', $selectedMonth);
+
+// Get the full month name (e.g., March)
+$monthName = $date->format('F');
+
+// Print the month name
+echo $monthName;
+?>
