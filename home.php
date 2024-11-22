@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 $u = $_SESSION['user_id'];
 $n = $_SESSION['username'];
 
+$selectedMonth = isset($_POST['month']) ? $_POST['month'] : DATE('m');
+echo $selectedMonth;
 
 $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u";
 $qery1 = mysqli_query( $con , $query1);
@@ -34,15 +36,7 @@ $qery5 = mysqli_query( $con , $query5);
 $res5 = mysqli_fetch_array($qery5);
 $loans = $res5['Tloans'];
 
-
-
 ?>
-
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,6 +69,27 @@ $loans = $res5['Tloans'];
     
             <section>
                 <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expanse Management System </h2>
+                <h2 class="head_title">Month : November </h2>
+
+
+                <label for="month-filter" class="month-label">Filter by Month:</label>
+                <select id="month-filter" name="month" class="month-dropdown">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <br>
+                <br>
+                <br>
                 <div class="option_dev">
                     <div class="option_1">
                         <img src="./image/wallet.png" alt="Paid Icon" class="Op_image">
@@ -97,7 +112,6 @@ $loans = $res5['Tloans'];
                         <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Savings</h3></a>
                         </div>
 
-                        
                         <div class="option_1">
                         <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $invest; ?> Taka</h2>
@@ -116,5 +130,13 @@ $loans = $res5['Tloans'];
             </section>
 
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            const monthDropdown = document.getElementById("month-filter");
+            const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-based
+            const formattedMonth = currentMonth.toString().padStart(2, "0"); // Format as "01", "02", etc.
+            monthDropdown.value = formattedMonth;
+        }); </script>
+
 </body>
 </html>
