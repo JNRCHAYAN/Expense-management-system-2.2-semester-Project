@@ -29,7 +29,8 @@ if(isset($_POST['submit']))
     } else {
         echo "<script>alert('Failed to store data');</script>";
     }
-}
+ }
+
         $selectquery = "SELECT SUM(amount) AS total FROM invest WHERE user_id = $u";
         $qery = mysqli_query( $con , $selectquery);
         $res = mysqli_fetch_array($qery);
@@ -80,7 +81,14 @@ if(isset($_POST['submit']))
 
             <section class="add_invest">
             <h2 class="head_title">My Investment</h2>
-         <table>
+            <div class="in_form  id="formContainer" >
+            <form action="" method="post">
+                        <!-- <label for="amount">Search:</label> -->
+                        <input type="text" id="amount" name="bank_name" placeholder="Search Your Bank Name" required>
+                        <button type="submit" class="add" name="search">Search Your Bank Name</button>
+                    </form>
+            </div>
+         <!-- <table>
              <thead><tr>
                  <th>NO</th>
                  <th>User ID</th>
@@ -123,7 +131,89 @@ if(isset($_POST['submit']))
                  }
                  ?>
          </tbody>
-         </table>
+         </table> -->
+
+
+<!-- =========================================== -->
+         <table>
+            <thead>
+                <tr>
+                <th>NO</th>
+                 <th>User ID</th>
+                 <th>Invest ID</th>
+                 <th>Amount</th>
+                 <th>Bank Name</th>
+                 <th>Interest Rate</th>
+                 <th>Investment Start Date</th>
+                 <th>Total Investment Years</th>
+                 <th colspan="2">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include 'connect.php';
+                if (isset($_POST['search'])) {
+                    $bank = $_POST['bank_name'];
+                    $selectquery = "SELECT * FROM invest WHERE user_id = $u AND `BankName` = '$bank' ORDER BY created_at DESC;";
+                    $qery = mysqli_query($con, $selectquery);
+
+                    if (!$qery) {
+                        die("Query Failed: " . mysqli_error($con));
+                    }
+
+                    if (mysqli_num_rows($qery) > 0) {
+                        while ($res = mysqli_fetch_array($qery)) {
+                            $coutt +=1; 
+                            ?>      
+                            <tr>
+                            <td> <?php echo $coutt; ?></td>
+                            <td> <?php echo $_SESSION['user_id'] ; ?></td>
+                            <td> <?php echo $res['invest_id']; ?></td>
+                            <td> <?php echo $res['amount']; ?></td>
+                            <td> <?php echo $res['BankName']; ?></td>
+                            <td> <?php echo $res['Interest']; ?></td>
+                            <td> <?php echo date("F, Y", strtotime($res['Invest_Start'])); ?></td>
+                            <td> <?php echo $res['Total_Years']; ?></td>
+                            <td> <a href="up_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                            <td> <a href="Delete_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                        </tr>
+                        <?php
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>No records found for the selected filter.</td></tr>";
+                    }
+                } else {
+                    $selectquery = "SELECT * FROM invest WHERE user_id = $u ORDER BY created_at DESC;";
+
+                    $qery = mysqli_query( $con, $selectquery);
+                    $coutt=0;
+                    while ($res = mysqli_fetch_array($qery))
+                    {
+                       $coutt +=1;
+                      ?>      
+                        <tr>
+                        <td> <?php echo $coutt; ?></td>
+                        <td> <?php echo $_SESSION['user_id'] ; ?></td>
+                        <td> <?php echo $res['invest_id']; ?></td>
+                        <td> <?php echo $res['amount']; ?></td>
+                        <td> <?php echo $res['BankName']; ?></td>
+                        <td> <?php echo $res['Interest']; ?></td>
+                        <td> <?php echo date("F, Y", strtotime($res['Invest_Start'])); ?></td>
+                        <td> <?php echo $res['Total_Years']; ?></td>
+                        <td> <a href="up_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">EDIT</button> </a> </td>
+                        <td> <a href="Delete_Invest.php?invest_id=<?php echo $res['invest_id'] ?>"> <button class="btn">Delete</button> </a> </td>
+                     </tr>
+                     <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>              
+
+
+
+
+
         </section>
 
         <!-- ====================================== -->
