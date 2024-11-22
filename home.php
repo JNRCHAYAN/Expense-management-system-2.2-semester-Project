@@ -95,6 +95,7 @@ $loans = $res5['Tloans'];
                         <img src="./image/wallet.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $income; ?> Taka</h2>
                         <p>Total Income</p>
+                        <br>
                         <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Income</h3></a>
                         </div>
 
@@ -102,6 +103,7 @@ $loans = $res5['Tloans'];
                         <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $expense; ?> Taka</h2>
                         <p>Total Expanse</p>
+                        <br>
                         <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Expanse</h3></a>
                         </div>
 
@@ -109,6 +111,7 @@ $loans = $res5['Tloans'];
                         <img src="./image/jar.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $saving ; ?> Taka</h2>
                         <p>Total Savings</p>
+                        <br>
                         <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Savings</h3></a>
                         </div>
 
@@ -116,6 +119,7 @@ $loans = $res5['Tloans'];
                         <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $invest; ?> Taka</h2>
                         <p>Total Invesment</p>
+                        <br>
                         <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Invesment</h3></a>
                         </div>
 
@@ -123,6 +127,7 @@ $loans = $res5['Tloans'];
                         <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $loans; ?> Taka</h2>
                         <p>Total Loan</p>
+                        <br>
                         <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Loan</h3></a>
                         </div>
                     </div>
