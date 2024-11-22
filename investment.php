@@ -54,7 +54,7 @@ if(isset($_POST['submit']))
             <ul>
                 <li><a href="home.html"><span class="icon">🏠</span> Home</a></li>
                 <li><a href="#"><span class="icon">💰</span> Income</a></li>
-                <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
+                <li><a href="Expanse.php"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
                 <li><a href="#"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
