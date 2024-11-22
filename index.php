@@ -8,11 +8,10 @@ if(isset($_POST['submit']))
     $password = $_POST['password'];
     $pass = password_hash($password, PASSWORD_BCRYPT);
 
-   $setvalue_db = "INSERT INTO `users`
-   (`username`, `password`, `email`) 
+   $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`) 
     VALUES ('$uname','$pass','$email'); ";
 
-    $res = mysqli_query($con ,  $setvalue_db);
+    $res = mysqli_query($con,$setvalue_db);
 
     if($res)
     {
@@ -30,8 +29,33 @@ if(isset($_POST['submit']))
         </script>
         <?php
     }
+
+  
+    if(filter_var($email,FILTER_VALIDATE_EMAIL))
+{
+//    echo "email is valid"; 
+?>
+        <script>
+            alert('Data store');
+        </script>
+        <?php
+}
+else
+{
+    // echo "Unvalid email";
+    ?>
+    <script>
+        alert('Not Store');
+    </script>
+    <?php
+}
+
+
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

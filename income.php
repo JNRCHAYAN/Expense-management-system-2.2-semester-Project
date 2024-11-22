@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
 
 
-<?php
+ <?php
 include 'dbcon.php';
 
 $setvalue="SELECT SUM(amount) AS 'total' FROM income WHERE MONTH(created_at) =  MONTH(DATE)";
@@ -37,17 +37,18 @@ $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set=$fetch['total']; 
 
-?>
 
-
-<?php
-include 'dbcon.php';
-$setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(DATE)";
+$setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(expense_date)";
 $ress = mysqli_query($con, $setv);
-$fach = mysqli_fetch_array($ress);
-$sett=$fach['Amount']; 
+$fac = mysqli_fetch_array($ress);
+$sett=$fac['Amount'];
+ 
 
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,11 +97,11 @@ $sett=$fach['Amount'];
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
-                      <p><?php echo $set?>TK </p>
+                <?php echo $set?>TK </p> 
                     </div>
                     <div class="box expense">
                         <h3>Expense</h3>
-                        <p><?php echo $sett ?> TK</p>
+                        <?php echo $sett ?> TK</p>
                     </div>
                 </div>
             </div>
@@ -131,6 +132,9 @@ $sett=$fach['Amount'];
                     <table>
                         <thead>
                             <tr>
+                                <th>No</th>
+                                <th>Income id</th>
+                                <th>User_id</th>
                                 <th>Date</th>
                                 <th>Category</th>
                                 <th>Amount</th>
@@ -156,6 +160,7 @@ $sett=$fach['Amount'];
                                     while ($res = mysqli_fetch_array($qery)) {
                                         ?>
                                         <tr>
+                                            
                                             <td><?php echo $res['DATE']; ?></td>
                                             <td><?php echo $res['category']; ?></td>
                                             <td><?php echo $res['amount']; ?> Taka</td>
@@ -170,10 +175,14 @@ $sett=$fach['Amount'];
                             } else {
                                 $selectquery = "SELECT * FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
                                 $qery = mysqli_query($con, $selectquery);
-
+                                $cot =0;
                                 while ($res = mysqli_fetch_array($qery)) {
+                                    $cot +=1;
                                     ?>
                                     <tr>
+                                        <td><?php echo  $cot;?></td>
+                                        <td> <?php echo $res['income_id']; ?></td>
+                                        <td> <?php echo $res['user_id']; ?></td>
                                         <td><?php echo $res['DATE']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
@@ -193,38 +202,45 @@ $sett=$fach['Amount'];
                 </div>
             </div>
 
-        
 
-            <br>
-             <div>
-                <button class="add" onclick="showForm()">Click here to add Income</button>
-                <section class="add_income">
+
+
+
+        <br>
+ <div>
+        <button class="btn" onclick="showForm()">Click here to Add Income</button>
+
+        <section class="add_income">
+                
                 <div class="in_form form-container" id="formContainer">
-            
-            <div class="section">
-                <div class="section-item">
-                    <h2>Add Income</h2>
                     <form action="" method="post">
-                        <div>
-                            <label for="date">Date</label>
-                            <input type="date" name="date" id="date"  required>
-                        </div>
-                        <div>
-                            <label for="category">Category</label>
-                            <input type="text" name="category" id="category" required>
-                        </div>
-                        <div>
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
-                        </div>
-                        <button class="btn" type="submit" name="submit">Add Income</button>
+                        <h2>Add Income</h2>
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date"  required>
+
+                       <label for="category">Category</label>
+                        <input type="text" name="category" id="category" required>
+
+                        <label for="amount">Amount</label>
+                        <input type="number" name="amount" id="amount" required>
+                    
+                        <button type="submit" class="btn" name="submit">Add Income</button>
                     </form>
                 </div>
-                </div>
-              
-            </div>
-         </section>
-         <script>
+            </section>
+
+   
+
+         </div>
+                  
+  
+
+
+
+
+       
+    </div> 
+    <script>
         function showForm() {
             document.getElementById("formContainer").style.display = "block";
         }
@@ -233,7 +249,5 @@ $sett=$fach['Amount'];
             document.getElementById("formContainer").style.display = "block";
         }
     </script>
-        </div>
-    </div>
 </body>
 </html>
