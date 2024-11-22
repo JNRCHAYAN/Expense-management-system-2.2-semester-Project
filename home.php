@@ -59,11 +59,11 @@ $loans = $res5['Tloans'];
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="home.html"><span class="icon">🏠</span> Home</a></li>
-                <li><a href="#"><span class="icon">💰</span> Income</a></li>
+                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
                 <li><a href="Expanse.php"><span class="icon">💸</span> Expenses</a></li>
                 <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
+                <li><a href="investment.php"><span class="icon">💼</span> Investment</a></li>
                 <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
                 <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
                 <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
@@ -80,18 +80,21 @@ $loans = $res5['Tloans'];
                         <img src="./image/wallet.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $income; ?> Taka</h2>
                         <p>Total Income</p>
+                        <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Income</h3></a>
                         </div>
 
                         <div class="option_1">
                         <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $expense; ?> Taka</h2>
                         <p>Total Expanse</p>
+                        <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Expanse</h3></a>
                         </div>
 
                         <div class="option_1">
                         <img src="./image/jar.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $saving ; ?> Taka</h2>
                         <p>Total Savings</p>
+                        <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Savings</h3></a>
                         </div>
 
                         
@@ -99,12 +102,14 @@ $loans = $res5['Tloans'];
                         <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $invest; ?> Taka</h2>
                         <p>Total Invesment</p>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Invesment</h3></a>
                         </div>
 
                         <div class="option_1">
                         <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $loans; ?> Taka</h2>
                         <p>Total Loan</p>
+                        <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Loan</h3></a>
                         </div>
                     </div>
                  

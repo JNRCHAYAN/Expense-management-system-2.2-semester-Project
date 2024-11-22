@@ -42,7 +42,7 @@ if(isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Overview</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -69,7 +69,7 @@ if(isset($_POST['submit']))
                 <h2 class="head_title">Loan Overview</h2>
                 <div class="option_dev">
                     <div class="option_1">
-                        <img src="loan.png" alt="Paid Icon" class="Op_image">
+                        <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $amount; ?> Taka</h2>
                         <p>Total Loan</p>
                         </div>
