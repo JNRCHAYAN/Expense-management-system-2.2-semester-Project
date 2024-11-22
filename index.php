@@ -33,21 +33,13 @@ if(isset($_POST['submit']))
   
     if(filter_var($email,FILTER_VALIDATE_EMAIL))
 {
-//    echo "email is valid"; 
-?>
-        <script>
-            alert('Data store');
-        </script>
-        <?php
+ echo "email is valid"; 
+
 }
 else
 {
-    // echo "Unvalid email";
-    ?>
-    <script>
-        alert('Not Store');
-    </script>
-    <?php
+     echo "Unvalid email";
+  
 }
 
 
