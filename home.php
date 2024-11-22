@@ -48,7 +48,7 @@ else {
     $currentDate = date('m');
     $date = DateTime::createFromFormat('m', $currentDate);
     $monthName = $date->format('F');
-    
+
     $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u  AND MONTH(DATE) = $currentDate ; ";
     $qery1 = mysqli_query( $con , $query1);
     $res1 = mysqli_fetch_array($qery1);
@@ -128,7 +128,7 @@ else {
                         <option value="11">November</option>
                         <option value="12">December</option>
                     </select>
-                    <input type="submit" value="Filter">
+                    <input type="submit" value="Filter" class="filterb">
                 </form>
 
                 <br>

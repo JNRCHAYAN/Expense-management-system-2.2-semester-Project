@@ -152,6 +152,21 @@ body {
 .form-container {
     display: none; /* Initially hidden */
 }
+.filterb
+{
+    width: 100px;
+    padding: 5px;
+    height: 40px;
+    background-color: #009474;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+   
+}
 .btn {
     width: 100%;
     padding: 12px;
@@ -164,6 +179,8 @@ body {
     transition: background-color 0.3s, transform 0.3s;
     font-weight: 500;
 }
+
+
 .add {
     width: 100%;
     padding: 12px;
