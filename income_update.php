@@ -6,7 +6,7 @@ include 'dbcon.php';
 
 $income_ids = $_GET['income_id'];
 
-$showquery= "SELECT * FROM `income` WHERE income_id = $income_ids";
+$showquery= "SELECT * FROM `income` WHERE income_id ={$income_ids}";
 
 
 $showdata = mysqli_query( $con ,$showquery );
@@ -19,11 +19,10 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
-    $uid = 1;
+    $userid = 1;
  
 
-$updates="UPDATE `income` SET `user_id`='$uid',`DATE`='$date',
-`category`='$category', `amount`='$amount' WHERE `income_id`='$idupdate' ";
+$updates="UPDATE `income` SET `DATE`='$date',`category`='$category', `amount`='$amount' WHERE `income_id`='$idupdate'";
 
     $ress = mysqli_query($con,$updates);
 
@@ -32,7 +31,7 @@ $updates="UPDATE `income` SET `user_id`='$uid',`DATE`='$date',
         echo "<script>alert('Data update successfully');</script>";
         
         // Redirect to avoid duplicate data on page reload
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header('location:income.php');
         exit;
     } else {
         echo "<script>alert('Failed to update data');</script>";
