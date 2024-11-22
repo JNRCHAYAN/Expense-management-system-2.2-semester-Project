@@ -8,13 +8,12 @@ if (!isset($_SESSION['user_id'])) {
 $u = $_SESSION['user_id'];
 $n = $_SESSION['username'];
 
-$selectedMonth = isset($_POST['month']) ? $_POST['month'] : DATE('m');
 
 
-$query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u";
-$qery1 = mysqli_query( $con , $query1);
-$res1 = mysqli_fetch_array($qery1);
-$income = $res1['Tincome'];
+// $query1 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u;";
+// $qery1 = mysqli_query( $con , $query1);
+// $res1 = mysqli_fetch_array($qery1);
+// $income = $res1['Tincome'];
 
 $query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u";
 $qery2 = mysqli_query( $con , $query2);
@@ -36,6 +35,71 @@ $qery5 = mysqli_query( $con , $query5);
 $res5 = mysqli_fetch_array($qery5);
 $loans = $res5['Tloans'];
 
+?>
+
+
+<?php
+include 'connect.php';
+
+
+if (isset($_POST['month']) && !empty($_POST['month'])) {
+    $selectedMonth = $_POST['month'];
+
+    $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u AND MONTH(DATE) = '$selectedMonth'";
+    $query1_result = mysqli_query($con, $query1);
+    $res1 = mysqli_fetch_array($query1_result);
+    $income = $res1['Tincome'];
+
+    $query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u AND MONTH(expense_date) = '$selectedMonth'";
+    $qery2 = mysqli_query( $con , $query2);
+    $res2 = mysqli_fetch_array($qery2);
+    $expense = $res2['Texpenses'];
+
+    $query3 = "SELECT SUM(amount) AS Tsaving FROM savings WHERE user_id = $u AND MONTH(date) = '$selectedMonth'";
+    $qery3 = mysqli_query( $con , $query3);
+    $res3 = mysqli_fetch_array($qery3);
+    $saving  = $res3['Tsaving'];
+
+    $query4 = "SELECT SUM(amount) AS Tinvest FROM invest WHERE user_id = $u AND MONTH(Invest_Start) = '$selectedMonth'";
+    $qery4 = mysqli_query( $con , $query4);
+    $res4 = mysqli_fetch_array($qery4);
+    $invest = $res4['Tinvest'];
+
+    $query5 = "SELECT SUM(amount) AS Tloans FROM loans WHERE user_id = $u AND MONTH(loan_start_date) = '$selectedMonth'";
+    $qery5 = mysqli_query( $con , $query5);
+    $res5 = mysqli_fetch_array($qery5);
+    $loans = $res5['Tloans'];
+    
+} 
+
+else {
+    $currentDate = date('m');
+    $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u  AND MONTH(DATE) = $currentDate ; ";
+    $qery1 = mysqli_query( $con , $query1);
+    $res1 = mysqli_fetch_array($qery1);
+    $income = $res1['Tincome'];
+
+    $query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u AND MONTH(expense_date) = $currentDate ;";
+    $qery2 = mysqli_query( $con , $query2);
+    $res2 = mysqli_fetch_array($qery2);
+    $expense = $res2['Texpenses'];
+
+    $query3 = "SELECT SUM(amount) AS Tsaving FROM savings WHERE user_id = $u AND MONTH(DATE) = $currentDate ;";
+    $qery3 = mysqli_query( $con , $query3);
+    $res3 = mysqli_fetch_array($qery3);
+    $saving  = $res3['Tsaving'];
+
+    $query4 = "SELECT SUM(amount) AS Tinvest FROM invest WHERE user_id = $u AND MONTH(Invest_Start) = $currentDate ; ";
+    $qery4 = mysqli_query( $con , $query4);
+    $res4 = mysqli_fetch_array($qery4);
+    $invest = $res4['Tinvest'];
+
+    $query5 = "SELECT SUM(amount) AS Tloans FROM loans WHERE user_id = $u AND MONTH(loan_start_date) = $currentDate ;";
+    $qery5 = mysqli_query( $con , $query5);
+    $res5 = mysqli_fetch_array($qery5);
+    $loans = $res5['Tloans'];
+
+ }
 ?>
 
 <!DOCTYPE html>
@@ -71,22 +135,27 @@ $loans = $res5['Tloans'];
                 <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expanse Management System </h2>
                 <h2 class="head_title">Month : November </h2>
 
-
-                <label for="month-filter" class="month-label">Filter by Month:</label>
+                <h3>Filter by Month: </h3>
+                <br>
+                <form method="POST" action="">
                 <select id="month-filter" name="month" class="month-dropdown">
-                    <option value="01">January</option>
-                    <option value="02">February</option>
-                    <option value="03">March</option>
-                    <option value="04">April</option>
-                    <option value="05">May</option>
-                    <option value="06">June</option>
-                    <option value="07">July</option>
-                    <option value="08">August</option>
-                    <option value="09">September</option>
-                    <option value="10">October</option>
-                    <option value="11">November</option>
-                    <option value="12">December</option>
-                </select>
+                        <option value="">Select</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <input type="submit" value="Filter">
+                </form>
+
                 <br>
                 <br>
                 <br>
@@ -135,13 +204,13 @@ $loans = $res5['Tloans'];
             </section>
 
         </div>
-        <script>
+        <!-- <script>
             document.addEventListener("DOMContentLoaded", function () {
             const monthDropdown = document.getElementById("month-filter");
             const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-based
             const formattedMonth = currentMonth.toString().padStart(2, "0"); // Format as "01", "02", etc.
             monthDropdown.value = formattedMonth;
-        }); </script>
+        }); </script> -->
 
 </body>
 </html>
