@@ -9,7 +9,7 @@ $u = $_SESSION['user_id'];
 $n = $_SESSION['username'];
 
 $selectedMonth = isset($_POST['month']) ? $_POST['month'] : DATE('m');
-echo $selectedMonth;
+
 
 $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u";
 $qery1 = mysqli_query( $con , $query1);
@@ -53,13 +53,13 @@ $loans = $res5['Tloans'];
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
                 <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
-                <li><a href="Expanse.php"><span class="icon">💸</span> Expenses</a></li>
-                <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="investment.php"><span class="icon">💼</span> Investment</a></li>
-                <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
-                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
+                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
+                <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
+                <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
+                <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
         </div>

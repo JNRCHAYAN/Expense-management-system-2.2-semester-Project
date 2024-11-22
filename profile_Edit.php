@@ -14,11 +14,11 @@ $u = $_SESSION['user_id'];
 
         if(isset($_POST['updatee']))
         {
-            $user = $_POST['username'];
-            $emai = $_POST['email'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
 
 
-            $setvalue_DB= "UPDATE `users` SET `username`='$user ' ,`email`='$emai' WHERE `user_id`=$u";
+            $setvalue_DB= "UPDATE `users` SET `username`='$username' ,`email`='$email' where user_id = {$u} ";
 
             // $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
 
@@ -49,13 +49,14 @@ $u = $_SESSION['user_id'];
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
-                <li><a href="#"><span class="icon">💰</span> Income</a></li>
-                <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
-                <li><a href="loan.php"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
-                <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
-                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+            <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
+                <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
+                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
+                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
+                <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
+                <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
+                <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
+                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
         </div>
         <!-- Main Content -->
