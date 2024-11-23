@@ -107,6 +107,7 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
             </header>
 
             <!-- Feedback Message -->
+
             <?php if (!empty($message)): ?>
                 <p class="notification"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>

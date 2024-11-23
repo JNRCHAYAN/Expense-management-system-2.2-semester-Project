@@ -136,13 +136,9 @@ if (isset($_POST['add'])) {
 	    </footer>
             </form>
         </div>
-    
-    <!--//app-card-->                    
-<!-- </div> -->
-    <!-- //col -->
-<!-- </div>          -->
+
   
-    </div> <!--//app-content-->
+    </div> 
 
 
     </div>
