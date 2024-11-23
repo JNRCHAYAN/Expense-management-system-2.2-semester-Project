@@ -60,12 +60,14 @@
                     }
             ?>
 
-
-                   
+               <h2>Update Loan</h2>
+                    <a href="loan.php">
+                        <button id="backb">
+                         Back
+                       </button>
+                        </a>
+                        <br><br>
                 <form action="" method="post">
-                    
-
-            <h2>Update Loan</h2>
             <label for="amount">Amount:</label>
             <input type="number" id="amount" name="amount" value="<?php echo $arrdata['amount']; ?>">
             <label for="bank_name">Bank Name:</label>

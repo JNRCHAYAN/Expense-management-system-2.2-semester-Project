@@ -1,43 +1,30 @@
-/* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    background-color: #f3f4f6;
 }
 
-/* Container */
 .container {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar */
 .navigation {
-    width: 260px;
-    background-color: #ffffff; /* White background */
+    width: 250px;
+    background-color: #2c3e50;
     padding: 20px;
-    color: #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
+    color: #ecf0f1;
+    position: fixed;
     height: 100vh;
-    overflow-y: auto;
-    transition: width 0.3s ease;
-}
-
-.navigation:hover {
-    width: 300px; /* Expand on hover */
 }
 
 .navigation ul {
-    list-style: none;
-    padding: 0;
+    list-style-type: none;
 }
 
 .navigation li {
@@ -47,201 +34,123 @@ body {
 .navigation a {
     display: flex;
     align-items: center;
-    gap: 15px;
-    color: #333; /* Default text color */
+    color: #ecf0f1;
     text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 1.1em;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 .navigation a:hover {
-    background-color: #000000; /* Black background on hover */
-    color: #ffffff; /* White text on hover */
-    transform: translateX(5px);
+    background-color: #34495e;
 }
 
-.icon {
-    font-size: 1.4em;
-    color: #555; /* Gray icons */
-    transition: color 0.3s;
-}
-
-.navigation a:hover .icon {
-    color: #ffffff; /* White icons on hover */
-}
-
-/* Active Link */
-.navigation .active {
-    background-color: #000000; /* Black background for active link */
-    color: #ffffff; /* White text for active link */
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navigation .active .icon {
-    color: #ffffff; /* White icon for active link */
-}
-
-/* Collapsible Sidebar (Responsive) */
-@media (max-width: 768px) {
-    .navigation {
-        width: 80px;
-        overflow: hidden;
-    }
-
-    .navigation:hover {
-        width: 250px;
-    }
-
-    .navigation a {
-        justify-content: center;
-    }
-
-    .navigation a span {
-        display: none;
-    }
-
-    .navigation:hover a span {
-        display: inline-block;
-    }
-}
-
-/* Main Content */
 .main {
     flex: 1;
-    padding: 30px;
-    background-color: #f9fafb;
-}
-
-/* Section Titles */
-.head_title, .add_invest h2 {
-    font-size: 1.8em;
-    margin-bottom: 24px;
-    color: #2c3e50;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* Option Cards */
-.option_dev {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.option_1 {
-    background-color: #fff;
-    border-radius: 12px;
     padding: 20px;
-    width: 300px;
+    margin-left: 270px;
+    background-color: #fafafa;
+}
+
+.head {
+    background-color: #357ab9;
+    padding: 20px;
+    color: #fff;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.option_1:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+h1 {
+    font-size: 2em;
 }
 
-.option_1 img {
-    width: 45px;
-    margin-bottom: 10px;
-}
-
-.option_1 h2 {
-    font-size: 1.5em;
-    color: #2c3e50;
-    margin: 10px 0;
-}
-
-.option_1 p {
-    color: #777;
-}
-
-/* Form Styles */
-
-.form-container {
-    display: none; /* Initially hidden */
-}
-
-.add_invest {
-    margin-top: 30px;
+.section {
     background-color: #fff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.in_form label {
-    font-weight: 500;
-    color: #555;
-    margin-top: 15px;
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 120px;
+    height: 100px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #fff;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.box:hover {
+    transform: scale(1.05);
+}
+
+.income {
+    background-color: #4caf50;
+}
+
+.expense {
+    background-color: #f44336;
+}
+
+.box h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.box p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
     display: block;
+    margin-bottom: 5px;
 }
 
-.in_form input[type="number"],
-.in_form input[type="text"],
-.in_form input[type="date"] {
+input[type="date"],
+input[type="text"],
+input[type="number"],
+select {
     width: 100%;
     padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 18px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    font-size: 1em;
-    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
     outline: none;
 }
 
-.in_form input:focus {
+input:focus {
     border-color: #4a90e2;
-    box-shadow: 0 0 6px rgba(74, 144, 226, 0.2);
-}
-
-.filterb {
-    width: 100px;
-    padding: 5px;
-    height: 40px;
-    background-color: #009474;
-    color: #fff;
-    font-size: 1em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-weight: 500;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
 }
 
 .btn {
     width: 100%;
-    padding: 12px;
-    background-color: #007dd1;
+    padding: 10px;
+    background-color: #4a90e2;
     color: #fff;
     font-size: 1em;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    font-weight: 500;
-}
-
-.add {
-    width: 100%;
-    padding: 12px;
-    background-color: #00977e;
-    color: #ffffff;
-    font-size: 1em;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-weight: 500;
 }
 
 .btn:hover {
@@ -249,74 +158,48 @@ body {
     transform: translateY(-2px);
 }
 
-/* My Investment Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    margin-top: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
+    margin-top: 20px;
 }
 
-table thead {
-    background-color: #4a90e2;
-    color: #fff;
+th, td {
+    padding: 10px;
     text-align: left;
 }
 
-table th,
-table td {
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
+th {
+    background-color: #34495e;
+    color: #ecf0f1;
 }
 
-table th {
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.9em;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-table tbody tr {
-    transition: background-color 0.3s;
+tr:hover {
+    background-color: #dcdcdc;
 }
 
-table tbody tr:hover {
-    background-color: #f1f3f5;
-    cursor: pointer;
+.my-income-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
-table td {
-    color: #555;
-    font-size: 0.95em;
+.filter-group {
+    display: flex;
+    gap: 15px;
 }
 
-/* Operation Column Styling */
-table th[colspan="2"],
-table td[colspan="2"] {
-    text-align: center;
+.filter-group div {
+    flex: 1;
 }
 
-.month-label {
-    font-size: 16px;
-    color: #333;
-    margin-right: 10px;
-    font-weight: bold;
-}
 
-.month-dropdown {
-    font-size: 16px;
-    padding: 5px 10px;
-    border: 2px solid #555;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    color: #333;
-    cursor: pointer;
-    transition: border-color 0.3s, background-color 0.3s;
-}
-
-.month-dropdown:hover {
-    border-color: #007bff;
-    background-color: #eef;
+.form-container {
+    display: none; /* Initially hidden */
 }
