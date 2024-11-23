@@ -72,7 +72,12 @@ if(isset($_POST['submit']))
                     <div class="option_1">
                         <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $amount; ?> Taka</h2>
-                        <p>Total Loan</p>
+                        <p>Total Loan</p><br>
+                        <a href="loan_Add.php">
+                        <button class="btn " id="addRowButton">
+                         Add Loan
+                       </button>
+                        </a>
                         </div>
                     </div>
                  
@@ -80,6 +85,14 @@ if(isset($_POST['submit']))
 
             <section class="add_invest">
             <h2 class="head_title">My Loan</h2>
+            <div class="in_form  id="formContainer" >
+            <form action="" method="post">
+                        <!-- <label for="amount">Search:</label> -->
+                        <input type="text" id="amount" name="bank_name" placeholder="Search Your Bank Name" required>
+                        <button type="submit" class="add" name="search">Search Your Bank Name</button>
+                    </form>
+            </div>
+            <!-- =========================================== -->
          <table>
              <thead><tr>
                  <th>NO</th>
@@ -128,51 +141,7 @@ if(isset($_POST['submit']))
         </section>
 
         <!-- ====================================== -->
-        <br>
-        <div>
-        <button class="add" onclick="showForm()">Click here to Add Invesment</button>
-
-        <section class="add_invest">
-                
-                <div class="in_form form-container" id="formContainer">
-                <h2>Add Loan</h2>
-                <div class="in_form">
-                    <form action="" method="post">
-                        <label for="amount">Amount:</label>
-                        <input type="number" id="amount" placeholder="Amount" name="amount" required>
-                        
-                        <label for="bank_name">Bank Name:</label>
-                        <input type="text" id="bank_name" placeholder="Bank Name" name="Bank_name" required>
-                        
-                        <label for="interest_rate">Interest Rate:</label>
-                        <input type="text" id="interest_rate" placeholder="Interest Rate" name="rate" required>
-                        
-                        <label for="start_date">Loan Start Date:</label>
-                        <input type="date" id="start_date" name="s_date" required>
-                        
-                        <label for="end_date">Loan End Date:</label>
-                        <input type="date" id="end_date" name="e-date" required>
-
-                        <button name="submit" type="submit" class="btn">Add Loan</button>
-                    </form>
-                </div>
-                </div>
-            </section>
-
-            
-    <script>
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-    </script>
-
-         </div>
-
-        </div>
+       
     </div>
 </body>
 </html>

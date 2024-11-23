@@ -10,26 +10,6 @@ $u = $_SESSION['user_id'];
 
 <?php
 include 'connect.php';
-if(isset($_POST['submit']))
-{
-   
-    $user =$_SESSION['user_id']; 
-    $amount = $_POST['amount'];
-    $Bank_name = $_POST['Bank_name'];
-    $rate = $_POST['rate'];
-    $s_date = $_POST['s_date'];
-    $year = $_POST['year'];
-    $setvalue_db = "INSERT INTO `invest`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
-     VALUES ('$u','$amount','$Bank_name','$rate','$s_date','$year'); ";
-    $res = mysqli_query($con ,  $setvalue_db);
-    if ($res) {
-        echo "<script>alert('Data stored successfully');</script>";
-        header("Location: " .$_SERVER['PHP_SELF']);
-        exit;
-    } else {
-        echo "<script>alert('Failed to store data');</script>";
-    }
- }
 
         $selectquery = "SELECT SUM(amount) AS total FROM invest WHERE user_id = $u";
         $qery = mysqli_query( $con , $selectquery);
