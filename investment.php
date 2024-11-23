@@ -84,7 +84,7 @@ if(isset($_POST['submit']))
                         <button class="btn " id="addRowButton">
                          Add Investment
                        </button>
-                      </a>
+                        </a>
                         </div>
                        
                     </div>
@@ -193,50 +193,6 @@ if(isset($_POST['submit']))
                 ?>
             </tbody>
         </table>              
-
-
-
-
-
-        </section>
-
-        <!-- ====================================== -->
-        <br>
-        <div>
-        <button class="add" onclick="showForm()">Click here to Add Invesment</button>
-
-        <section class="add_invest">
-                
-                <div class="in_form form-container" id="formContainer">
-                    <form action="" method="post">
-                        <h2>Add Investment</h2>
-                        <label for="amount">Amount:</label>
-                        <input type="number" id="amount" name="amount" placeholder="Amount" required>
-                        <label for="bank_name">Bank Name:</label>
-                        <input type="text" id="bank_name" name="Bank_name" placeholder="Bank Name" required>
-                        <label for="interest_rate">Interest Rate:</label>
-                        <input type="number" id="interest_rate" name="rate" placeholder="Interest Rate" required>
-                        <label for="start_date">Investment Start Date:</label>
-                        <input type="date" id="start_date" name="s_date" required>
-                        <label for="total_years">Total Investment Years:</label>
-                        <input type="number" id="total_years" name="year" placeholder="Total Years" required>
-                        <button type="submit" class="btn" name="submit">Add Investment</button>
-                    </form>
-                </div>
-            </section>
-
-            
-    <script>
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-    </script>
-
-         </div>
 
         </div>
     </div>
