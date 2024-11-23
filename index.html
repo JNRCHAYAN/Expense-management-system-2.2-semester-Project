@@ -6,9 +6,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="#" type="image/x-icon">
         <link rel="stylesheet" href="./CSS/index.css">
+<style>
+        .logo-image {
+            position: absolute; 
+            top: 30%; 
+            right: 658px; /* Positions the image 10px from the right edge */
+            transform: translateY(-50%); /* Ensures the image is perfectly centered */
+            width: 150px; /* Adjust the size as needed */
+            opacity: 1; /* Makes the image slightly transparent (optional) */
+        }
+</style>
+       
+
         <title>Expense management system</title>
     </head>
     <body>
+      
         <!--==================== HEADER ====================-->
         <header class="header" id="header">
             <nav class="nav container">
@@ -47,10 +60,13 @@
         </header>
 
         <main class="main">
+            <img src="./image/logo.png" alt="Project Logo" class="logo-image">
             <!--==================== HOME ====================-->
             <section class="home" id="home">
                     <div class="home__data">
                         <h1 class="home__title">
+                            <br>
+                            <br>
                             Platform to <br> make your life better
                         </h1>
                       

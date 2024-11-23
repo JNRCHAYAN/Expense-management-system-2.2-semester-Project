@@ -21,6 +21,7 @@ if(isset($_POST['submit']))
             alert('Data store');
         </script>
         <?php
+        header('location:login.php');
     }
     else
     {
