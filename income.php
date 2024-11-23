@@ -1,46 +1,49 @@
 <?php
 include 'dbcon.php';
 
-
-
-//Insert data into the database
-
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = 1;
 
+    // Insert data into the database
     $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
                     VALUES ('$userid', '$date', '$category', '$amount')";
 
     $res = mysqli_query($con, $setvalue_db);
 
-    if ($res) {
+    if ($res) 
+    {
         echo "<script>alert('Data stored successfully');</script>";
         
+        // Redirect to avoid duplicate data on page reload
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
         echo "<script>alert('Failed to store data');</script>";
     }
-  }
-
-
-    $setvalue="SELECT SUM(amount) AS 'total' FROM income WHERE MONTH(created_at) =  MONTH(DATE)";
-    $res = mysqli_query($con, $setvalue);
-    $fetch = mysqli_fetch_array($res);
-    $set=$fetch['total']; 
-
-
-    $setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(expense_date)";
-    $ress = mysqli_query($con, $setv);
-    $fach = mysqli_fetch_array($ress);
-    $sett=$fach['Amount']; 
-
+}
 ?>
 
 
+
+
+ <?php
+include 'dbcon.php';
+
+$setvalue="SELECT SUM(amount) AS 'total' FROM income WHERE MONTH(created_at) =  MONTH(DATE)";
+$res = mysqli_query($con, $setvalue);
+$fetch = mysqli_fetch_array($res);
+$set=$fetch['total']; 
+
+
+$setv="SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) =  MONTH(expense_date)";
+$ress = mysqli_query($con, $setv);
+$fac = mysqli_fetch_array($ress);
+$sett=$fac['Amount'];
+ 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -64,8 +67,20 @@ if (isset($_POST['submit'])) {
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+            
+
+            <!--Logout button---->
+             <div class="log">
+             
+             <a href="logout.php">Logout</a>
+             </div>
+        
+
+
             </ul>
         </div>
+
+       
 
         <div class="main">
             <div class="head">
@@ -77,11 +92,11 @@ if (isset($_POST['submit'])) {
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
-                      <p><?php echo $set?>TK </p>
+                <?php echo $set?>TK </p> 
                     </div>
                     <div class="box expense">
                         <h3>Expense</h3>
-                        <p><?php echo $sett ?> TK</p>
+                        <?php echo $sett ?> TK</p>
                     </div>
                 </div>
             </div>
@@ -112,6 +127,9 @@ if (isset($_POST['submit'])) {
                     <table>
                         <thead>
                             <tr>
+                                <th>No</th>
+                                <th>Income id</th>
+                                <th>User_id</th>
                                 <th>Date</th>
                                 <th>Category</th>
                                 <th>Amount</th>
@@ -137,10 +155,11 @@ if (isset($_POST['submit'])) {
                                     while ($res = mysqli_fetch_array($qery)) {
                                         ?>
                                         <tr>
+                                            
                                             <td><?php echo $res['DATE']; ?></td>
                                             <td><?php echo $res['category']; ?></td>
                                             <td><?php echo $res['amount']; ?> Taka</td>
-                                            <td><button class="btn">Edit</button></td>
+                                            <td><button class="btn">Update</button></td>
                                             <td><button class="btn">Delete</button></td>
                                         </tr>
                                         <?php
@@ -151,15 +170,23 @@ if (isset($_POST['submit'])) {
                             } else {
                                 $selectquery = "SELECT * FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
                                 $qery = mysqli_query($con, $selectquery);
-
+                                $cot =0;
                                 while ($res = mysqli_fetch_array($qery)) {
+                                    $cot +=1;
                                     ?>
                                     <tr>
+                                        <td><?php echo  $cot;?></td>
+                                        <td> <?php echo $res['income_id']; ?></td>
+                                        <td> <?php echo $res['user_id']; ?></td>
                                         <td><?php echo $res['DATE']; ?></td>
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
+                                        <td> <a href="income_update.php?income_id=<?php echo $res['income_id'] ?> ">
+                                        <button class="btn">Update</button></a></td>
+
                                         <td> <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"> 
                                             <button class="btn">Delete</button> </a> </td>
+                                            
                                     </tr>
                                     <?php
                                 }
@@ -170,28 +197,52 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <div class="section">
-                <div class="section-item">
-                    <h2>Add Income</h2>
+
+
+
+
+        <br>
+ <div>
+        <button class="btn" onclick="showForm()">Click here to Add Income</button>
+
+        <section class="add_income">
+                
+                <div class="in_form form-container" id="formContainer">
                     <form action="" method="post">
-                        <div>
-                            <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
-                        </div>
-                        <div>
-                            <label for="category">Category</label>
-                            <input type="text" name="category" id="category" required>
-                        </div>
-                        <div>
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
-                        </div>
-                        <button class="btn" type="submit" name="submit">Add Income</button>
+                        <h2>Add Income</h2>
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date"  required>
+
+                       <label for="category">Category</label>
+                        <input type="text" name="category" id="category" required>
+
+                        <label for="amount">Amount</label>
+                        <input type="number" name="amount" id="amount" required>
+                    
+                        <button type="submit" class="btn" name="submit">Add Income</button>
                     </form>
                 </div>
-              
-            </div>
-        </div>
-    </div>
+            </section>
+
+   
+
+         </div>
+                  
+  
+
+
+
+
+       
+    </div> 
+    <script>
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+
+        function showForm() {
+            document.getElementById("formContainer").style.display = "block";
+        }
+    </script>
 </body>
 </html>
