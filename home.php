@@ -100,7 +100,6 @@ else {
                 <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
-                <li><a href="report.php"><span class="icon">💱</span> Report</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
@@ -110,7 +109,7 @@ else {
         <div class="main">
             
             <section>
-                <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expanse Management System </h2>
+                <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expense Management System </h2>
                 <h2 class="head_title">Month : <?php echo  $monthName; ?>   </h2>
 
                 <h3>Filter by Month: </h3>
@@ -143,15 +142,19 @@ else {
                         <h2><?php echo  $income; ?> Taka</h2>
                         <p>Total Income</p>
                         <br>
-                        <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Income</h3></a>
+                        <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Income</h3></a>
+                        <br>
+                        <a href="report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
                         <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo  $expense; ?> Taka</h2>
-                        <p>Total Expanse</p>
+                        <p>Total Expense</p>
                         <br>
-                        <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Expanse</h3></a>
+                        <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Expense</h3></a>
+                        <br>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -159,7 +162,9 @@ else {
                         <h2><?php echo  $saving ; ?> Taka</h2>
                         <p>Total Savings</p>
                         <br>
-                        <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Savings</h3></a>
+                        <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Savings</h3></a>
+                        <br>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -167,7 +172,9 @@ else {
                         <h2><?php echo  $invest; ?> Taka</h2>
                         <p>Total Invesment</p>
                         <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Invesment</h3></a>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Invesment</h3></a>
+                        <br>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -175,7 +182,9 @@ else {
                         <h2><?php echo  $loans; ?> Taka</h2>
                         <p>Total Loan</p>
                         <br>
-                        <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Add Loan</h3></a>
+                        <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Loan</h3></a>
+                        <br>
+                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
                     </div>
                  
