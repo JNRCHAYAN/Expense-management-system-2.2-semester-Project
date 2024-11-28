@@ -50,6 +50,7 @@ $sett = $fac['Amount'];
         <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
+            
             <ul>
             <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
                 <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
