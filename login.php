@@ -1,5 +1,16 @@
 <?php
 session_start();
+
+if (isset($_GET['message']) && $_GET['message'] === 'success') {
+    $mess = "<h2>Registration Successfull.</h2> "; 
+    // echo "<p class='success-message'>Your registration is complete. Please log in.</p>";
+}
+else
+{
+    $mess = "";
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -30,8 +41,6 @@ if (isset($_POST['submit'])) {
         $name_pass = mysqli_fetch_assoc($query);
         $db_pass = $name_pass['PASSWORD'];
 
-        // $_SESSION['user_id'] = $name_pass['user_id'];
-
         $pass_decode = password_verify($password, $db_pass);
 
         if ($pass_decode) {
@@ -50,6 +59,10 @@ if (isset($_POST['submit'])) {
 
 <div class="log">
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+    <?php if ($mess): ?>
+            <div class="messasge"><?php echo $mess; ?></div>
+        <?php endif; ?>
+        <br>
         <h1>Login</h1>
 
         <label for="username">Username</label>
@@ -60,13 +73,14 @@ if (isset($_POST['submit'])) {
         <label for="password">Password</label>
         <br>
         <input type="password" name="password" placeholder="">
-        <br>
-
-        <label><input type="checkbox"> Remember me</label>
-        <br>
+ 
         <button type="submit" name="submit">LOGIN</button>
         <br>
+        <br>
+        <br>
+        <p>Create account <a href="signup.php">SignUp Here</a></p>
 
+            <br>
         <?php if ($error): ?>
             <div class="error-message"><?php echo $error; ?></div>
         <?php endif; ?>
