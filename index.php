@@ -127,7 +127,7 @@ if(isset($_POST['submit']))
         <br>
         <label for="">Mobile_number</label>
         <br>
-        <input type="number" name="mobile" required>
+        <input type="text" name="mobile" required>
         <br>
         <input type="submit" class="btn" name="submit"  value="Register"/> 
     <br>
