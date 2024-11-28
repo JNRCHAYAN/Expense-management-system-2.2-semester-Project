@@ -244,7 +244,7 @@ $sett=$fac['Amount'];
                                      {
                                         echo "selected";
                                      }
-                                    ?>
+                                    ?> 
                                     >House Property</option>
                                     <option value="business"
                                     <?php
