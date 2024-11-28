@@ -12,6 +12,7 @@ include 'connect.php';
 if(isset($_POST['submit']))
 {
     
+    
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
     $rate = $_POST['rate'];
