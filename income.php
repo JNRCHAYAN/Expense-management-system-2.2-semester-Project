@@ -81,13 +81,11 @@ $sett = $fac['Amount'];
                         <?php echo $set ?> TK
                     </div>
                     <br>
+                    <br>
                     <a href="income_add.php">
                         <button class="btn" id="addincome">Add Income</button>
                     </a>
-                    <!-- <div class="box expense">
-                        <h3>Expense</h3>
-                        <?php echo $sett ?> TK
-                    </div> -->
+                   
                 </div>
             </div>
 
