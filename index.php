@@ -6,10 +6,53 @@ if(isset($_POST['submit']))
     $uname = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
     $pass = password_hash($password, PASSWORD_BCRYPT);
+    $cpass = password_hash($cpassword, PASSWORD_BCRYPT);
+    $mobile=$_POST['mobile'];
+    $emailquery="select * from users where email='$email'";
+    $equery = mysqli_query($con,$emailquery);
+    $emailcount= mysqli_num_rows($equery);
 
-   $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`) 
-    VALUES ('$uname','$pass','$email'); ";
+    if($emailcount > 0)
+    {
+        echo "email already exixts";
+    }
+    else
+    {
+        if($password === $cpassword)
+        {
+            $setvalue_dbb = "INSERT INTO users (username,password,cpassword,email,mobile_number) 
+            VALUES ('$uname','$pass','$cpass','$email','$mobile');"; 
+
+            $iquery = mysqli_query($con,$setvalue_dbb);
+           
+                if($iquery)
+                {
+                    ?>
+                    <script>
+                        alert('Data insert');
+                    </script>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <script>
+                        alert('not insert');
+                    </script>
+                    <?php
+                }  
+            
+        }
+        else{
+            echo "password are not matchine";
+        }
+    }
+}
+
+   $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`,`mobile_number`) 
+    VALUES ('$uname','$pass','$email','$mobile'); ";
 
     $res = mysqli_query($con,$setvalue_db);
 
@@ -31,20 +74,20 @@ if(isset($_POST['submit']))
     }
 
   
-    if(filter_var($email,FILTER_VALIDATE_EMAIL))
-{
- echo "email is valid"; 
+//     if(filter_var($email,FILTER_VALIDATE_EMAIL))
+// {
+//  echo "email is valid"; 
 
-}
-else
-{
-     echo "Unvalid email";
+// }
+// else
+// {
+//      echo "Unvalid email";
   
-}
+// }
 
 
-}
-?>
+// }
+// ?>
 
 
 
@@ -77,6 +120,14 @@ else
         <label for="">Password</label> 
         <br>
         <input type="password" name="password" id="" placeholder="" required>
+        <br>
+        <label for="">Repate password</label>
+        <br>
+        <input type="password" name="cpassword" required>
+        <br>
+        <label for="">Mobile_number</label>
+        <br>
+        <input type="number" name="mobile" required>
         <br>
         <input type="submit" class="btn" name="submit"  value="Register"/> 
     <br>

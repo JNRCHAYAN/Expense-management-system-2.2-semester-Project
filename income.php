@@ -123,7 +123,15 @@ $sett=$fac['Amount'];
                             </div>
                             <div>
                                 <label for="category-filter">Category</label>
-                                <input type="text" name="categoryy" id="end-date">
+                                <!-- <input type="text" name="categoryy" id="end-date"> -->
+                                <select name="category" id="">
+                                    <option value="all">All categoty</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="house">House Property</option>
+                                    <option value="business">Business</option>
+                                    <option value="capital">Capital Gains</option>
+                                    <option value="other">Others</option>
+                                </select>
                             </div>
                         </div>
                         <button class="btn" type="submit" name="s">Filter</button>   
@@ -219,7 +227,52 @@ $sett=$fac['Amount'];
                         <input type="date" name="date" id="date"  required>
 
                        <label for="category">Category</label>
-                        <input type="text" name="category" id="category" required>
+                        <!-- <input type="text" name="category" id="category" required> -->
+                        <select name="category" id="">
+                                    <option value="all">All categoty</option>
+                                    <option value="salary"
+                                    <?php
+                                     if($category == 'Salary')
+                                     {
+                                        echo "selected";
+                                     }
+                                    ?>
+                                    >Salary</option>
+                                    <option value="house"
+                                    <?php
+                                     if($category == 'House Property')
+                                     {
+                                        echo "selected";
+                                     }
+                                    ?>
+                                    >House Property</option>
+                                    <option value="business"
+                                    <?php
+                                     if($category == 'Business')
+                                     {
+                                        echo "selected";
+                                     }
+                                    ?>
+                                    
+                                    >Business</option>
+                                    <option value="capital"
+                                    <?php
+                                     if($category == 'Capital Gains')
+                                     {
+                                        echo "selected";
+                                     }
+                                    ?>
+                                    >Capital Gains</option>
+                                    <option value="other"
+                                    <?php
+                                     if($category == 'Others')
+                                     {
+                                        echo "selected";
+                                     }
+                                    ?>
+                                    
+                                    >Others</option>
+                                </select>
 
                         <label for="amount">Amount</label>
                         <input type="number" name="amount" id="amount" required>

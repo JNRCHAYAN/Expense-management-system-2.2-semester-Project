@@ -95,7 +95,15 @@ $updates="UPDATE `income` SET `DATE`='$date',`category`='$category', `amount`='$
                         </div>
                         <div>
                             <label for="category">Category</label>
-                            <input type="text" name="category" id="category" value="<?php echo $arraydata['category']; ?>" required>
+                            <!-- <input type="text" name="category" id="category" value="<?php echo $arraydata['category']; ?>" required> -->
+                            <select name="category" id="">
+                                    <option value="all">All categoty</option>
+                                    <option value="salary">Salary</option>
+                                    <option value="house">House Property</option>
+                                    <option value="business">Business</option>
+                                    <option value="capital">Capital Gains</option>
+                                    <option value="other">Others</option>
+                                </select>
                         </div>
                         <div>
                             <label for="amount">Amount</label>
