@@ -22,10 +22,10 @@ if(isset($_POST['submit']))
     {
         if($password === $cpassword)
         {
-            $setvalue_dbb = "INSERT INTO users (username,password,cpassword,email,mobile_number) 
-            VALUES ('$uname','$pass','$cpass','$email','$mobile');"; 
+            $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`,`mobile_number`)
+             VALUES ('$uname','$pass','$email','$mobile');";
 
-            $iquery = mysqli_query($con,$setvalue_dbb);
+            $iquery = mysqli_query($con,$setvalue_db);
            
                 if($iquery)
                 {
@@ -51,43 +51,43 @@ if(isset($_POST['submit']))
     }
 }
 
-   $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`,`mobile_number`) 
-    VALUES ('$uname','$pass','$email','$mobile'); ";
+//    $setvalue_db = "INSERT INTO `users` (`username`, `password`, `email`,`mobile_number`) 
+//     VALUES ('$uname','$pass','$email','$mobile');";
 
-    $res = mysqli_query($con,$setvalue_db);
+//     $res = mysqli_query($con,$setvalue_db);
 
-    if($res)
-    {
-        ?>
-        <script>
-            alert('Data store');
-        </script>
-        <?php
-    }
-    else
-    {
-        ?>
-        <script>
-            alert('Not Store');
-        </script>
-        <?php
-    }
+//     if($res)
+//     {
+//         ?>
+//         <script>
+//             alert('Data store');
+//         </script>
+//         <?php
+//     }
+//     else
+//     {
+//         ?>
+//         <script>
+//             alert('Not Store');
+//         </script>
+//         <?php
+//     }
 
   
-//     if(filter_var($email,FILTER_VALIDATE_EMAIL))
-// {
-//  echo "email is valid"; 
+// //     if(filter_var($email,FILTER_VALIDATE_EMAIL))
+// // {
+// //  echo "email is valid"; 
 
-// }
-// else
-// {
-//      echo "Unvalid email";
+// // }
+// // else
+// // {
+// //      echo "Unvalid email";
   
-// }
+// // }
 
 
 // }
-// ?>
+?>
 
 
 
