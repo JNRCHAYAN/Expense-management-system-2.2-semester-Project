@@ -11,12 +11,13 @@ $u = $_SESSION['user_id'];
 include 'connect.php';
 if(isset($_POST['submit']))
 {
-    
+
     
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
     $rate = $_POST['rate'];
     $s_date = $_POST['s_date'];
+    
     $e_date = $_POST['e-date'];
     $user_id = $u;
     $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, `interest_rate`, `loan_start_date`, `loan_end_date`) 
