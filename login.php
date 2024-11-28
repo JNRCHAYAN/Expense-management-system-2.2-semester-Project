@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
         <button type="submit" name="submit">LOGIN</button>
         <br>
         <br>
-        <p>Create account <a href="index.php">SignUp Here</a></p>
+        <p>Create account <a href="signup.php">SignUp Here</a></p>
 
             <br>
         <?php if ($error): ?>
