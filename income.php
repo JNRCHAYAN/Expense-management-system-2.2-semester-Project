@@ -80,10 +80,14 @@ $sett = $fac['Amount'];
                         <h3>Income</h3>
                         <?php echo $set ?> TK
                     </div>
-                    <div class="box expense">
+                    <br>
+                    <a href="income_add.php">
+                        <button class="btn" id="addincome">Add Income</button>
+                    </a>
+                    <!-- <div class="box expense">
                         <h3>Expense</h3>
                         <?php echo $sett ?> TK
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -105,12 +109,12 @@ $sett = $fac['Amount'];
                             <div>
                                 <label for="category">Category</label>
                                 <select name="category" id="category">
-                                    <option value="all">All categories</option>
-                                    <option value="salary">Salary</option>
-                                    <option value="house">House Property</option>
-                                    <option value="business">Business</option>
-                                    <option value="capital">Capital Gains</option>
-                                    <option value="other">Others</option>
+                                    <option value="All">All categories</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="House Property">House Property</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Capital">Capital Gains</option>
+                                    <option value="Other">Others</option>
                                 </select>
                             </div>
                         </div>
@@ -210,7 +214,7 @@ $sett = $fac['Amount'];
             </div>
 
             <!-- Add Income Button -->
-            <br>
+            <!-- <br>
             <div>
                 <button class="btn" onclick="showForm()">Click here to Add Income</button>
                 <section class="add_income">
@@ -238,7 +242,7 @@ $sett = $fac['Amount'];
                 </section>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <script>
         function showForm() {
