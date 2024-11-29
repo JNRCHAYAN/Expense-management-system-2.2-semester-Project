@@ -63,12 +63,11 @@ $sett = $fac['Amount'];
         <!-- Main Content -->
         <div class="main">
             <div class="head">
-                <h1>Income</h1>
+                <h1>Income Overview</h1>
             </div>
 
             <!-- Overview Section -->
             <div class="section">
-                <h3>Overview</h3>
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
@@ -109,7 +108,7 @@ $sett = $fac['Amount'];
                                 </select>
                             </div>
                         </div>
-                        <button class="btn" type="submit" name="s">Filter</button>
+                        <button class="btnn" type="submit" name="s">Filter</button>
                     </form>
 
                     <!-- Income Table -->

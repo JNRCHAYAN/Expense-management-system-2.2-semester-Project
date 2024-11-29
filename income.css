@@ -3,12 +3,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     background-color: #f5f7fa;
     color: #333;
+    line-height: 1.6;
 }
 
 /* Container */
@@ -20,19 +21,21 @@ body {
 /* Sidebar */
 .navigation {
     width: 260px;
-    background-color: #ffffff;
+    background-color: #ffffff; /* White background */
     padding: 20px;
     color: #333;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     height: 100vh;
     overflow-y: auto;
-    transition: width 0.3s ease;
 }
 
-.navigation:hover {
-    width: 300px;
+.navigation h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    color: #007dd1;
 }
 
 .navigation ul {
@@ -51,16 +54,16 @@ body {
     color: #333;
     text-decoration: none;
     padding: 12px 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     font-size: 1.1em;
     font-weight: 500;
-    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.navigation a:hover {
-    background-color: #000000;
+.navigation a:hover,
+.navigation .active {
+    background-color: #007dd1;
     color: #ffffff;
-    transform: translateX(5px);
 }
 
 .icon {
@@ -69,43 +72,9 @@ body {
     transition: color 0.3s;
 }
 
-.navigation a:hover .icon {
-    color: #ffffff;
-}
-
-.navigation .active {
-    background-color: #000000;
-    color: #ffffff;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
+.navigation a:hover .icon,
 .navigation .active .icon {
     color: #ffffff;
-}
-
-/* Responsive Sidebar */
-@media (max-width: 768px) {
-    .navigation {
-        width: 80px;
-        overflow: hidden;
-    }
-
-    .navigation:hover {
-        width: 250px;
-    }
-
-    .navigation a {
-        justify-content: center;
-    }
-
-    .navigation a span {
-        display: none;
-    }
-
-    .navigation:hover a span {
-        display: inline-block;
-    }
 }
 
 /* Main Content */
@@ -115,25 +84,28 @@ body {
     background-color: #f9fafb;
 }
 
-/* Section Titles */
-.section-title {
+.head h1 {
+    font-size: 2em;
+    color: #007dd1;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Overview Section */
+.section {
+    margin-bottom: 30px;
+}
+
+.section h3 {
     font-size: 1.8em;
-    margin-bottom: 24px;
     color: #2c3e50;
+    margin-bottom: 20px;
     text-align: center;
     font-weight: 600;
 }
 
-/* Cards Section */
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.card {
-    background-color: #fff;
+.box {
+    background-color: #ffffff;
     border-radius: 12px;
     padding: 20px;
     width: 300px;
@@ -142,100 +114,118 @@ body {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
+.box:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.card img {
-    width: 45px;
+.box h3 {
+    font-size: 1.5em;
+    color: #2c3e50;
     margin-bottom: 10px;
 }
 
-.card h2 {
-    font-size: 1.5em;
-    color: #2c3e50;
-    margin: 10px 0;
-}
-
-.card p {
-    color: #777;
-}
-
-/* Forms */
-.form-container {
-    margin-top: 30px;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.form-container label {
-    font-weight: 500;
-    color: #555;
+.box .btn {
     margin-top: 15px;
-    display: block;
-}
-
-.form-container input[type="number"],
-.form-container input[type="text"],
-.form-container input[type="date"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    margin-bottom: 18px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    font-size: 1em;
-    color: #333;
-    outline: none;
-}
-
-.form-container input:focus {
-    border-color: #4a90e2;
-    box-shadow: 0 0 6px rgba(74, 144, 226, 0.2);
-}
-
-.button {
-    width: 100%;
-    padding: 12px;
+    padding: 10px 20px;
     background-color: #007dd1;
     color: #fff;
     font-size: 1em;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-    font-weight: 500;
+    transition: background-color 0.3s;
 }
 
-.button:hover {
-    background-color: #357ab9;
+.box .btn:hover {
+    background-color: #005fa3;
+}
+
+/* Filter Form */
+.filter-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-group div {
+    flex: 1;
+}
+
+.filter-group label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9em;
+    margin-top: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Filter Button Styling */
+.btnn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #ffffff;
+    background-color: #007dd1;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btnn:hover {
+    background-color: #005fa3;
     transform: translateY(-2px);
 }
 
-/* Table */
+.btnn:active {
+    background-color: #004b84;
+    transform: translateY(0);
+}
+
+
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #007dd1;
+}
+
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    margin-top: 25px;
+    background-color: #ffffff;
+    margin-top: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
 }
 
 table thead {
-    background-color: #4a90e2;
+    background-color: #007dd1;
     color: #fff;
     text-align: left;
 }
 
 table th,
 table td {
-    padding: 15px 20px;
+    padding: 15px;
     border-bottom: 1px solid #eee;
 }
 
@@ -247,10 +237,23 @@ table th {
 
 table tbody tr:hover {
     background-color: #f1f3f5;
-    cursor: pointer;
 }
 
 table td {
     color: #555;
     font-size: 0.95em;
+}
+
+table .btn {
+    padding: 8px 15px;
+    background-color: #007dd1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+table .btn:hover {
+    background-color: #005fa3;
 }
