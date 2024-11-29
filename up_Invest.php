@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.html'); 
+    exit();
+}
+$u = $_SESSION['user_id'];
+?>
 
 
 <!DOCTYPE html>
@@ -11,7 +19,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
+
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -22,10 +30,10 @@
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
-        <!-- Main Content -->
+
         <div class="main">
         
         <section class="add_invest">
@@ -46,15 +54,9 @@
                         $rate = $_POST['rate'];
                         $s_date = $_POST['s_date'];
                         $year = $_POST['year'];
-                        $user_id = 1;
-
-                        // $setvalue_db = "INSERT INTO `savings`(`user_id`,`amount`, `bank_name`, `interest_rate`, `invest_start`, `total_years`) 
-                        // VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$year'); ";
-
+                        $user_id = $u;
 
                         $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
-
-                        // $setvalue_DB = "UPDATE `savings` SET `amount`='$amount',`bank_name`='$Bank_name',`interest_rate`='$rate',`invest_start`='$s_date',`total_years`='$year' WHERE `savings`.`saving_id` = '$s_id';";
 
                         $res = mysqli_query($con ,  $setvalue_DB);
                         if ($res) {

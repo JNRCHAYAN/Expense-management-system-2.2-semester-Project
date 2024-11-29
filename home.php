@@ -105,7 +105,6 @@ else {
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main">
             
             <section>

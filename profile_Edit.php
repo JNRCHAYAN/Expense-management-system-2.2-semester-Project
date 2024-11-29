@@ -16,11 +16,11 @@ $u = $_SESSION['user_id'];
         {
             $username = $_POST['username'];
             $email = $_POST['email'];
+            $mobile_nmber = $_POST['mobile_number'];
 
 
-            $setvalue_DB= "UPDATE `users` SET `username`='$username' ,`email`='$email' where user_id = {$u} ";
+            $setvalue_DB= "UPDATE `users` SET `username`='$username' ,`email`='$email' , `mobile_number`='$mobile_nmber' where user_id = {$u} ";
 
-            // $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
 
             $res = mysqli_query($con ,  $setvalue_DB);
             if ($res) {
@@ -56,7 +56,7 @@ $u = $_SESSION['user_id'];
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
         <!-- Main Content -->
@@ -73,6 +73,8 @@ $u = $_SESSION['user_id'];
             <input type="text" id="username" name="username" value="<?php echo $arrdata['username']; ?>">
             <label for="email">Eamil :</label>
             <input type="text" id="email" name="email" value="<?php echo $arrdata['email']; ?>">
+            <label for="phone">Phone :</label>
+            <input type="text" id="email" name="mobile_number" value="<?php echo $arrdata['mobile_number']; ?>">
             <button type="submit" class="btn" name="updatee">Update</button>
         
         </form>

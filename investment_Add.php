@@ -24,7 +24,6 @@ if(isset($_POST['submit']))
     $res = mysqli_query($con ,  $setvalue_db);
     if ($res) {
         echo "<script>alert('Data stored successfully');</script>";
-        // header("Location: " .$_SERVER['PHP_SELF']);
         header("Location: investment.php"); 
         exit;
     } else {
@@ -49,7 +48,7 @@ if(isset($_POST['submit']))
 <body>
 
     <div class="container">
-        <!-- Sidebar Navigation -->
+
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -60,15 +59,11 @@ if(isset($_POST['submit']))
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main">
-    
-           
-        <!-- ====================================== -->
         <br>
         <div>
         <section class="add_invest">

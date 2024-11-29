@@ -10,7 +10,7 @@ $u = $_SESSION['user_id'];
 <?php
 include 'connect.php';
 
-// Get total investment amount for the user
+
 $selectquery = "SELECT SUM(amount) AS total FROM invest WHERE user_id = $u";
 $qery = mysqli_query($con, $selectquery);
 $res = mysqli_fetch_array($qery);
@@ -29,7 +29,7 @@ $amount = $res['total'];
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
+
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -40,11 +40,11 @@ $amount = $res['total'];
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
-        <!-- Main Content -->
+
         <div class="main">
             <section>
                 <h2 class="head_title">Investment Overview</h2>
@@ -70,7 +70,7 @@ $amount = $res['total'];
                     </form>
                 </div>
 
-                <!-- Investment Table -->
+
                 <table>
                     <thead>
                         <tr>
