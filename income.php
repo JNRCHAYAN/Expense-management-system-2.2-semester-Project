@@ -63,6 +63,7 @@ $sett = $fac['Amount'];
                 <!--Logout button-->
                 <div class="log">
                     <a href="logout.php">Logout</a>
+                    
                 </div>
             </ul>
         </div>
