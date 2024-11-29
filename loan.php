@@ -31,13 +31,13 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// Get total loan amount
+
 $selectquery = "SELECT SUM(amount) AS total FROM loans WHERE user_id = $u";
 $qery = mysqli_query($con, $selectquery);
 $res = mysqli_fetch_array($qery);
 $amount = $res['total'];
 
-// Search functionality
+
 $searchQuery = "";
 if (isset($_POST['search'])) {
     $searchValue = $_POST['bank_name'];
@@ -56,7 +56,6 @@ if (isset($_POST['search'])) {
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -67,11 +66,10 @@ if (isset($_POST['search'])) {
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main">
             <section>
                 <h2 class="head_title">Loan Overview</h2>
@@ -128,8 +126,11 @@ if (isset($_POST['search'])) {
                                 <td><?php echo date("F, Y", strtotime($res['loan_start_date'])); ?></td>
                                 <td><?php echo date("F, Y", strtotime($res['loan_end_date'])); ?></td>
                                 <td><a href="Up_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"><button class="btn">EDIT</button></a></td>
-                                <td><a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>"><button class="btn">Delete</button></a></td>
-                            </tr>
+                                      <td>
+                                      <a href="Delete_Loan.php?loan_id=<?php echo $res['loan_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
+                                            <button class="btn">Delete</button>
+                                        </a>
+                                    </td>
                         <?php
                         }
                         ?>

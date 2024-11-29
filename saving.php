@@ -124,7 +124,7 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
                                     <td> </td>
                                     <td> </td>
                                     <td class="add_button">
-                                        <a href="update.php">
+                                        <a href="Up_Saving.php">
                                             <button class="btn btn-sm btn-primary px-3" id="addRowButton">
                                                 Add
                                             </button>

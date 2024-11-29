@@ -61,7 +61,7 @@ if(isset($_POST['submit']))
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
