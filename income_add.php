@@ -24,14 +24,13 @@ if (isset($_POST['submit'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Overview</title>
-    <link rel="stylesheet" href="income.css">
+    <title>Income Overview</title>
+    <link rel="stylesheet" href="sty.css">
 </head>
 <body>
     <div class="container">
@@ -39,59 +38,44 @@ if (isset($_POST['submit'])) {
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
-                <li><a href="#"><span class="icon">💰</span> Income</a></li>
-                <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
-                <li><a href="#"><span class="icon">📊</span> Loan</a></li>
-                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
-                <li><a href="#"><span class="icon">💵</span> Savings</a></li>
-                <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
-                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
-
-                <!--Logout button-->
-                <div class="log">
-                    <a href="logout.php">Logout</a>
-                </div>
+                <li><a href="#"><span class="icon">🏠</span> <span>Home</span></a></li>
+                <li><a href="#" class="active"><span class="icon">💰</span> <span>Income</span></a></li>
+                <li><a href="#"><span class="icon">💸</span> <span>Expenses</span></a></li>
+                <li><a href="#"><span class="icon">📊</span> <span>Loan</span></a></li>
+                <li><a href="#"><span class="icon">💼</span> <span>Investment</span></a></li>
+                <li><a href="#"><span class="icon">💵</span> <span>Savings</span></a></li>
+                <li><a href="#"><span class="icon">🔒</span> <span>Profile</span></a></li>
+                <li><a href="#"><span class="icon">⚙️</span> <span>Settings</span></a></li>
             </ul>
+            <div class="log">
+                <a href="logout.php">Logout</a>
+            </div>
         </div>
 
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="main">
-        
-            <br>
-            <div>
-                <!-- <button class="btn" onclick="showForm()">Click here to Add Income</button>
-                <section class="add_income">
-                    <div class="in_form form-container" id="formContainer"> -->
-                        <form action="" method="post">
-                            <h2>Add Income</h2>
-                            <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
+            <div class="add_invest">
+                <form action="" method="post" class="in_form">
+                    <h2>Add Income</h2>
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="date" required>
 
-                            <label for="category">Category</label>
-                            <select name="category" id="category">
-                                <option value="salary">Salary</option>
-                                <option value="house">House Property</option>
-                                <option value="business">Business</option>
-                                <option value="capital">Capital Gains</option>
-                                <option value="other">Others</option>
-                            </select>
+                    <label for="category">Category</label>
+                    <select name="category" id="category">
+                        <option value="salary">Salary</option>
+                        <option value="house">House Property</option>
+                        <option value="business">Business</option>
+                        <option value="capital">Capital Gains</option>
+                        <option value="other">Others</option>
+                    </select>
 
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
+                    <label for="amount">Amount</label>
+                    <input type="number" name="amount" id="amount" required>
 
-                            <button type="submit" name="submit" class="btn">Add Income</button>
-                        </form>
-                    </div>
-                </section>
+                    <button type="submit" name="submit" class="btn">Add Income</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <script>
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-    </script>
 </body>
 </html>
