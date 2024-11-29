@@ -1,11 +1,25 @@
 <?php
 include 'connect.php';
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.html'); 
+    exit();
+}
+$u = $_SESSION['user_id'];
+$n = $_SESSION['username'];
+
+?>
+
+
+
+<?php
+include 'connect.php';
 
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
-    $userid = 1;
+    $userid = $u;
 
     $setvalue="INSERT INTO `expenses` (`user_id`, `category`, `amount`, `expense_date`) 
     VALUES ('$userid','$category','$amount','$date')";

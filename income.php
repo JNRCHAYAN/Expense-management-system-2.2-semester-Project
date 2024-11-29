@@ -8,16 +8,12 @@ $u = $_SESSION['user_id'];
 
 // =======================================
 include 'dbcon.php';
-
-
 // =======================================
 $setvalue = "SELECT SUM(amount) AS 'total' FROM income WHERE user_id = $u  and MONTH(created_at) = MONTH(DATE)" ;
 $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set = $fetch['total'];
 ?>
-
-
 
 
 <!-- ======================================= -->

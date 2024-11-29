@@ -143,7 +143,7 @@ else {
                         <br>
                         <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Income</h3></a>
                         <br>
-                        <a href="report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
+                        <a href="Income_report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -153,7 +153,7 @@ else {
                         <br>
                         <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Expense</h3></a>
                         <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
+                        <a href="Expense_report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -163,7 +163,7 @@ else {
                         <br>
                         <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Savings</h3></a>
                         <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
+                        <a href="saving_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">
@@ -173,7 +173,7 @@ else {
                         <br>
                         <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Invesment</h3></a>
                         <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
+                        <a href="invest_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
 
                         <div class="option_1">

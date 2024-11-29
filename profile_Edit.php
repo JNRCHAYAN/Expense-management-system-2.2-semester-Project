@@ -6,7 +6,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 include 'connect.php';
 $u = $_SESSION['user_id'];
-// $n = $_SESSION['username'];
 
         $showQuree = "select * from users where user_id = {$u} ";
         $showdata = mysqli_query( $con ,$showQuree);
@@ -21,14 +20,25 @@ $u = $_SESSION['user_id'];
 
             $setvalue_DB= "UPDATE `users` SET `username`='$username' ,`email`='$email' , `mobile_number`='$mobile_nmber' where user_id = {$u} ";
 
-
+                
             $res = mysqli_query($con ,  $setvalue_DB);
             if ($res) {
-                echo "<script>alert('Data stored successfully');</script>";
-                header('location:profile_Edit.php');
-                exit;
+                ?>
+                <script>
+                    alert('Update Successful');
+                    header('location:profile_Edit.php');
+                </script>
+                <?php
             } else {
-                echo "<script>alert('Failed to store data');</script>";
+                ?>
+                <script>
+                    alert('Can not Update');
+                    header('location:profile_Edit.php');
+                </script>
+                <?php
+
+               
+                
             }
             }
 ?>
@@ -76,6 +86,7 @@ $u = $_SESSION['user_id'];
             <label for="phone">Phone :</label>
             <input type="text" id="email" name="mobile_number" value="<?php echo $arrdata['mobile_number']; ?>">
             <button type="submit" class="btn" name="updatee">Update</button>
+
         
         </form>
             </div>
