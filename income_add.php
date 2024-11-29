@@ -16,9 +16,7 @@ if (isset($_POST['submit'])) {
 
     if ($res) {
         echo "<script>alert('Data stored successfully');</script>";
-
-        // Redirect to avoid duplicate data on page reload
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header('location:income.php');
         exit;
     } else {
         echo "<script>alert('Failed to store data');</script>";
