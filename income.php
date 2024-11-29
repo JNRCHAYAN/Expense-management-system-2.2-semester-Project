@@ -171,7 +171,7 @@ $sett = $fac['Amount'];
                                             <!-- <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td> -->
 
                                             <td>
-                                       <a href="income_update.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
+                                      <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
                                             <button class="btn">Delete</button>
                                         </a>
                                     </td>
@@ -200,7 +200,7 @@ $sett = $fac['Amount'];
                                         <!-- <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td> -->
 
                                         <td>
-                                       <a href="income_update.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
+                                       <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
                                             <button class="btn">Delete</button>
                                         </a>
                                     </td>
