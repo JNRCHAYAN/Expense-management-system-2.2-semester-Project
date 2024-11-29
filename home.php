@@ -183,7 +183,7 @@ else {
                         <br>
                         <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Loan</h3></a>
                         <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
+                        <a href="loan_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
                         </div>
                     </div>
                  

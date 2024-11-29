@@ -14,7 +14,8 @@ include 'connect.php';
 
 $test = array();
 $count =0;
-$query = "SELECT sum(amount) as total , MONTHNAME(Invest_Start) as mo FROM invest WHERE user_id =$u GROUP BY MONTH(Invest_Start)";
+$query = "SELECT sum(amount) as total , MONTHNAME(loan_start_date) as mo FROM loans WHERE user_id =$u GROUP BY MONTH(loan_start_date)";
+
 
 $res = mysqli_query($con,$query);
 
@@ -56,7 +57,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2",
 	title:{
-		text: "Monthly Investment Review Bar Chart"
+		text: "Monthly Loan Review Bar Chart"
 	},
 	axisY: {
 		title: "Amount"
