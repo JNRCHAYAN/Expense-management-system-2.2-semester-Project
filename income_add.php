@@ -55,8 +55,18 @@ if (isset($_POST['submit'])) {
         <!-- Main Content -->
         <div class="main">
             <div class="add_invest">
+            <h2>Add Income</h2>
+            <a href="income.php">
+                        <button id="backb">
+                         Back
+                       </button>
+                        </a>
+                        <br><br>
                 <form action="" method="post" class="in_form">
-                    <h2>Add Income</h2>
+            
+                    
+                    <form action="" method="post">
+                    
                     <label for="date">Date</label>
                     <input type="date" name="date" id="date" required>
 

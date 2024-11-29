@@ -64,6 +64,12 @@ if (isset($_POST['submit'])) {
             <div class="section">
                 <div class="section-item">
                     <h2>Edit Income</h2>
+                    <a href="income.php">
+                        <button id="backb">
+                         Back
+                       </button>
+                        </a>
+                        <br><br>
                     <form action="" method="post" class="in_form">
                         <div>
                             <label for="date">Date</label>
