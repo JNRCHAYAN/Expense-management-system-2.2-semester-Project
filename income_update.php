@@ -1,35 +1,26 @@
-
 <?php
 include 'dbcon.php';
 
-
-
+// Fetch the income record based on income_id
 $income_ids = $_GET['income_id'];
-
-$showquery= "SELECT * FROM `income` WHERE income_id ={$income_ids}";
-
-
-$showdata = mysqli_query( $con ,$showquery );
+$showquery = "SELECT * FROM `income` WHERE income_id = {$income_ids}";
+$showdata = mysqli_query($con, $showquery);
 $arraydata = mysqli_fetch_array($showdata);
 
-
-
+// Update Income record
 if (isset($_POST['submit'])) {
     $idupdate = $_GET['income_id'];
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = 1;
- 
 
-$updates="UPDATE `income` SET `DATE`='$date',`category`='$category', `amount`='$amount' WHERE `income_id`='$idupdate'";
+    $updates = "UPDATE `income` SET `DATE` = '$date', `category` = '$category', `amount` = '$amount' WHERE `income_id` = '$idupdate'";
 
-    $ress = mysqli_query($con,$updates);
+    $ress = mysqli_query($con, $updates);
 
-    if ($ress) 
-    {
-        echo "<script>alert('Data update successfully');</script>";
-        
+    if ($ress) {
+        echo "<script>alert('Data updated successfully');</script>";
         // Redirect to avoid duplicate data on page reload
         header('location:income.php');
         exit;
@@ -39,15 +30,13 @@ $updates="UPDATE `income` SET `DATE`='$date',`category`='$category', `amount`='$
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Overview</title>
-    <link rel="stylesheet" href="./css/income.css">
+    <title>Update Income</title>
+    <link rel="stylesheet" href="./CSS/income_up_a.css">
 </head>
 <body>
     <div class="container">
@@ -55,56 +44,54 @@ $updates="UPDATE `income` SET `DATE`='$date',`category`='$category', `amount`='$
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-            <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
-                <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
-                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
-                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
-                <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
-                <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
-                <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
-            
-
-            <!--Logout button---->
-             <div class="log">
-             
-             <a href="logout.php">Logout</a>
-             </div>
-        
-
-
+                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="#"><span class="icon">💰</span> Income</a></li>
+                <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
+                <li><a href="#"><span class="icon">📊</span> Loan</a></li>
+                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
+                <li><a href="#"><span class="icon">💵</span> Savings</a></li>
+                <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
+                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
             </ul>
+            <div class="log">
+                <a href="logout.php">Logout</a>
+            </div>
         </div>
 
-       
-
+        <!-- Main Content -->
         <div class="main">
-            <div class="head">
-                <h1>Update Income Details </h1>
-            </div>
-
-        
 
             <div class="section">
                 <div class="section-item">
-                    <h2>Add Income</h2>
-                    <form action="" method="post">
+                    <h2>Edit Income</h2>
+                    <a href="income.php">
+                        <button id="backb">
+                         Back
+                       </button>
+                        </a>
+                        <br><br>
+                    <form action="" method="post" class="in_form">
                         <div>
                             <label for="date">Date</label>
-                            <input type="date" name="date" id="date" value="<?php echo $arraydata ['DATE']; ?>" required>
+                            <input type="date" name="date" id="date" value="<?php echo $arraydata['DATE']; ?>" required>
                         </div>
                         <div>
                             <label for="category">Category</label>
-                            <input type="text" name="category" id="category" value="<?php echo $arraydata['category']; ?>" required>
+                            <select name="category" id="category" required>
+                                <option value="salary" <?php if($arraydata['category'] == 'salary') echo 'selected'; ?>>Salary</option>
+                                <option value="house" <?php if($arraydata['category'] == 'house') echo 'selected'; ?>>House Property</option>
+                                <option value="business" <?php if($arraydata['category'] == 'business') echo 'selected'; ?>>Business</option>
+                                <option value="capital" <?php if($arraydata['category'] == 'capital') echo 'selected'; ?>>Capital Gains</option>
+                                <option value="other" <?php if($arraydata['category'] == 'other') echo 'selected'; ?>>Others</option>
+                            </select>
                         </div>
                         <div>
                             <label for="amount">Amount</label>
                             <input type="number" name="amount" id="amount" value="<?php echo $arraydata['amount']; ?>" required>
                         </div>
-                        <button class="btn" type="submit" name="submit">Update</button>
+                        <button class="btn" type="submit" name="submit">Update Income</button>
                     </form>
                 </div>
-              
             </div>
         </div>
     </div>

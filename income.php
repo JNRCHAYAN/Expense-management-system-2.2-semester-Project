@@ -8,7 +8,6 @@ if (isset($_POST['submit'])) {
     $amount = $_POST['amount'];
     $userid = 1;
 
-    // Insert data into the database
     $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
                     VALUES ('$userid', '$date', '$category', '$amount')";
 
@@ -16,8 +15,6 @@ if (isset($_POST['submit'])) {
 
     if ($res) {
         echo "<script>alert('Data stored successfully');</script>";
-
-        // Redirect to avoid duplicate data on page reload
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
@@ -25,16 +22,12 @@ if (isset($_POST['submit'])) {
     }
 }
 
-// Calculate Total Income and Expenses
+// Calculate Total Income
 $setvalue = "SELECT SUM(amount) AS 'total' FROM income WHERE MONTH(created_at) = MONTH(DATE)";
 $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set = $fetch['total'];
 
-$setv = "SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) = MONTH(expense_date)";
-$ress = mysqli_query($con, $setv);
-$fac = mysqli_fetch_array($ress);
-$sett = $fac['Amount'];
 ?>
 
 <!DOCTYPE html>
@@ -42,52 +35,48 @@ $sett = $fac['Amount'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Overview</title>
+    <title>Income Overview</title>
     <link rel="stylesheet" href="./CSS/income.css">
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar -->
         <div class="navigation">
             <h2>Menu</h2>
-            
             <ul>
-            <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
-                <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
-                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
-                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
-                <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
-                <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
-                <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
-                <!--Logout button-->
-                <div class="log">
-                    <a href="logout.php">Logout</a>
-                    
-                </div>
+                <li><a href="#"><span class="icon">🏠</span> Home</a></li>
+                <li><a href="#"><span class="icon">💰</span> Income</a></li>
+                <li><a href="#"><span class="icon">💸</span> Expenses</a></li>
+                <li><a href="#"><span class="icon">📊</span> Loan</a></li>
+                <li><a href="#"><span class="icon">💼</span> Investment</a></li>
+                <li><a href="#"><span class="icon">💵</span> Savings</a></li>
+                <li><a href="#"><span class="icon">🔒</span> Profile</a></li>
+                <li><a href="#"><span class="icon">⚙️</span> Settings</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
-        <!-- Main content -->
+        <!-- Main Content -->
         <div class="main">
             <div class="head">
-                <h1>INCOME</h1>
+                <h1>Income Overview</h1>
             </div>
 
+            <!-- Overview Section -->
             <div class="section">
-                <h3>Overview</h3>
                 <div style="display: flex; justify-content: center;">
                     <div class="box income">
                         <h3>Income</h3>
                         <?php echo $set ?> TK
-                    </div>
-                    <div class="box expense">
-                        <h3>Expense</h3>
-                        <?php echo $sett ?> TK
+                        <br><br>
+                        <a href="income_add.php">
+                            <button class="btn" id="addincome">Add Income</button>
+                        </a>
                     </div>
                 </div>
             </div>
 
+            <!-- Income List -->
             <div class="section">
                 <h3>My Income</h3>
                 <div class="my-income-card">
@@ -106,16 +95,16 @@ $sett = $fac['Amount'];
                             <div>
                                 <label for="category">Category</label>
                                 <select name="category" id="category">
-                                    <option value="all">All categories</option>
-                                    <option value="salary">Salary</option>
-                                    <option value="house">House Property</option>
-                                    <option value="business">Business</option>
-                                    <option value="capital">Capital Gains</option>
-                                    <option value="other">Others</option>
+                                    <option value="All">All categories</option>
+                                    <option value="Salary">Salary</option>
+                                    <option value="House Property">House Property</option>
+                                    <option value="Business">Business</option>
+                                    <option value="Capital">Capital Gains</option>
+                                    <option value="Other">Others</option>
                                 </select>
                             </div>
                         </div>
-                        <button class="btn" type="submit" name="s">Filter</button>
+                        <button class="btnn" type="submit" name="s">Filter</button>
                     </form>
 
                     <!-- Income Table -->
@@ -139,7 +128,6 @@ $sett = $fac['Amount'];
                                 $category = $_POST['category'];
                                 $userid = 1;
 
-                                // Construct query based on filters
                                 $queryParts = [];
 
                                 if (!empty($Sdate)) {
@@ -157,7 +145,6 @@ $sett = $fac['Amount'];
                                 $queryCondition = implode(" AND ", $queryParts);
                                 $queryCondition = $queryCondition ? "AND $queryCondition" : "";
 
-                                // Execute filtered query
                                 $selectquery = "SELECT * FROM `income` WHERE user_id = $userid $queryCondition ORDER BY DATE DESC";
                                 $qery = mysqli_query($con, $selectquery);
 
@@ -177,7 +164,15 @@ $sett = $fac['Amount'];
                                             <td><?php echo $res['category']; ?></td>
                                             <td><?php echo $res['amount']; ?> Taka</td>
                                             <td><a href="income_update.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Update</button></a></td>
-                                            <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td>
+                                            <!-- <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td> -->
+
+                                            <td>
+                                      <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
+                                            <button class="btn">Delete</button>
+                                        </a>
+                                    </td>
+
+
                                         </tr>
                                         <?php
                                     }
@@ -185,7 +180,6 @@ $sett = $fac['Amount'];
                                     echo "<tr><td colspan='8'>No records found for the selected filter.</td></tr>";
                                 }
                             } else {
-                                // Default query without filters
                                 $selectquery = "SELECT * FROM `income` WHERE user_id = 1 ORDER BY created_at DESC";
                                 $qery = mysqli_query($con, $selectquery);
                                 $cot = 1;
@@ -199,7 +193,13 @@ $sett = $fac['Amount'];
                                         <td><?php echo $res['category']; ?></td>
                                         <td><?php echo $res['amount']; ?> Taka</td>
                                         <td><a href="income_update.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Update</button></a></td>
-                                        <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td>
+                                        <!-- <td><a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>"><button class="btn">Delete</button></a></td> -->
+
+                                        <td>
+                                       <a href="Delete_Income.php?income_id=<?php echo $res['income_id'] ?>" onclick="return confirm('Are you sure you want to delete this record?');">
+                                            <button class="btn">Delete</button>
+                                        </a>
+                                    </td>
                                     </tr>
                                     <?php
                                 }
@@ -209,42 +209,7 @@ $sett = $fac['Amount'];
                     </table>
                 </div>
             </div>
-
-            <!-- Add Income Button -->
-            <br>
-            <div>
-                <button class="btn" onclick="showForm()">Click here to Add Income</button>
-                <section class="add_income">
-                    <div class="in_form form-container" id="formContainer">
-                        <form action="" method="post">
-                            <h2>Add Income</h2>
-                            <label for="date">Date</label>
-                            <input type="date" name="date" id="date" required>
-
-                            <label for="category">Category</label>
-                            <select name="category" id="category">
-                                <option value="salary">Salary</option>
-                                <option value="house">House Property</option>
-                                <option value="business">Business</option>
-                                <option value="capital">Capital Gains</option>
-                                <option value="other">Others</option>
-                            </select>
-
-                            <label for="amount">Amount</label>
-                            <input type="number" name="amount" id="amount" required>
-
-                            <button type="submit" name="submit" class="btn">Add Income</button>
-                        </form>
-                    </div>
-                </section>
-            </div>
         </div>
     </div>
-
-    <script>
-        function showForm() {
-            document.getElementById("formContainer").style.display = "block";
-        }
-    </script>
 </body>
 </html>
