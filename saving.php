@@ -10,7 +10,7 @@ if (!isset($_SESSION["user_id"])) {
 $user = $_SESSION["user_id"]; 
 $message = ""; 
 
-// Handle adding savings
+// ============================
 if (isset($_POST["submit"])) {
     $amount = filter_var($_POST['amount']);
     $date = filter_var($_POST['date']);
@@ -19,7 +19,7 @@ if (isset($_POST["submit"])) {
         $insertQuery = "INSERT INTO savings (user_id, amount, date) VALUES ('$user', '$amount', '$date')";
         if (mysqli_query($con, $insertQuery)) {
             $message = "Savings added successfully!";
-            header("Location: " . $_SERVER['PHP_SELF']); // Prevent form resubmission
+            header("Location: " . $_SERVER['PHP_SELF']); 
             exit();
         } else {
             $message = "Error: Could not store data.";
@@ -29,9 +29,9 @@ if (isset($_POST["submit"])) {
     }
 }
 
-// Handle deletion of a savings record
+// ============================
 if (isset($_GET['type']) && $_GET['type'] === 'delete' && isset($_GET['saving_id'])) {
-    $saving_id = intval($_GET['saving_id']); // Ensure it’s an integer
+    $saving_id = intval($_GET['saving_id']); 
     $checkQuery = "SELECT * FROM savings WHERE saving_id = '$saving_id' AND user_id = '$user'";
     $checkResult = mysqli_query($con, $checkQuery);
 
@@ -39,7 +39,7 @@ if (isset($_GET['type']) && $_GET['type'] === 'delete' && isset($_GET['saving_id
         $deleteQuery = "DELETE FROM savings WHERE saving_id = '$saving_id'";
         if (mysqli_query($con, $deleteQuery)) {
             $message = "Record deleted successfully.";
-            header("Location: " . $_SERVER['PHP_SELF']); // Redirect after deletion
+            header("Location: " . $_SERVER['PHP_SELF']); 
             exit();
         } else {
             $message = "Error: Unable to delete record.";
@@ -49,16 +49,19 @@ if (isset($_GET['type']) && $_GET['type'] === 'delete' && isset($_GET['saving_id
     }
 }
 
-// Calculate total savings
+// ============================
 $totalQuery = "SELECT SUM(amount) AS total FROM savings WHERE user_id = '$user'";
 $totalResult = mysqli_query($con, $totalQuery);
 $totalData = mysqli_fetch_assoc($totalResult);
 $totalAmount = $totalData['total'] ?? 0;
 
-// Fetch all savings records
+// ============================
 $savingsQuery = "SELECT * FROM savings WHERE user_id = '$user' ORDER BY date DESC";
 $savingsRecords = mysqli_query($con, $savingsQuery);
 ?>
+
+
+<!-- ======================================= -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +75,6 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
 <body>
     <div class="container">
 
-        <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -83,34 +85,32 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
         </div>
 
-        <!-- Main Content -->
+
         <div class="content">
             <header>
-                <!-- Total savings -->
+     
                 <div class="col">
                     <div class="app-card app-card-stat shadow-sm h-100">
                         <div class="app-card-body p-3 p-lg-4">
                             <h2 class="stats-type mb-1">Total Savings</h2>
                             <div class="stats-figure">
-                                <?php echo htmlspecialchars(number_format($totalAmount, 2)); ?>
+                                <?php echo htmlspecialchars(number_format($totalAmount, 2)); ?> Taka
                             </div>
-                        </div><!--//app-card-body-->
+                        </div>
                         
-                    </div><!--//app-card-->
-                </div><!--//col-->
+                    </div>
+                </div>
             </header>
 
-            <!-- Feedback Message -->
 
             <?php if (!empty($message)): ?>
                 <p class="notification"><?php echo htmlspecialchars($message); ?></p>
             <?php endif; ?>
 
-            <!-- Savings Records Table -->
             <div class="table-container">
                 <div class="card-body p-4">
                     <div class="table-responsive">
@@ -143,7 +143,7 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
                             </thead>
                             <tbody>
                                 <?php 
-                                $count = 1; // Start the counter at 1
+                                $count = 1; 
                                 if (mysqli_num_rows($savingsRecords) > 0):
                                     while ($row = mysqli_fetch_assoc($savingsRecords)): ?>
                                         <tr>
@@ -152,7 +152,7 @@ $savingsRecords = mysqli_query($con, $savingsQuery);
                                             <td><?php echo htmlspecialchars(number_format($row['amount'], 2)); ?></td>
                                             <td><?php echo htmlspecialchars(date("d-m-y", strtotime($row['date']))); ?></td>
                                             <td class="button">
-                                                <a href="update.php?saving_id=<?php echo $row['saving_id']; ?>" title="Edit">
+                                                <a href="Up_Saving.php?saving_id=<?php echo $row['saving_id']; ?>" title="Edit">
                                                     <button class="btn btn-outline-primary btn-sm" id="editRowButton">Edit</button>
                                                 </a>
                                                 <a href="?type=delete&saving_id=<?php echo $row['saving_id']; ?>"

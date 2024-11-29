@@ -2,30 +2,28 @@
 session_start();
 include("connect.php");
 
-// Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.html");
     exit();
 }
 
-$label = 'Add'; // Default label for add mode
-$user_id = $_SESSION['user_id']; // Logged-in user's ID
+$label = 'Add'; 
+$user_id = $_SESSION['user_id']; 
 $amount = '';
 $date = '';
 $message = '';
 
-// Helper function to sanitize input
 function get_safe_value($data, $connection)
 {
     return mysqli_real_escape_string($connection, trim($data));
 }
 
-// Check if this is an edit operation
+
 if (isset($_GET['saving_id']) && is_numeric($_GET['saving_id'])) {
-    $label = 'Edit'; // Change label for edit mode
+    $label = 'Edit'; 
     $saving_id = get_safe_value($_GET['saving_id'], $con);
 
-    // Fetch current savings data
+
     $query = "SELECT * FROM savings WHERE saving_id = '$saving_id' AND user_id = '$user_id'";
     $res = mysqli_query($con, $query);
 
@@ -40,7 +38,7 @@ if (isset($_GET['saving_id']) && is_numeric($_GET['saving_id'])) {
     }
 }
 
-// Handle form submission
+
 if (isset($_POST['add'])) {
     $amount = get_safe_value($_POST['amount'], $con);
     $date = get_safe_value($_POST['date'], $con);
@@ -78,7 +76,7 @@ if (isset($_POST['add'])) {
 
 <body>   
     < class="container">
-        <!-- Sidebar Navigation -->
+
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -92,24 +90,10 @@ if (isset($_POST['add'])) {
                 <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
             </ul>
         </div>
-
-        <!-- Main Content -->
         <div class="app-content">
-        <!-- <div class="col"> -->
 
-        <!-- <div class="app-card-update"> -->
-                        
-                            
-                            
-                        
-
-
-
-        <!-- Add/Edit Savings Form -->
         <div class="container">
-        
-            
-            <!--Display message if any -->
+    
             <?php if ($message != ''): ?>
                 <div class="alert alert-danger"><?php echo $message; ?></div>
             <?php endif; ?>
