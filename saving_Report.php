@@ -76,7 +76,7 @@ chart.render();
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
+
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
@@ -91,7 +91,6 @@ chart.render();
             </ul>
         </div>
 
-        <!-- Main Content -->
         <div class="main">
     
             <section>
