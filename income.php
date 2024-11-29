@@ -28,10 +28,6 @@ $res = mysqli_query($con, $setvalue);
 $fetch = mysqli_fetch_array($res);
 $set = $fetch['total'];
 
-$setv = "SELECT SUM(amount) AS 'Amount' FROM expenses WHERE MONTH(created_at) = MONTH(expense_date)";
-$ress = mysqli_query($con, $setv);
-$fac = mysqli_fetch_array($ress);
-$sett = $fac['Amount'];
 ?>
 
 <!DOCTYPE html>
