@@ -1,12 +1,19 @@
 <?php
 include 'dbcon.php';
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.html'); 
+    exit();
+}
+$u = $_SESSION['user_id'];
+
 
 // Insert Income
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
-    $userid = 1;
+    $userid = $u;
 
     // Insert data into the database
     $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 

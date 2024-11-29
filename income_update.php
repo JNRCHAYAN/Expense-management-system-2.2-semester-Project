@@ -1,6 +1,13 @@
 <?php
 include 'dbcon.php';
 
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.html'); 
+    exit();
+}
+$u = $_SESSION['user_id'];
+
 // Fetch the income record based on income_id
 $income_ids = $_GET['income_id'];
 $showquery = "SELECT * FROM `income` WHERE income_id = {$income_ids}";
@@ -13,7 +20,7 @@ if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
-    $userid = 1;
+    $userid = $u;
 
     $updates = "UPDATE `income` SET `DATE` = '$date', `category` = '$category', `amount` = '$amount' WHERE `income_id` = '$idupdate'";
 

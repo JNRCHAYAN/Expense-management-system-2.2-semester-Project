@@ -1,16 +1,14 @@
 <?php
-
 session_start();
 include("connect.php");
 
-// Redirect if not logged in
 if (!isset($_SESSION["user_id"])) {
     header("Location: index.html");
     exit();
 }
 
-$user = $_SESSION["user_id"]; // Get logged-in user ID
-$message = ""; // Initialize feedback message
+$user = $_SESSION["user_id"]; 
+$message = ""; 
 
 // Handle adding savings
 if (isset($_POST["submit"])) {
