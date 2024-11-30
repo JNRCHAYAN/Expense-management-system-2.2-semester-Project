@@ -237,22 +237,35 @@ li a i {
 
 
 .add {
-    width: 100%;
-    padding: 0.5px;
-    background-color: #15A315;
+    width: 45%;
+    
+    padding: 0px 5px; /* Reduced padding for slimmer height */
+    background-color: #4bbe64;
     color: #ffffff;
-    font-size: 1em;
+    font-size: .9em;
     border: none;
     border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    font-weight: 250;
-    
+    font-weight: 500; /* Adjust font weight */
+    text-align: center;
+    text-decoration: none; /* Remove underline for links */
+    display: block; /* Stack buttons vertically */
 }
 
 .add:hover {
     background-color: #15A361;
     transform: scale(1.05);
+}
+
+/* Button container for spacing between buttons */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center the buttons horizontally */
+    gap: 20px; /* Space between the buttons */
+    margin-top: 20px; /* Space above the buttons */
+    padding: 2px;
 }
 
 
@@ -355,7 +368,18 @@ li a i {
     width: 200px;
     
 }
-
+.log a {
+    display: block;
+    padding: 12px 20px;
+    background-color: #e74c3c;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-top: 30px;
+    transition: background-color 0.3s, transform 0.3s;
+}
 .filter-btn:hover {
     background-color: #137a4b;
 }
