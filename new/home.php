@@ -84,6 +84,9 @@ $investTotal = getTotalAmount($investQuery, $con);
     <link rel="stylesheet" href="./CSS/homes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
 
 <body>
@@ -92,55 +95,62 @@ $investTotal = getTotalAmount($investQuery, $con);
         <div class="navigation">
             <img src="./image/menubar3.png" alt="Icon" class="Op_image_menu">
             <ul>
-                
-                <li><a href="home.php">🏠 Home</a></li>
-                <li><a href="income.php">💰 Income</a></li>
-                <li><a href="expense.php">📊 Expenses</a></li>
-                <li><a href="saving.php">💲 Savings</a></li>
-                <li><a href="loan.php">💵 Loan</a></li>
-                <li><a href="investment.php">💱 Investment</a></li>
-                <li><a href="profile_Edit.php">⚙️ Settings</a></li>
-                <li><a href="Logout.php">🔒 Logout</a></li>
+
+                <li><a href="home.php"><i class="fas fa-home"></i> <span class="nav-title">Home</span></a></li>
+                <li><a href="income.php"><i class="fas fa-wallet"></i> <span class="nav-title">Income</span></a></li>
+                <li><a href="expense.php"><i class="fas fa-file-invoice-dollar"></i> <span
+                            class="nav-title">Expenses</span></a></li>
+                <li><a href="saving.php"><i class="fas fa-ghost"></i> <span class="nav-title">Savings</span></a>
+                </li>
+                <li><a href="loan.php"><i class="fas fa-hand-holding-usd"></i> <span class="nav-title">Loan</span></a>
+                </li>
+                <li><a href="investment.php"><i class="fas fa-chart-line"></i> <span
+                            class="nav-title">Investments</span></a></li>
+                <li><a href="settings.php"><i class="fas fa-cog"></i> <span class="nav-title">Settings</span></a></li>
+                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span class="nav-title">Logout</span></a>
+                </li>
+
+
             </ul>
         </div>
 
         <!-- Main Content -->
         <div class="main">
             <section>
-            <header>
-                <!-- date range -->
-                <div class="col">
-                    <div class="app-card app-card-stat shadow-sm h-100">
-                        <div class="app-card-body p-3 p-lg-4">
-                        <!-- <h2 class="head_title">Welcome <?php //echo $user_name; ?> </h2> -->
-                        <img src="./image/welcome.png" alt="Icon" class="Op_image_welcome"> 
-                        <h2>Dashboard</h2>
-                            <p>
-                                <?php
-                                if ($month === "all" && $year === "all") {
-                                    echo "Here are the total finances over the years";
-                                } elseif ($month === "all") {
-                                    echo "All Months in $year";
-                                } elseif ($year === "all") {
-                                    echo DateTime::createFromFormat('!m', $month)->format('F') . " (All Years)";
-                                } else {
-                                    echo DateTime::createFromFormat('!m', $month)->format('F') . " $year";
-                                }
-                                ?>
-                            </p>
-                            
-                        </div><!--//app-card-body-->
-                    </div><!--//app-card-->
-                </div><!--//col-->
-            </header>
-            
+                <header>
+                    <!-- date range -->
+                    <div class="col">
+                        <div class="app-card app-card-stat shadow-sm h-100">
+                            <div class="app-card-body p-3 p-lg-4">
+                                <!-- <h2 class="head_title">Welcome <?php //echo $user_name; ?> </h2> -->
+                                <img src="./image/welcome.png" alt="Icon" class="Op_image_welcome">
+                                <h2>Dashboard</h2>
+                                <p>
+                                    <?php
+                                    if ($month === "all" && $year === "all") {
+                                        echo "Here are the total finances over the years";
+                                    } elseif ($month === "all") {
+                                        echo "All Months in $year";
+                                    } elseif ($year === "all") {
+                                        echo DateTime::createFromFormat('!m', $month)->format('F') . " (All Years)";
+                                    } else {
+                                        echo DateTime::createFromFormat('!m', $month)->format('F') . " $year";
+                                    }
+                                    ?>
+                                </p>
+
+                            </div><!--//app-card-body-->
+                        </div><!--//app-card-->
+                    </div><!--//col-->
+                </header>
+
                 <div class="filter-container">
                     <form class="filter-form" method="GET">
                         <div class="filter-item">
                             <label for="month">Month</label>
                             <select name="month" id="month-filter" class="month-dropdown">
                                 <option value="">Select</option>
-                                
+
                                 <?php
                                 for ($m = 1; $m <= 12; $m++) {
                                     $monthName = DateTime::createFromFormat('!m', $m)->format('F');
@@ -155,7 +165,7 @@ $investTotal = getTotalAmount($investQuery, $con);
                             <label for="year">Year</label>
                             <select name="year" id="year-filter" class="year-dropdown">
                                 <option value="">Select</option>
-                                
+
                                 <?php
                                 $startYear = 2019;
                                 $endYear = date('Y') + 6;
@@ -172,7 +182,7 @@ $investTotal = getTotalAmount($investQuery, $con);
                     </form>
                 </div>
 
-            
+
 
                 <!-- Displaying the Results -->
                 <div class="option_dev">
@@ -231,7 +241,7 @@ $investTotal = getTotalAmount($investQuery, $con);
                         </footer>
                     </div>
                 </div>
-                
+
             </section>
             <footer>
                 <div class="footer-button">
@@ -239,7 +249,7 @@ $investTotal = getTotalAmount($investQuery, $con);
                 </div>
             </footer>
         </div>
-        
+
     </div>
 </body>
 

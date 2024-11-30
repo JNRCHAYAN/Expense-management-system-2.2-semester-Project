@@ -8,7 +8,7 @@
     --bs-body-font-weight: 500;
     --bs-body-line-height: 1.5;
     --bs-body-color: #212529;
-    --bs-body-bg: #f0fff5;
+    --bs-body-bg: #ebfff2;
     --bs-border-width: 1px;
     --bs-border-color: #dee2e6;
     --bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -181,7 +181,6 @@ table {
     border-spacing: 0 10px; /* Adds spacing between rows */
     width: 100%;
     margin-bottom: 1rem; /* Space below the table */
-
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
@@ -194,13 +193,13 @@ table {
 
 .table thead th {
     border: 1px  #dee2e6; /* Add border to header cells */
-    background-color: #15A362; /* Light background for header */
+    background-color: #d5ffce; /* Light background for header */
     text-transform: uppercase;
     font-size: 1.02rem;
     font-weight: 600;
     padding: 0.75rem; /* Padding inside header cells */
     text-align: center;
-    color: #000000; /* Dark gray text color */
+    color: #129412;
 }
 
 .table tbody tr {
@@ -258,9 +257,10 @@ table {
 }
 
 .navigation {
-    width: 250px;
+    width: 240px;
     /* background-color: #ffffff; */
-    background: linear-gradient(to left, #f0fff8, #ffffff);
+    /* background: linear-gradient(to left, #f0fff8, #ffffff); */
+    background-color: #ffffff;
     padding: 20px;
     position: fixed;
     top: 0;
@@ -270,6 +270,7 @@ table {
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+    font-size: 16.6464px;
 }
 
 .navigation ul {
@@ -301,8 +302,21 @@ table {
     font-size: 1.2em;
 }
 
+li a {
+    display: flex; /* Ensures icon and text are inline */
+    align-items: center; /* Vertically aligns icon and text */
+    text-decoration: none; /* Removes underline */
+    color: #000; /* Customize text color */
+    /* font-size: 16px; Adjust font size as needed */
+}
+
+li a i {
+    margin-right: 10px; /* Adds space between the icon and the text */
+    font-size: 18px; /* Customize icon size */
+}
+
 .app-card {
-    background: linear-gradient(to left, #f0fff8, #ffffff);
+    background: linear-gradient(to left, #ebfff2, #ffffff);
     padding: 15px;
     border-radius: 10px;
     width: 94%;
@@ -323,19 +337,6 @@ table {
 .app-card.app-card-stat.shadow-sm.h-100 p {
     color: #15A312;
 }
-
-
-/* .app-card-update{
-    background-color: #ffffff;
-    padding: 20px 20px;
-    border-radius: 10px;
-    box-shadow: none;
-    width: 100%;
-    margin: 25px auto;
-    
-} */
-
-
 
 .stats-figure {
     text-align: center;
@@ -403,13 +404,13 @@ table {
 
 /* Footer */
 footer {
-    background-color: #ffffff;
-    color: #000000;
+    
     padding: 15px 20px;
     text-align: center;
     width: 100%;
     position: relative;
     bottom: 0;
+    border-radius: 10px;
 }
 
 /* Responsive Design for Smaller Screens */
@@ -445,7 +446,7 @@ footer {
     border-radius: 8px;
     /* width: 600px; */
     margin: 20px;
-    margin-top: 100px;
+    margin-top: 60px;
     /* margin-left: 496px; */
 
     display: grid;

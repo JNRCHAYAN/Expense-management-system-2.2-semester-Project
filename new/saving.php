@@ -100,6 +100,7 @@ if (mysqli_num_rows($savingsRecords) == 0) {
     <link rel="stylesheet" href="./CSS/savings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- a little js to check the date thing to automatically update in tune with the year and the month -->
     <script>
@@ -158,14 +159,19 @@ if (mysqli_num_rows($savingsRecords) == 0) {
         <div class="navigation">
         <img src="./image/menubar3.png" alt="Icon" class="Op_image_menu">
             <ul>
-                <li><a href="home.php">🏠 Home</a></li>
-                <li><a href="income.php">💰 Income</a></li>
-                <li><a href="expense.php">📊 Expenses</a></li>
-                <li><a href="saving.php">💲 Savings</a></li>
-                <li><a href="loan.php">💵 Loan</a></li>
-                <li><a href="investment.php">💱 Investment</a></li>
-                <li><a href="profile_Edit.php">⚙️ Settings</a></li>
-                <li><a href="Logout.php">🔒 Logout</a></li>
+            <li><a href="home.php"><i class="fas fa-home"></i> <span class="nav-title">Home</span></a></li>
+                <li><a href="income.php"><i class="fas fa-wallet"></i> <span class="nav-title">Income</span></a></li>
+                <li><a href="expense.php"><i class="fas fa-file-invoice-dollar"></i> <span
+                            class="nav-title">Expenses</span></a></li>
+                <li><a href="saving.php"><i class="fas fa-ghost"></i> <span class="nav-title">Savings</span></a>
+                </li>
+                <li><a href="loan.php"><i class="fas fa-hand-holding-usd"></i> <span class="nav-title">Loan</span></a>
+                </li>
+                <li><a href="investment.php"><i class="fas fa-chart-line"></i> <span
+                            class="nav-title">Investments</span></a></li>
+                <li><a href="settings.php"><i class="fas fa-cog"></i> <span class="nav-title">Settings</span></a></li>
+                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span class="nav-title">Logout</span></a>
+                </li>
             </ul>
         </div>
 
