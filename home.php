@@ -188,6 +188,12 @@ $investTotal = getTotalAmount($investQuery, $con);
                                 <h3 class="btn">Add Income</h3>
                             </a>
                         </footer>
+                        <br>
+                        <footer class="add">
+                            <a href="Income_report.php" style="text-decoration: none;">
+                                <h3 class="btn">Income Report</h3>
+                            </a>
+                        </footer>
                     </div>
 
                     <div class="option_1">
@@ -197,6 +203,12 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <footer class="add">
                             <a href="expense.php" style="text-decoration: none;">
                                 <h3 class="btn">Add Expense</h3>
+                            </a>
+                        </footer>
+                        <br>
+                        <footer class="add">
+                            <a href="Expense_report.php" style="text-decoration: none;">
+                                <h3 class="btn">Expense Report</h3>
                             </a>
                         </footer>
                     </div>
@@ -210,6 +222,12 @@ $investTotal = getTotalAmount($investQuery, $con);
                                 <h3 class="btn">Add Savings</h3>
                             </a>
                         </footer>
+                        <br>
+                        <footer class="add">
+                            <a href="saving_Report.php" style="text-decoration: none;">
+                                <h3 class="btn">Savings Report</h3>
+                            </a>
+                        </footer>
                     </div>
 
                     <div class="option_1">
@@ -221,6 +239,12 @@ $investTotal = getTotalAmount($investQuery, $con);
                                 <h3 class="btn">Add Investment</h3>
                             </a>
                         </footer>
+                        <br>
+                        <footer class="add">
+                            <a href="invest_Report.php" style="text-decoration: none;">
+                                <h3 class="btn">Investment Report</h3>
+                            </a>
+                        </footer>
                     </div>
 
                     <div class="option_1">
@@ -230,6 +254,12 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <footer class="add">
                             <a href="loan.php" style="text-decoration: none;">
                                 <h3 class="btn">Add Loan</h3>
+                            </a>
+                        </footer>
+                        <br>
+                        <footer class="add">
+                            <a href="loan_Report.php" style="text-decoration: none;">
+                                <h3 class="btn">Loan Report</h3>
                             </a>
                         </footer>
                     </div>
