@@ -35,6 +35,13 @@ body {
     color: var(--bs-body-color);
     background-color: var(--bs-body-bg);
 }
+.navigation .active {
+    background-color: #007dd1;
+    color: #ffffff;
+}
+.navigation .active .icon {
+    color: #ffffff;
+}
 
 h1,
 .h1 {
