@@ -1,196 +1,249 @@
 <?php
-include 'connect.php';
+include 'connect.php';  // Database connection file
 session_start();
+
+// Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.html'); 
+    header('Location: index.html');
     exit();
 }
-$u = $_SESSION['user_id'];
-$n = $_SESSION['username'];
 
-?>
+$user_name = $_SESSION['username'];
+$user = $_SESSION['user_id']; // User ID from session
 
-<?php
-include 'connect.php';
-if (isset($_POST['month']) && !empty($_POST['month'])) {
-    $selectedMonth = $_POST['month'];
-    $date = DateTime::createFromFormat('m', $selectedMonth);
-    $monthName = $date->format('F');
+// Handle filters for month and year
+$month = isset($_GET['month']) && $_GET['month'] !== '' ? $_GET['month'] : 'all';
+$year = isset($_GET['year']) && $_GET['year'] !== '' ? $_GET['year'] : 'all';
 
-    $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u AND MONTH(DATE) = '$selectedMonth'";
-    $query1_result = mysqli_query($con, $query1);
-    $res1 = mysqli_fetch_array($query1_result);
-    $income = $res1['Tincome'];
+// Function to calculate total amount for any given query
+function getTotalAmount($query, $con)
+{
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['total'] ?? 0;
+}
 
-    $query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u AND MONTH(expense_date) = '$selectedMonth'";
-    $qery2 = mysqli_query( $con , $query2);
-    $res2 = mysqli_fetch_array($qery2);
-    $expense = $res2['Texpenses'];
+// Sanitize inputs
+$month = mysqli_real_escape_string($con, $month);
+$year = mysqli_real_escape_string($con, $year);
 
-    $query3 = "SELECT SUM(amount) AS Tsaving FROM savings WHERE user_id = $u AND MONTH(date) = '$selectedMonth'";
-    $qery3 = mysqli_query( $con , $query3);
-    $res3 = mysqli_fetch_array($qery3);
-    $saving  = $res3['Tsaving'];
+// Queries for income, expenses, savings, loans, and investments
+$incomeQuery = "SELECT SUM(amount) AS total FROM income WHERE user_id = '$user' ";
+if ($month !== 'all') {
+    $incomeQuery .= "AND MONTH(DATE) = '$month' ";
+}
+if ($year !== 'all') {
+    $incomeQuery .= "AND YEAR(DATE) = '$year' ";
+}
+$incomeTotal = getTotalAmount($incomeQuery, $con);
 
-    $query4 = "SELECT SUM(amount) AS Tinvest FROM invest WHERE user_id = $u AND MONTH(Invest_Start) = '$selectedMonth'";
-    $qery4 = mysqli_query( $con , $query4);
-    $res4 = mysqli_fetch_array($qery4);
-    $invest = $res4['Tinvest'];
+$expenseQuery = "SELECT SUM(amount) AS total FROM expenses WHERE user_id = '$user' ";
+if ($month !== 'all') {
+    $expenseQuery .= "AND MONTH(expense_date) = '$month' ";
+}
+if ($year !== 'all') {
+    $expenseQuery .= "AND YEAR(expense_date) = '$year' ";
+}
+$expenseTotal = getTotalAmount($expenseQuery, $con);
 
-    $query5 = "SELECT SUM(amount) AS Tloans FROM loans WHERE user_id = $u AND MONTH(loan_start_date) = '$selectedMonth'";
-    $qery5 = mysqli_query( $con , $query5);
-    $res5 = mysqli_fetch_array($qery5);
-    $loans = $res5['Tloans'];
-    
-} 
+$savingsQuery = "SELECT SUM(amount) AS total FROM savings WHERE user_id = '$user' ";
+if ($month !== 'all') {
+    $savingsQuery .= "AND MONTH(date) = '$month' ";
+}
+if ($year !== 'all') {
+    $savingsQuery .= "AND YEAR(date) = '$year' ";
+}
+$savingsTotal = getTotalAmount($savingsQuery, $con);
 
-else {
-    $currentDate = date('m');
-    $date = DateTime::createFromFormat('m', $currentDate);
-    $monthName = $date->format('F');
+$loansQuery = "SELECT SUM(amount) AS total FROM loans WHERE user_id = '$user' ";
+if ($month !== 'all') {
+    $loansQuery .= "AND MONTH(loan_start_date) = '$month' ";
+}
+if ($year !== 'all') {
+    $loansQuery .= "AND YEAR(loan_start_date) = '$year' ";
+}
+$loansTotal = getTotalAmount($loansQuery, $con);
 
-    $query1 = "SELECT SUM(amount) AS Tincome FROM income WHERE user_id = $u  AND MONTH(DATE) = $currentDate ; ";
-    $qery1 = mysqli_query( $con , $query1);
-    $res1 = mysqli_fetch_array($qery1);
-    $income = $res1['Tincome'];
-
-    $query2 = "SELECT SUM(amount) AS Texpenses FROM expenses WHERE user_id = $u AND MONTH(expense_date) = $currentDate ;";
-    $qery2 = mysqli_query( $con , $query2);
-    $res2 = mysqli_fetch_array($qery2);
-    $expense = $res2['Texpenses'];
-
-    $query3 = "SELECT SUM(amount) AS Tsaving FROM savings WHERE user_id = $u AND MONTH(DATE) = $currentDate ;";
-    $qery3 = mysqli_query( $con , $query3);
-    $res3 = mysqli_fetch_array($qery3);
-    $saving  = $res3['Tsaving'];
-
-    $query4 = "SELECT SUM(amount) AS Tinvest FROM invest WHERE user_id = $u AND MONTH(Invest_Start) = $currentDate ; ";
-    $qery4 = mysqli_query( $con , $query4);
-    $res4 = mysqli_fetch_array($qery4);
-    $invest = $res4['Tinvest'];
-
-    $query5 = "SELECT SUM(amount) AS Tloans FROM loans WHERE user_id = $u AND MONTH(loan_start_date) = $currentDate ;";
-    $qery5 = mysqli_query( $con , $query5);
-    $res5 = mysqli_fetch_array($qery5);
-    $loans = $res5['Tloans'];
- }
-
+$investQuery = "SELECT SUM(amount) AS total FROM invest WHERE user_id = '$user' ";
+if ($month !== 'all') {
+    $investQuery .= "AND MONTH(Invest_Start) = '$month' ";
+}
+if ($year !== 'all') {
+    $investQuery .= "AND YEAR(Invest_Start) = '$year' ";
+}
+$investTotal = getTotalAmount($investQuery, $con);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Overview</title>
-    <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="stylesheet" href="./CSS/pic.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Expense Management</title>
+    <link rel="stylesheet" href="./CSS/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
+
 <body>
-<img src="./image/logo.png" alt="Project Logo" class="logo-image">
     <div class="container">
         <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
-            <li><a href="home.php"  class="active"><span class="icon"> 🏠</span> Home</a></li>
+            <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
                 <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
-                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
+                <li><a href="Expanse.php"  class="active"><span class="icon">📊</span> Expenses</a></li>
                 <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
+            
         </div>
 
+        <!-- Main Content -->
         <div class="main">
-            
             <section>
-                <h2 class="head_title">Welcome <?php echo  $n; ?>  to Expense Management System </h2>
-                <h2 class="head_title">Month : <?php echo  $monthName; ?>   </h2>
+                <header>
+                    <!-- date range -->
+                    <div class="col">
+                        <div class="app-card app-card-stat shadow-sm h-100">
+                            <div class="app-card-body p-3 p-lg-4">
+                                <!-- <h2 class="head_title">Welcome <?php //echo $user_name; ?> </h2> -->
+                                <img src="./image/welcome.png" alt="Icon" class="Op_image_welcome">
+                                <h2>Dashboard</h2>
+                                <p>
+                                    <?php
+                                    if ($month === "all" && $year === "all") {
+                                        echo "Here are the total finances over the years";
+                                    } elseif ($month === "all") {
+                                        echo "All Months in $year";
+                                    } elseif ($year === "all") {
+                                        echo DateTime::createFromFormat('!m', $month)->format('F') . " (All Years)";
+                                    } else {
+                                        echo DateTime::createFromFormat('!m', $month)->format('F') . " $year";
+                                    }
+                                    ?>
+                                </p>
 
-                <h3>Filter by Month: </h3>
-                <br>
-                <form method="POST" action="">
-                <select id="month-filter" name="month" class="month-dropdown">
-                        <option value="">Select</option>
-                        <option value="01">January</option>
-                        <option value="02">February</option>
-                        <option value="03">March</option>
-                        <option value="04">April</option>
-                        <option value="05">May</option>
-                        <option value="06">June</option>
-                        <option value="07">July</option>
-                        <option value="08">August</option>
-                        <option value="09">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                    <input type="submit" value="Filter" class="filterb">
-                </form>
+                            </div><!--//app-card-body-->
+                        </div><!--//app-card-->
+                    </div><!--//col-->
+                </header>
 
-                <br>
-                <br>
-                <br>
+                <div class="filter-container">
+                    <form class="filter-form" method="GET">
+                        <div class="filter-item">
+                            <label for="month">Month</label>
+                            <select name="month" id="month-filter" class="month-dropdown">
+                                <option value="">Select</option>
+
+                                <?php
+                                for ($m = 1; $m <= 12; $m++) {
+                                    $monthName = DateTime::createFromFormat('!m', $m)->format('F');
+                                    $monthValue = str_pad($m, 2, '0', STR_PAD_LEFT);
+                                    echo "<option value='$monthValue' " . (($month == $monthValue) ? 'selected' : '') . ">$monthName</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <label for="year">Year</label>
+                            <select name="year" id="year-filter" class="year-dropdown">
+                                <option value="">Select</option>
+
+                                <?php
+                                $startYear = 2019;
+                                $endYear = date('Y') + 6;
+                                for ($y = $startYear; $y <= $endYear; $y++) {
+                                    echo "<option value='$y' " . (($year == $y) ? 'selected' : '') . ">$y</option>";
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <button type="submit" class="filter-btn">Filter</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- Displaying the Results -->
                 <div class="option_dev">
                     <div class="option_1">
                         <img src="./image/wallet.png" alt="Paid Icon" class="Op_image">
-                        <h2><?php echo  $income; ?> Taka</h2>
+                        <h2><?php echo $incomeTotal; ?> Taka</h2>
                         <p>Total Income</p>
-                        <br>
-                        <a href="income.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Income</h3></a>
-                        <br>
-                        <a href="Income_report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
-                        </div>
-
-                        <div class="option_1">
-                        <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
-                        <h2><?php echo  $expense; ?> Taka</h2>
-                        <p>Total Expense</p>
-                        <br>
-                        <a href="Expanse.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Expense</h3></a>
-                        <br>
-                        <a href="Expense_report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
-                        </div>
-
-                        <div class="option_1">
-                        <img src="./image/jar.png" alt="Paid Icon" class="Op_image">
-                        <h2><?php echo  $saving ; ?> Taka</h2>
-                        <p>Total Savings</p>
-                        <br>
-                        <a href="saving.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Savings</h3></a>
-                        <br>
-                        <a href="saving_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
-                        </div>
-
-                        <div class="option_1">
-                        <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
-                        <h2><?php echo  $invest; ?> Taka</h2>
-                        <p>Total Invesment</p>
-                        <br>
-                        <a href="investment.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Invesment</h3></a>
-                        <br>
-                        <a href="invest_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
-                        </div>
-
-                        <div class="option_1">
-                        <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
-                        <h2><?php echo  $loans; ?> Taka</h2>
-                        <p>Total Loan</p>
-                        <br>
-                        <a href="loan.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Show Loan</h3></a>
-                        <br>
-                        <a href="loan_Report.php" style="text-decoration: none;"><span class="icon"></span><h3 class="btn">Report</h3></a>
-                        </div>
+                        <footer class="add">
+                            <a href="income.php" style="text-decoration: none;">
+                                <h3 class="btn">Add Income</h3>
+                            </a>
+                        </footer>
                     </div>
-                 
-            </section>
 
+                    <div class="option_1">
+                        <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
+                        <h2><?php echo $expenseTotal; ?> Taka</h2>
+                        <p>Total Expense</p>
+                        <footer class="add">
+                            <a href="expense.php" style="text-decoration: none;">
+                                <h3 class="btn">Add Expense</h3>
+                            </a>
+                        </footer>
+                    </div>
+
+                    <div class="option_1">
+                        <img src="./image/jar.png" alt="Paid Icon" class="Op_image">
+                        <h2><?php echo $savingsTotal; ?> Taka</h2>
+                        <p>Total Savings</p>
+                        <footer class="add">
+                            <a href="saving.php" style="text-decoration: none;">
+                                <h3 class="btn">Add Savings</h3>
+                            </a>
+                        </footer>
+                    </div>
+
+                    <div class="option_1">
+                        <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
+                        <h2><?php echo $investTotal; ?> Taka</h2>
+                        <p>Total Investment</p>
+                        <footer class="add">
+                            <a href="investment.php" style="text-decoration: none;">
+                                <h3 class="btn">Add Investment</h3>
+                            </a>
+                        </footer>
+                    </div>
+
+                    <div class="option_1">
+                        <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
+                        <h2><?php echo $loansTotal; ?> Taka</h2>
+                        <p>Total Loan</p>
+                        <footer class="add">
+                            <a href="loan.php" style="text-decoration: none;">
+                                <h3 class="btn">Add Loan</h3>
+                            </a>
+                        </footer>
+                    </div>
+                </div>
+
+            </section>
+            <footer>
+                <div class="footer-button">
+                    <a href="home.php">Back</a>
+                </div>
+            </footer>
         </div>
 
-
+    </div>
 </body>
+
 </html>

@@ -2,28 +2,30 @@
 session_start();
 include("connect.php");
 
+// Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.html");
     exit();
 }
 
-$label = 'Add'; 
-$user_id = $_SESSION['user_id']; 
+$label = 'Add'; // Default label for add mode
+$user_id = $_SESSION['user_id']; // Logged-in user's ID
 $amount = '';
 $date = '';
 $message = '';
 
+// Helper function to sanitize input
 function get_safe_value($data, $connection)
 {
     return mysqli_real_escape_string($connection, trim($data));
 }
 
-
+// Check if this is an edit operation
 if (isset($_GET['saving_id']) && is_numeric($_GET['saving_id'])) {
-    $label = 'Edit'; 
+    $label = 'Edit'; // Change label for edit mode
     $saving_id = get_safe_value($_GET['saving_id'], $con);
 
-
+    // Fetch current savings data
     $query = "SELECT * FROM savings WHERE saving_id = '$saving_id' AND user_id = '$user_id'";
     $res = mysqli_query($con, $query);
 
@@ -38,7 +40,7 @@ if (isset($_GET['saving_id']) && is_numeric($_GET['saving_id'])) {
     }
 }
 
-
+// Handle form submission
 if (isset($_POST['add'])) {
     $amount = get_safe_value($_POST['amount'], $con);
     $date = get_safe_value($_POST['date'], $con);
@@ -72,33 +74,51 @@ if (isset($_POST['add'])) {
     <title>Expense Management - Savings</title>
     <link rel="stylesheet" href="./CSS/savings.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>   
-    < class="container">
-
+<div class="container">
+        <!-- Sidebar Navigation -->
         <div class="navigation">
             <h2>Menu</h2>
             <ul>
             <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
                 <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
-                <li><a href="Expanse.php"><span class="icon">📊</span> Expenses</a></li>
-                <li><a href="saving.php"  class="active"><span class="icon">💲</span> Savings</a></li>
+                <li><a href="Expanse.php"  class="active"><span class="icon">📊</span> Expenses</a></li>
+                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
-                <li><a href="Logout.php"><span class="icon">🔒</span> Logout</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
+            
         </div>
-        <div class="app-content">
 
+        <!-- Main Content -->
+        <div class="app-content">
+        <!-- <div class="col"> -->
+
+        <!-- <div class="app-card-update"> -->
+                        
+                            
+                            
+                        
+
+
+
+        <!-- Add/Edit Savings Form -->
         <div class="container">
-    
+        
+            
+            <!--Display message if any -->
             <?php if ($message != ''): ?>
                 <div class="alert alert-danger"><?php echo $message; ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="">
+            <form method="POST" action="" class="update">
+            <img src="./image/money-box.png" alt="Icon" class="Op_image_menu">
                 <header class="header"><h2><?php echo $label; ?> Savings</h2></header>
 
                 <div class="mb-3">
@@ -120,9 +140,13 @@ if (isset($_POST['add'])) {
 	    </footer>
             </form>
         </div>
-
+    
+    <!--//app-card-->                    
+<!-- </div> -->
+    <!-- //col -->
+<!-- </div>          -->
   
-    </div> 
+    </div> <!--//app-content-->
 
 
     </div>
