@@ -81,7 +81,7 @@ $investTotal = getTotalAmount($investQuery, $con);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Management</title>
-    <link rel="stylesheet" href="./CSS/homes.css">
+    <link rel="stylesheet" href="./CSS/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
 
@@ -93,25 +93,18 @@ $investTotal = getTotalAmount($investQuery, $con);
     <div class="container">
         <!-- Sidebar Navigation -->
         <div class="navigation">
-            <img src="./image/menubar3.png" alt="Icon" class="Op_image_menu">
+            <h2>Menu</h2>
             <ul>
-
-                <li><a href="home.php"><i class="fas fa-home"></i> <span class="nav-title">Home</span></a></li>
-                <li><a href="income.php"><i class="fas fa-wallet"></i> <span class="nav-title">Income</span></a></li>
-                <li><a href="expense.php"><i class="fas fa-file-invoice-dollar"></i> <span
-                            class="nav-title">Expenses</span></a></li>
-                <li><a href="saving.php"><i class="fas fa-ghost"></i> <span class="nav-title">Savings</span></a>
-                </li>
-                <li><a href="loan.php"><i class="fas fa-hand-holding-usd"></i> <span class="nav-title">Loan</span></a>
-                </li>
-                <li><a href="investment.php"><i class="fas fa-chart-line"></i> <span
-                            class="nav-title">Investments</span></a></li>
-                <li><a href="settings.php"><i class="fas fa-cog"></i> <span class="nav-title">Settings</span></a></li>
-                <li><a href="logout.php"><i class="fas fa-sign-out-alt"></i> <span class="nav-title">Logout</span></a>
-                </li>
-
-
+            <li><a href="home.php"><span class="icon"> 🏠</span> Home</a></li>
+                <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
+                <li><a href="Expanse.php"  class="active"><span class="icon">📊</span> Expenses</a></li>
+                <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
+                <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
+                <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
+                <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
+                <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
+            
         </div>
 
         <!-- Main Content -->
@@ -190,10 +183,16 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <img src="./image/wallet.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo $incomeTotal; ?> Taka</h2>
                         <p>Total Income</p>
-                        <footer class="add">
-                            <a href="income.php" style="text-decoration: none;">
-                                <h3 class="btn">Add Income</h3>
-                            </a>
+                        <footer class="button-container">
+
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Add Income</h3>
+                                </a>
+                      
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Incomes Report</h3>
+                                </a>
+                            
                         </footer>
                     </div>
 
@@ -201,10 +200,16 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <img src="./image/budget.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo $expenseTotal; ?> Taka</h2>
                         <p>Total Expense</p>
-                        <footer class="add">
-                            <a href="expense.php" style="text-decoration: none;">
-                                <h3 class="btn">Add Expense</h3>
-                            </a>
+                        <footer class="button-container">
+
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Add Expenses</h3>
+                                </a>
+                      
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Expenses Report</h3>
+                                </a>
+                            
                         </footer>
                     </div>
 
@@ -212,10 +217,16 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <img src="./image/jar.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo $savingsTotal; ?> Taka</h2>
                         <p>Total Savings</p>
-                        <footer class="add">
-                            <a href="saving.php" style="text-decoration: none;">
-                                <h3 class="btn">Add Savings</h3>
-                            </a>
+                        <footer class="button-container">
+
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Add Savings</h3>
+                                </a>
+                      
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Savings Report</h3>
+                                </a>
+                            
                         </footer>
                     </div>
 
@@ -223,10 +234,16 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <img src="./image/invest.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo $investTotal; ?> Taka</h2>
                         <p>Total Investment</p>
-                        <footer class="add">
-                            <a href="investment.php" style="text-decoration: none;">
-                                <h3 class="btn">Add Investment</h3>
-                            </a>
+                        <footer class="button-container">
+
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Add Investments</h3>
+                                </a>
+                      
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Investments Report</h3>
+                                </a>
+                            
                         </footer>
                     </div>
 
@@ -234,10 +251,16 @@ $investTotal = getTotalAmount($investQuery, $con);
                         <img src="./image/loan.png" alt="Paid Icon" class="Op_image">
                         <h2><?php echo $loansTotal; ?> Taka</h2>
                         <p>Total Loan</p>
-                        <footer class="add">
-                            <a href="loan.php" style="text-decoration: none;">
-                                <h3 class="btn">Add Loan</h3>
-                            </a>
+                        <footer class="button-container">
+
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Add Loans</h3>
+                                </a>
+                      
+                                <a href="income.php" style="text-decoration: none;" class="add">
+                                    <h3 class="btn">Loans Report</h3>
+                                </a>
+                            
                         </footer>
                     </div>
                 </div>
