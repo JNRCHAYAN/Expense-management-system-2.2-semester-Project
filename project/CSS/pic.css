@@ -1,0 +1,13 @@
+body {
+    position: relative; /* Ensure relative positioning for the logo */
+    font-family: Arial, sans-serif; /* Optional: Adjust font as needed */
+}
+
+.logo-image {
+    position: absolute; 
+    top: 10%; 
+    right: 10px; /* Positions the image 10px from the right edge */
+    transform: translateY(-50%); /* Ensures the image is perfectly centered */
+    width: 150px; /* Adjust the size as needed */
+    opacity: 1; /* Makes the image slightly transparent (optional) */
+}

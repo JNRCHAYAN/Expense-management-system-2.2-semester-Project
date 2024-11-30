@@ -1,0 +1,273 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+/* Container */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.navigation {
+    width: 250px;
+    background-color: #ffffff;
+    padding: 20px;
+    color: #fff;
+}
+
+.navigation ul {
+    list-style: none;
+}
+
+.navigation li {
+    margin-bottom: 20px;
+}
+
+.navigation a {
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navigation a:hover {
+    background-color: #495057;
+    color: #fff;
+}
+
+.icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+/* Main Content */
+.main {
+    flex: 1;
+    padding: 30px;
+    background-color: #f9fafb;
+}
+
+/* Section Titles */
+.head_title, .add_invest h2 {
+    font-size: 1.8em;
+    margin-bottom: 24px;
+    color: #2c3e50;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Option Cards */
+.option_dev {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.option_1 {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.option_1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.option_1 img {
+    width: 45px;
+    margin-bottom: 10px;
+}
+
+.option_1 h2 {
+    font-size: 1.5em;
+    color: #2c3e50;
+    margin: 10px 0;
+}
+
+.option_1 p {
+    color: #777;
+}
+
+/* Form Styles */
+
+.form-container {
+    display: none; /* Initially hidden */
+}
+
+.add_invest {
+    margin-top: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.in_form label {
+    font-weight: 500;
+    color: #555;
+    margin-top: 15px;
+    display: block;
+}
+
+.in_form input[type="number"],
+.in_form input[type="text"],
+.in_form input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 18px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-size: 1em;
+    color: #333;
+    outline: none;
+}
+
+.in_form input:focus {
+    border-color: #4a90e2;
+    box-shadow: 0 0 6px rgba(74, 144, 226, 0.2);
+}
+.form-container {
+    display: none; /* Initially hidden */
+}
+.filterb
+{
+    width: 100px;
+    padding: 5px;
+    height: 40px;
+    background-color: #009474;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+   
+}
+.btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007dd1;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+}
+
+
+.add {
+    width: 100%;
+    padding: 12px;
+    background-color: #00977e;
+    color: #ffffff;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #357ab9;
+    transform: translateY(-2px);
+}
+
+/* My Investment Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    margin-top: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table thead {
+    background-color: #4a90e2;
+    color: #fff;
+    text-align: left;
+}
+
+table th,
+table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+table tbody tr {
+    transition: background-color 0.3s;
+}
+
+table tbody tr:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+}
+
+table td {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Operation Column Styling */
+table th[colspan="2"],
+table td[colspan="2"] {
+    text-align: center;
+}
+
+
+.month-label {
+    font-size: 16px;
+    color: #333;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.month-dropdown {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 2px solid #555;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.month-dropdown:hover {
+    border-color: #007bff;
+    background-color: #eef;
+}
