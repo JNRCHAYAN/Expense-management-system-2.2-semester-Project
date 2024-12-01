@@ -91,13 +91,7 @@ hr {
     text-align: center;
 }
 
-.heading {
-    width: 85%;  
-    box-shadow: none;
-    background-color: #005b9e;
-}
-
-
+/* table */
 
 .add_button{
     text-align: center;
@@ -225,7 +219,7 @@ table {
     border-bottom: none; /* Remove bottom border from the last row */
 }
 
-
+/* main continer */
 .app {
     min-height: 100vh;
     width: 100%;
@@ -255,7 +249,7 @@ table {
     min-height: 100vh; /* Ensure full content height */
     flex: 1; /* Push footer to the bottom */
 }
-
+/* side navigation */
 .navigation {
     width: 240px;
     /* background-color: #ffffff; */
@@ -314,7 +308,7 @@ li a i {
     margin-right: 10px; /* Adds space between the icon and the text */
     font-size: 18px; /* Customize icon size */
 }
-
+/* top card header */
 .app-card {
     background: linear-gradient(to left, #ebfff2, #ffffff);
     padding: 15px;
@@ -346,21 +340,31 @@ li a i {
     
 }
 
-
+/* Update form */
 .update {
     background-color: #ffffff;
-    padding: 200px 40px ;
+    padding: 200px 40px;
     border-radius: 10px;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    width: 60%;
-    margin: 25px auto;
-    margin-right: 300px; /* Adjust this value as needed */
+    width: 75%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+
     position: relative;
-   
+
+    
+    left: 50%;
+    transform: translateX(-50%);  /* Center the card horizontally */
+    z-index: 5; /* Ensure the card stays below the navbar */
 }
-.header{
+
+/* Header styling */
+.header {
     padding-bottom: 16px;
 }
+
 .update label {
     font-size: 1rem;
     color: #333;
@@ -402,9 +406,8 @@ li a i {
     transform: translateY(-2px);
 }
 
-/* Footer */
+/* Footer styling */
 footer {
-    
     padding: 15px 20px;
     text-align: center;
     width: 100%;
@@ -412,6 +415,42 @@ footer {
     bottom: 0;
     border-radius: 10px;
 }
+
+/* Media Queries for Responsiveness */
+
+/* Medium screens (tablets and small desktops) */
+@media (max-width: 1024px) {
+    .update {
+        width: 80%; /* Adjust width on medium screens */
+        padding: 100px 20px; /* Adjust padding to fit */
+        margin-right: 100px; /* Adjust right margin */
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 768px) {
+    .update {
+        width: 90%; /* Adjust width on smaller screens */
+        padding: 60px 15px; /* Adjust padding to fit */
+        margin-right: 50px; /* Adjust right margin */
+    }
+
+    .update label {
+        font-size: 0.9rem; /* Adjust label font size for smaller screens */
+    }
+
+    .update input[type="number"],
+    .update input[type="date"] {
+        padding: 12px; /* Reduce padding for smaller inputs */
+    }
+
+    .update button {
+        width: 100%; /* Make button full width on mobile */
+        padding: 15px; /* Adjust button padding */
+        font-size: 0.9em; /* Reduce font size */
+    }
+}
+
 
 /* Responsive Design for Smaller Screens */
 @media (max-width: 767.98px) {
@@ -435,7 +474,7 @@ footer {
         width: 100%;
     }
 }
-
+/* logout */
 .log a {
     display: block;
     padding: 12px 20px;
@@ -448,40 +487,37 @@ footer {
     margin-top: 30px;
     transition: background-color 0.3s, transform 0.3s;
 }
+
+/* filter container */
 .filter-container {
     background-color: #fff;
-    padding: 20px;
-    padding-left: 60px;
-    padding-bottom: 0px;
+    padding: 20px 40px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    /* width: 600px; */
-    margin: 20px;
-    margin-top: 60px;
-    /* margin-left: 496px; */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1550px; /* Set a max width for larger screens */
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns by default */
-    gap: 20px; /* Space between items */
-    grid-template-areas:
-        "form form "; /* Empty spot for balance */
-    
 }
 
 .filter-form {
     display: flex;
-    flex-direction: row;
+    flex-wrap: nowrap; /* Keep inputs side by side */
     gap: 15px;
+    justify-content: space-between; /* Distribute space evenly */
 }
 
 .filter-item {
-    display: flex;
-    flex-direction: column;
+    flex: 1; /* Allow each item to grow/shrink equally */
+    min-width: 150px; /* Minimum width for smaller screens */
 }
 
 .filter-item label {
     font-weight: bold;
     margin-bottom: 5px;
+    display: block; /* Ensure label stays above input */
 }
 
 .filter-item input,
@@ -489,12 +525,9 @@ footer {
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 2rem;
-    font-size: .9em;
+    font-size: 0.9em;
     transition: border-color 0.3s, box-shadow 0.3s;
-    width: 400px;
-    
-    
+    width: 100%; /* Input stretches within its container */
 }
 
 .filter-btn {
@@ -502,13 +535,13 @@ footer {
     color: white;
     padding: 10px;
     margin: auto;
+    margin-top: 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.05rem;
     transition: background-color 0.3s ease;
     width: 200px;
-    
 }
 
 .filter-btn:hover {
@@ -516,7 +549,6 @@ footer {
 }
 
 input[type="range"] {
-    
     width: 100%;
     height: 10px;
     background: #ddd;
@@ -527,4 +559,22 @@ input[type="range"] {
 
 input[type="range"]:focus {
     background: #ccc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .filter-form {
+        gap: 10px; /* Reduce gap on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-form {
+        flex-wrap: wrap; /* Stack inputs on small screens if needed */
+        gap: 15px;
+    }
+
+    .filter-item {
+        min-width: 100%; /* Inputs take full width */
+    }
 }
