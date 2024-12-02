@@ -74,6 +74,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $label; ?> Record</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -105,7 +106,7 @@ if (isset($_POST['submit'])) {
         </select><br>
 
         <label for="phone_no">Phone Number:</label>
-        <input type="text" id="phone_no" name="phone_no" value="<?php echo $phone_no; ?>" required><br>
+        <input type="text" id="phone_no" name="phone_no" value="<?php echo $phone_no; ?>" maxlength="11" minlength="11" required><br>
 
         <label for="email_address">Email Address:</label>
         <input type="text" id="email_address" name="email_address" value="<?php echo $email_address; ?>" required><br>

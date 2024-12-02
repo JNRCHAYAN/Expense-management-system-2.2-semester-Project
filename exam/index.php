@@ -62,6 +62,7 @@ $result = $connect_to_the_database->query($query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div class="content">
@@ -112,12 +113,14 @@ $result = $connect_to_the_database->query($query);
                         <td><?php echo htmlspecialchars($row['email_address']); ?></td>
                         
                         <td>
+                            <div class="button-container">
                             <a href="form.php?id=<?php echo $row['id']; ?>">
                                 <button>Edit</button>
                             </a>
                             <a href="?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this record?')">
                                 <button>Delete</button>
                             </a>
+                            </div>
                         </td>
                     </tr>
                     <?php
