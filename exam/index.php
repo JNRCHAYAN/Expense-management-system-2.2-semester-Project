@@ -1,60 +1,29 @@
 <?php
 session_start();
-include('bridge.php');
+include('bridge.php'); // Database connection
 
 // Initialize message
 $message = "";
 
-// Handle form submission
-if (isset($_POST['submit'])) {
-    // Sanitize and validate form data
-    $name = isset($_POST['name']) ? $_POST['name'] : '';
-    $address = isset($_POST['address']) ? $_POST['address'] : '';
-    $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
-    $occupation = isset($_POST['occupation']) ? $_POST['occupation'] : '';
-    $phone_no = isset($_POST['phone_no']) ? $_POST['phone_no'] : '';
-    $email_address = isset($_POST['email_address']) ? $_POST['email_address'] : '';
+// Handle record deletion
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-    // Check if all fields are provided
-    if (empty($name) || empty($address) || empty($gender) || empty($occupation) || empty($phone_no) || empty($email_address)) {
-        $message = "All fields are required.";
+    // Delete query
+    $query = "DELETE FROM database_table WHERE id = $id";
+
+    if (mysqli_query($connect_to_the_database, $query)) {
+        $message = "Record successfully deleted!";
     } else {
-        // Insert data into the database
-        $insertQuery = $connect_to_the_database->prepare("INSERT INTO database_table (name, address, gender, occupation, phone_no, email_address) VALUES (?, ?, ?, ?, ?, ?)");
-        $insertQuery->bind_param("ssssss", $name, $address, $gender, $occupation, $phone_no, $email_address);
-
-        if ($insertQuery->execute()) {
-            $message = "Data successfully added!";
-        } else {
-            $message = "Failed to insert the data.";
-        }
+        $message = "Failed to delete the record: " . mysqli_error($connect_to_the_database);
     }
 }
 
-    // Handle record deletion
-if (isset($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = $_GET['id']; // Get the 'id' from the URL
-
-    // Prepare the DELETE query
-    // This deletes the record where the 'id' matches the one passed in the URL
-    $deleteQuery = $connect_to_the_database->prepare("DELETE FROM database_table WHERE id = ?");
-    
-    // Bind the 'id' as an integer to the query
-    $deleteQuery->bind_param("i", $id); // "i" means integer
-
-    // Execute the DELETE query
-    if ($deleteQuery->execute()) {
-        $message = "Record successfully deleted!"; // Success message
-    } else {
-        $message = "Failed to delete the record."; // Error message
-    }
-}
-
-
-// Query to fetch data from database
-$query = 'SELECT id, name, address, gender, occupation, phone_no, email_address FROM database_table';
-$result = $connect_to_the_database->query($query);
+// Fetch data from database
+$query = "SELECT id, name, address, gender, occupation, phone_no, email_address FROM database_table";
+$result = mysqli_query($connect_to_the_database, $query);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,10 +48,10 @@ $result = $connect_to_the_database->query($query);
 
         <!-- Table to Display Data -->
         <div class="table-container">
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
-                        <td colspan="7">Records</td>
+                        <td colspan="7">#Records</td>
                         <td><a href="form.php"><button>Add</button></a></td>
                     </tr>
                 </thead>

@@ -27,7 +27,19 @@ CREATE TABLE database_table(
 	occupation ENUM('engineer', 'doctor', 'others' ) NOT NULL,
 	phone_no VARCHAR(255) NOT NULL,
 	email_address VARCHAR(255) NOT NULL UNIQUE
-	-- file_path VARCHAR(255) NOT NULL
+	file_path VARCHAR(255) NOT NULL
 );
 
+USE database_name;
 
+CREATE TABLE student(
+	user_id INT AUTO_INCREMENT PRIMARY KEY,
+	NAME VARCHAR(255) NOT NULL,
+	gender ENUM('female', 'male'),
+	id INT NOT NULL,
+	department ENUM('CSE', 'EEE', 'ME', 'BBA', 'IT'),
+	phone_no VARCHAR(255) NOT NULL,
+	birthday DATE NOT NULL
+	
+);
+DROP TABLE student;
