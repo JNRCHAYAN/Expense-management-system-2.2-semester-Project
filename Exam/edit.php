@@ -15,15 +15,30 @@ if(isset($_POST['submit']))
     $quantity = $_POST['quantity'];
     $uprice = $_POST['uprice'];
 
-    $q = "INSERT INTO `product`( `productname`, `category`, `stockdate`, `quantity`, `unitprice`) VALUES ('$pname','$category','$sdate','$quantity','$uprice')";
-
-
-    $q= "UPDATE `product` SET `productname`='$pname',`category`='$category',`stockdate`='$sdate',`quantity`='$quantity',`unitprice`='$uprice' WHERE id = $idd "; 
-    
-    $run = mysqli_query($con,$q);
-    if($run)
+    if($quantity > 0 )
     {
-        header('location:index.php');
+        if($uprice>0)
+        {
+            $q= "UPDATE `product` SET `productname`='$pname',`category`='$category',`stockdate`='$sdate',`quantity`='$quantity',`unitprice`='$uprice' WHERE id = $idd "; 
+    
+    
+            $run = mysqli_query($con,$q);
+            if($run)
+            {
+                header('location:index.php');
+            }
+
+        }
+        else 
+        {
+            echo "Please add uprice is greater then 0";
+
+        }
+       
+    }
+    else
+    {
+        echo "Please add quantity is greater then 0";
     }
 }
 
@@ -36,18 +51,18 @@ if(isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Data</title>
-
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
 </head>
 <body>
 
     <form action="" method="post" class="form p-3 m-3" >
 
         <label for="">Product Name</label>
-        <input type="text" name="pname" value="<?php echo $data['productname'] ?>">
+        <input type="text" name="pname" value="<?php echo $data['productname'] ?> " required>
         <br><br>
 
         <label for="">Category</label>
-        <select name="category" id="">
+        <select name="category" id="" required>
             <option value="foods"   <?php if($data['category'] == 'foods') echo 'selected'; ?> >Foods</option>
 
             <option value="electronics"   <?php if($data['category'] == 'electronics') echo 'selected'; ?> >Electronics</option>
@@ -61,15 +76,15 @@ if(isset($_POST['submit']))
 
         
         <label for="">Stock Date</label>
-        <input type="date" name="sdate" value="<?php echo $data['stockdate'] ?>">
+        <input type="date" name="sdate" value="<?php echo $data['stockdate'] ?>" required>
         <br><br>
         
         <label for="">Quantity</label>
-        <input type="number" name="quantity" value="<?php echo $data['quantity'] ?>">
+        <input type="number" name="quantity" value="<?php echo $data['quantity'] ?>" required>
         <br><br>
 
         <label for="">Unit Price</label>
-        <input type="number" name="uprice" value="<?php echo $data['unitprice'] ?>">
+        <input type="number" name="uprice" value="<?php echo $data['unitprice'] ?>" required>
         <br><br>
 
         <input type="submit" name="submit" class="btn btn-primary p-2 m-2">

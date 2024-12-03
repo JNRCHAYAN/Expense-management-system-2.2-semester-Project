@@ -1,6 +1,6 @@
 <?php
 
-//Ame product name table create korse so tumeo product name table create koreo ta hole hobe
+// ame  product name table create korse and database name user
 
 include 'connect.php';
 
@@ -12,13 +12,32 @@ if(isset($_POST['submit']))
     $quantity = $_POST['quantity'];
     $uprice = $_POST['uprice'];
 
-    $q = "INSERT INTO `product`( `productname`, `category`, `stockdate`, `quantity`, `unitprice`) VALUES ('$pname','$category','$sdate','$quantity','$uprice')";
-    
-    $run = mysqli_query($con,$q);
-    if($run)
+    if($quantity > 0 )
     {
-        header('location:index.php');
+        if($uprice>0)
+        {
+            $q = "INSERT INTO `product`( `productname`, `category`, `stockdate`, `quantity`, `unitprice`) VALUES ('$pname','$category','$sdate','$quantity','$uprice')";
+    
+            $run = mysqli_query($con,$q);
+            if($run)
+            {
+                header('location:index.php');
+            }
+
+        }
+        else 
+        {
+            echo "Please add uprice is greater then 0";
+
+        }
+       
     }
+    else
+    {
+        echo "Please add quantity is greater then 0";
+    }
+
+    
 }
 
 
@@ -30,7 +49,7 @@ if(isset($_POST['submit']))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Data</title>
-
+    <link rel="stylesheet" href="./CSS/bootstrap.min.css">
 </head>
 <body>
 
@@ -42,7 +61,7 @@ if(isset($_POST['submit']))
 
         
         <label for="">Category</label>
-        <select name="category" id="">
+        <select name="category" id="" required>
             <option value="foods">Foods</option>
             <option value="electronics">Electronics</option>
             <option value="clothes">Clothes</option>
