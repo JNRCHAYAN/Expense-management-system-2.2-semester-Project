@@ -1,9 +1,9 @@
 <?php
 session_start();
-
+ 
 if (isset($_GET['message']) && $_GET['message'] === 'success') {
-    $mess = "<h2>Registration Successfull.</h2> "; 
-    // echo "<p class='success-message'>Your registration is complete. Please log in.</p>";
+    $mess = "<h2>Registration Successfull.</h2> ";
+    
 }
 else
 {
