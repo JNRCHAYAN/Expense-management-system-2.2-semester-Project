@@ -68,15 +68,15 @@ $set = $fetch['total'];
                         <div class="filter-group">
                             <div>
                                 <label for="start-date">Start Date</label>
-                                <input type="date" name="start" id="start-date">
+                                <input type="date" name="start" id="start-date" required>
                             </div>
                             <div>
                                 <label for="end-date">End Date</label>
-                                <input type="date" name="end" id="end-date">
+                                <input type="date" name="end" id="end-date" required>
                             </div>
                             <div>
                                 <label for="category">Category</label>
-                                <select name="category" id="category">
+                                <select name="category" id="category" required>
                                     <option value="All">All categories</option>
                                     <option value="Salary">Salary</option>
                                     <option value="House Property">House Property</option>
