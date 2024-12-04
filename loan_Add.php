@@ -9,6 +9,7 @@ $u = $_SESSION['user_id'];
 
 <?php
 include 'connect.php';
+$error = "";
 if(isset($_POST['submit']))
 {
 
@@ -20,18 +21,30 @@ if(isset($_POST['submit']))
     
     $e_date = $_POST['e-date'];
     $user_id = $u;
-    $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, `interest_rate`, `loan_start_date`, `loan_end_date`) 
-     VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$e_date'); ";
-    $res = mysqli_query($con ,  $setvalue_db);
-    if ($res) {
-        echo "<script>alert('Data stored successfully');</script>";
-        header('Location: loan.php'); 
-        // header("Location: " .$_SERVER['PHP_SELF']);
-        exit;
-    } else {
-        echo "<script>alert('Failed to store data');</script>";
+    if($amount >0){
+        if($rate>0)
+        {
+        $setvalue_db = "INSERT INTO `loans`(`user_id`,`amount`, `BankName`, `interest_rate`, `loan_start_date`, `loan_end_date`) 
+        VALUES ('$user_id','$amount','$Bank_name','$rate','$s_date','$e_date'); ";
+        $res = mysqli_query($con ,  $setvalue_db);
+        if ($res) {
+           header('Location: loan.php'); 
+         exit;
+           }
+        }
+         else {
+            $error= "Please put Interest Rate greater then 0";
+       }
+    } 
+       else
+       {
+        $error= "Please put Amount is greater then 0";
+       }
+    
+
     }
-}
+   
+
     $selectquery = "SELECT SUM(amount) AS total FROM loans WHERE user_id = $u";
     $qery = mysqli_query( $con , $selectquery);
     $res = mysqli_fetch_array($qery);
@@ -102,6 +115,10 @@ if(isset($_POST['submit']))
 
                         <button name="submit" type="submit" class="btn">Add Loan</button>
                     </form>
+                    <br>
+        <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
                 </div>
                 </div>
             </section>

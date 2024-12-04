@@ -60,9 +60,7 @@ if (isset($_POST['submit'])) {
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
-            <div class="log">
-                <a href="logout.php">Logout</a>
-            </div>
+           
         </div>
 
         <!-- Main Content -->

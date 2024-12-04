@@ -10,26 +10,39 @@ $u = $_SESSION['user_id'];
 
 <?php
 include 'connect.php';
+$error = "";
 if(isset($_POST['submit']))
 {
-   
     $user =$_SESSION['user_id']; 
     $amount = $_POST['amount'];
     $Bank_name = $_POST['Bank_name'];
     $rate = $_POST['rate'];
     $s_date = $_POST['s_date'];
     $year = $_POST['year'];
-    $setvalue_db = "INSERT INTO `invest`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
-     VALUES ('$u','$amount','$Bank_name','$rate','$s_date','$year'); ";
-    $res = mysqli_query($con ,  $setvalue_db);
-    if ($res) {
-        echo "<script>alert('Data stored successfully');</script>";
-        header("Location: investment.php"); 
-        exit;
-    } else {
-        echo "<script>alert('Failed to store data');</script>";
+   
+    if($amount > 0){
+        if($rate > 0)
+        {
+            $setvalue_db = "INSERT INTO `invest`(`user_id`,`amount`, `BankName`, `Interest`, `Invest_Start`, `Total_Years`) 
+            VALUES ('$u','$amount','$Bank_name','$rate','$s_date','$year'); ";
+           $res = mysqli_query($con , $setvalue_db);
+           if ($res) {
+           header("Location: investment.php"); 
+           exit;
+           }
+        }
+        else
+        {
+            $error= "Please put Rate is greater then 0";
+        }
+       
+     }
+    else{
+        $error= "Please put Amount is greater then 0";
     }
- }
+}
+
+
 
 ?>
 
@@ -91,9 +104,13 @@ if(isset($_POST['submit']))
                         <input type="number" id="total_years" name="year" placeholder="Total Years" required>
                         <button type="submit" class="btn" name="submit">Add Investment</button>
                     </form>
+                    
                 </div>
+                <?php if ($error): ?>
+              <div class="error-message"><?php echo $error; ?></div>
+             <?php endif; ?>
             </section>
-
+          
             
          </div>
 
