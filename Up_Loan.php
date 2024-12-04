@@ -35,7 +35,7 @@
                     $showQuree = "select * from loans where loan_id = {$loan_id}";
                     $showdata = mysqli_query( $con ,$showQuree);
                     $arrdata = mysqli_fetch_array($showdata);  
-
+                    $error ="";
                     if(isset($_POST['updatee']))
                     {
                         $amount = $_POST['amount'];
@@ -43,20 +43,29 @@
                         $rate = $_POST['rate'];
                         $s_date = $_POST['s_date'];
                         $e_date = $_POST['e_date'];
-               
+                        if($amount>0)
+                        {
+                            if($rate>0)
+                            {
 
                         $setvalue_DB  =  "UPDATE `loans` SET `amount`='$amount',`interest_rate`='$rate',`BankName`='$Bank_name',`loan_start_date`='$s_date',`loan_end_date`='$e_date' WHERE `loan_id` = '$loan_id' ";
-
-
-
                         $res = mysqli_query($con ,  $setvalue_DB);
                         if ($res) {
-                            echo "<script>alert('Data stored successfully');</script>";
+                          
                             header('location:loan.php');
                             exit;
-                        } else {
-                            echo "<script>alert('Failed to store data');</script>";
+                        } 
+
+                           }
+                        else {
+                            $error= "Please put Interest Rate greater then 0";
+                       }
                         }
+                        else
+                            {
+                                $error= "Please put Amount is greater then 0";
+                            }
+                        
                     }
             ?>
 
@@ -84,6 +93,11 @@
            
         </form>
                 </div>
+                <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
+                
+
             </section>
 
  

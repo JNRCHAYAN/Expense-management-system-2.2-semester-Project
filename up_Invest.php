@@ -41,6 +41,7 @@ $u = $_SESSION['user_id'];
                             
         <?php
                     include 'connect.php';
+                    $error = "";
                     $invest_id = $_GET['invest_id'];
                     $showQuree = "select * from invest where invest_id={$invest_id}";
                     $showdata = mysqli_query( $con ,$showQuree);
@@ -55,17 +56,26 @@ $u = $_SESSION['user_id'];
                         $s_date = $_POST['s_date'];
                         $year = $_POST['year'];
                         $user_id = $u;
+                        if($amount >0){
+                            if($rate>0)
+                            {
 
-                        $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
-
-                        $res = mysqli_query($con ,  $setvalue_DB);
-                        if ($res) {
-                            echo "<script>alert('Data stored successfully');</script>";
-                            header('location:investment.php');
-                            exit;
-                        } else {
-                            echo "<script>alert('Failed to store data');</script>";
+                                $setvalue_DB= "UPDATE `invest` SET `amount`='$amount',`BankName`='$Bank_name',`Interest`='$rate',`Invest_Start`='$s_date',`Total_Years`='$year' WHERE `invest_id` = '$s_id'";
+                                $res = mysqli_query($con ,  $setvalue_DB);
+                                if ($res) {
+                                    header('location:investment.php');
+                                    exit;
+                                } 
+                            }
+                            else
+                            {
+                                $error= "Please put Interest Rate rate then 0";
+                            }
                         }
+                        else
+                        {
+                            $error= "Please put Amount then 0";
+                        }   
                     }
             ?>
 
@@ -94,6 +104,9 @@ $u = $_SESSION['user_id'];
             <button type="submit" class="btn" name="updatee">Update</button>
            
         </form>
+        <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
                 </div>
             </section>
 

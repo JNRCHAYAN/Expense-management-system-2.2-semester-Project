@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 $u = $_SESSION['user_id'];
-
+$error = "";
 // Fetch the income record based on income_id
 $income_ids = $_GET['income_id'];
 $showquery = "SELECT * FROM `income` WHERE income_id = {$income_ids}";
@@ -21,19 +21,24 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = $u;
+    if($amount>0)
+    {
+        $updates = "UPDATE `income` SET `DATE` = '$date', `category` = '$category', `amount` = '$amount' WHERE `income_id` = '$idupdate'";
 
-    $updates = "UPDATE `income` SET `DATE` = '$date', `category` = '$category', `amount` = '$amount' WHERE `income_id` = '$idupdate'";
+        $ress = mysqli_query($con, $updates);
+    
+        if ($ress) {
+            header('location:income.php');
+            exit;
+        } 
 
-    $ress = mysqli_query($con, $updates);
-
-    if ($ress) {
-        echo "<script>alert('Data updated successfully');</script>";
-        // Redirect to avoid duplicate data on page reload
-        header('location:income.php');
-        exit;
-    } else {
-        echo "<script>alert('Failed to update data');</script>";
     }
+    else
+    {
+        $error= "Please put Amount is greater then 0";
+    }
+
+   
 }
 ?>
 
@@ -96,6 +101,9 @@ if (isset($_POST['submit'])) {
                         </div>
                         <button class="btn" type="submit" name="submit">Update Income</button>
                     </form>
+                    <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
                 </div>
             </div>
         </div>

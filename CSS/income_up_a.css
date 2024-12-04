@@ -10,6 +10,13 @@ body {
     background-color: #f5f7fa;
     color: #333;
 }
+.error-message {
+    color: #ff1900;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+}
 
 #backb{
     position: absolute; 

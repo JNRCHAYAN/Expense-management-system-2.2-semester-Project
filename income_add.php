@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 $u = $_SESSION['user_id'];
 
+$error = "";
 
 // Insert Income
 if (isset($_POST['submit'])) {
@@ -14,20 +15,26 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = $u;
-
-    // Insert data into the database
-    $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
+    if($amount>0)
+    {
+        $setvalue_db = "INSERT INTO `income`(`user_id`, `DATE`, `category`, `amount`) 
                     VALUES ('$userid', '$date', '$category', '$amount')";
 
     $res = mysqli_query($con, $setvalue_db);
 
     if ($res) {
-        echo "<script>alert('Data stored successfully');</script>";
         header('location:income.php');
         exit;
-    } else {
-        echo "<script>alert('Failed to store data');</script>";
+    } 
     }
+    else
+    {
+        $error= "Please put Amount is greater then 0";
+    }
+
+
+    // Insert data into the database
+    
 }
 ?>
 
@@ -90,6 +97,9 @@ if (isset($_POST['submit'])) {
 
                     <button type="submit" name="submit" class="btn">Add Income</button>
                 </form>
+                <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
             </div>
         </div>
     </div>
