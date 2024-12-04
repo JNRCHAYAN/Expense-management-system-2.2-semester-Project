@@ -12,6 +12,7 @@ $expense_ids = $_GET['expense_id'];
 $showquery = "SELECT * FROM `expenses` WHERE expense_id = {$expense_ids}";
 $showdata = mysqli_query($con, $showquery);
 $arraydata = mysqli_fetch_array($showdata);
+$error = "";
 
 // Update Income record
 if (isset($_POST['submit'])) {
@@ -20,19 +21,21 @@ if (isset($_POST['submit'])) {
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = $u;
-
-    $updates = "UPDATE `expenses` SET `expense_date` = '$date', `category` = '$category', `amount` = '$amount' WHERE `expense_id` = '$idupdate'";
-
-    $ress = mysqli_query($con, $updates);
-
-    if ($ress) {
-        echo "<script>alert('Data updated successfully');</script>";
-        // Redirect to avoid duplicate data on page reload
-        header('location:Expanse.php');
-        exit;
-    } else {
-        echo "<script>alert('Failed to update data');</script>";
+    if( $amount>0)
+    {
+        $updates = "UPDATE `expenses` SET `expense_date` = '$date', `category` = '$category', `amount` = '$amount' WHERE `expense_id` = '$idupdate'";
+        $ress = mysqli_query($con, $updates);
+        if ($ress) {
+           
+            header('location:Expanse.php');
+            exit;
+        } 
     }
+    else
+    {
+        $error= "Please put Amount is greater then 0";
+    }
+   
 }
 ?>
 
@@ -95,6 +98,9 @@ if (isset($_POST['submit'])) {
                         </div>
                         <button class="btn" type="submit" name="submit">Update Expense</button>
                     </form>
+                    <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
                 </div>
             </div>
         </div>

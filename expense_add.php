@@ -6,27 +6,31 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 $u = $_SESSION['user_id'];
-
+$error = "";
 // Insert expense
 if (isset($_POST['submit'])) {
     $date = $_POST['date'];
     $category = $_POST['category'];
     $amount = $_POST['amount'];
     $userid = $u;
+    if($amount>0)
+    {
+        $setvalue_db = "INSERT INTO `expenses`(`user_id`, `expense_date`, `category`, `amount`) 
+        VALUES ('$userid', '$date', '$category', '$amount')";
 
-    // Insert data into the database
-    $setvalue_db = "INSERT INTO `expenses`(`user_id`, `expense_date`, `category`, `amount`) 
-                    VALUES ('$userid', '$date', '$category', '$amount')";
+        $res = mysqli_query($con, $setvalue_db);
 
-    $res = mysqli_query($con, $setvalue_db);
-
-    if ($res) {
-        echo "<script>alert('Data stored successfully');</script>";
+        if ($res) {
         header('location:Expanse.php');
         exit;
-    } else {
-        echo "<script>alert('Failed to store data');</script>";
+        } 
     }
+    else
+    {
+        $error= "Please put Amount is greater then 0";
+    }
+    // Insert data into the database
+    
 }
 ?>
 
@@ -88,6 +92,9 @@ if (isset($_POST['submit'])) {
 
                     <button type="submit" name="submit" class="btn">Add Expense</button>
                 </form>
+                <?php if ($error): ?>
+            <div class="error-message"><?php echo $error; ?></div>
+        <?php endif; ?>
             </div>
         </div>
     </div>
