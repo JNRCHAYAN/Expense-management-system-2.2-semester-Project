@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.html'); 
+    header('Location: index.html');
     exit();
 }
 $u = $_SESSION['user_id'];
@@ -28,6 +28,7 @@ include 'dbcon.php';
                 <li><a href="income.php"><span class="icon">💰</span> Income</a></li>
                 <li><a href="Expanse.php"  class="active" ><span class="icon">📊</span> Expenses</a></li>
                 <li><a href="saving.php"><span class="icon">💲</span> Savings</a></li>
+                
                 <li><a href="loan.php"><span class="icon">💵</span> Loan</a></li>
                 <li><a href="investment.php"><span class="icon">💱</span> Investment</a></li>
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
@@ -79,7 +80,7 @@ include 'dbcon.php';
                             </select>
                         </div>
                     </div>
-                    <button class="btnn" type="submit" name="s">Filter</button>   
+                    <button class="btnn" type="submit" name="s">Filter</button>
                 </form>
 
                 <table>
