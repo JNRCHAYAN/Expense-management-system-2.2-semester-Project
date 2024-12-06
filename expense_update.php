@@ -2,15 +2,14 @@
 include 'connect.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.html'); 
+    header('Location: index.html');
     exit();
 }
 $u = $_SESSION['user_id'];
 
 // Fetch the income record based on income_id
 $expense_ids = $_GET['expense_id'];
-$showquery = "SELECT * FROM `expenses` WHERE expense_id = {$expense_ids}";
-$showdata = mysqli_query($con, $showquery);
+$showquery = "SELECT * FROM `expenses` WHERE expense_id = {$expense_ids}"; $showdata = mysqli_query($con, $showquery);
 $arraydata = mysqli_fetch_array($showdata);
 $error = "";
 
@@ -26,16 +25,16 @@ if (isset($_POST['submit'])) {
         $updates = "UPDATE `expenses` SET `expense_date` = '$date', `category` = '$category', `amount` = '$amount' WHERE `expense_id` = '$idupdate'";
         $ress = mysqli_query($con, $updates);
         if ($ress) {
-           
+
             header('location:Expanse.php');
             exit;
-        } 
+        }
     }
     else
     {
         $error= "Please put Amount is greater then 0";
     }
-   
+
 }
 ?>
 
@@ -62,7 +61,7 @@ if (isset($_POST['submit'])) {
                 <li><a href="profile_Edit.php"><span class="icon">⚙️</span> Settings</a></li>
                 <div class="log"><a href="logout.php">Logout</a></div>
             </ul>
-            
+
         </div>
 
         <!-- Main Content -->
